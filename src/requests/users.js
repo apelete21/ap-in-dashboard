@@ -16,7 +16,7 @@ export const usersReqs = async (body, route) => {
     });
     const data = await response.json();
 
-    return data;
+    return {...data, ok: response?.ok};
   } catch (error) {
     return { message: error?.message };
   }

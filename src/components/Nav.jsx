@@ -71,7 +71,7 @@ function Nav() {
 
         <div className={`profile_box ${userSubmenu && "active"}`} onClick={toggleSubMenu}>
           <p>
-            {user?.firstName + " " + user?.lastName}
+            {user?.fullName}
           </p>
           <img src={icons.prIcon} alt="profile" />
           <div className="user-menu">
