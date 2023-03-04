@@ -226,7 +226,7 @@ export default function QuoteRequests() {
               <div className="request-details-type">
                 Full name
               </div>
-              <div className="request-details-value">
+              <div className="request-details-value default-p">
                 Sam Smith
               </div>
             </div>
@@ -234,7 +234,7 @@ export default function QuoteRequests() {
               <div className="request-details-type">
                 Location
               </div>
-              <div className="request-details-value">
+              <div className="request-details-value default-p">
                 Durban
               </div>
             </div>
@@ -242,7 +242,7 @@ export default function QuoteRequests() {
               <div className="request-details-type">
                 E-mail
               </div>
-              <div className="request-details-value">
+              <div className="request-details-value default-p">
                 samsmith@mybusiness.com
               </div>
             </div>
@@ -250,7 +250,7 @@ export default function QuoteRequests() {
               <div className="request-details-type">
                 Company name
               </div>
-              <div className="request-details-value">
+              <div className="request-details-value default-p">
                 Sam Smith
               </div>
             </div>
@@ -258,7 +258,7 @@ export default function QuoteRequests() {
               <div className="request-details-type">
                 Phone Number
               </div>
-              <div className="request-details-value">
+              <div className="request-details-value default-p">
                 Sam Smith
               </div>
             </div>
@@ -266,7 +266,7 @@ export default function QuoteRequests() {
               <div className="request-details-type">
                 Service Needed
               </div>
-              <div className="request-details-value">
+              <div className="request-details-value default-p">
                 Sam Smith
               </div>
             </div>
@@ -275,7 +275,9 @@ export default function QuoteRequests() {
                 Description
               </div>
               <div className="request-details-value">
+                <p className="default-p">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquetmattis.
+                </p>
               </div>
             </div>
           </div>

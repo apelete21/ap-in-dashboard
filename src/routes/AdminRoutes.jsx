@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Head from '../components/Head'
 import Aside from '../components/Aside'
@@ -11,10 +11,13 @@ import Blog from '../pages/Blog'
 import AddNewJob from '../pages/AddNewJob'
 import ApplicationList from '../pages/ApplicationList'
 import Login from '../pages/Login'
+import { AppContext } from '../Contexts/AppContext'
 
 function AdminRoutes() {
 
-    return (
+    const { login } = useContext(AppContext)
+
+    if (login) return (
 
         <>
 
@@ -25,7 +28,7 @@ function AdminRoutes() {
                 <Aside />
 
                 <div class="main">
-                    
+
                     <Nav />
 
                     <Routes>
@@ -39,11 +42,13 @@ function AdminRoutes() {
                     </Routes>
                 </div>
             </div>
-
-            <Routes>
-                <Route path='/login' element={<Login />} />
-            </Routes>
         </>
+    )
+
+    if (!login) return (
+        <Routes>
+            <Route path='/login' element={<Login />} />
+        </Routes>
     )
 }
 
