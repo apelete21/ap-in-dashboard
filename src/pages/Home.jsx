@@ -3,24 +3,23 @@ import React from 'react'
 export default function Home() {
   return (
     <>
-      <div class="top_graphs">
-        <div class="graph_box current_month">
-          <div class="graph_infos">
-            <p class="graph_title">Total visitors</p>
-            <div class="graph_number_box">
-              <h1 class="graph_number">251</h1>
+      <div className="top_graphs">
+        <div className="graph_box current_month">
+          <div className="graph_infos">
+            <p className="graph_title">Total visitors</p>
+            <div className="graph_number_box">
+              <h1 className="graph_number">251</h1>
               <div>
                 23
-
                 <svg width="9" height="9" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M1.8 10.5L0.75 9.45L7.95 2.25H1.5V0.75H10.5V9.75H9V3.3L1.8 10.5Z" fill="#DC3635" />
                 </svg>
 
               </div>
             </div>
-            <p class="period"> This month</p>
+            <p className="period"> This month</p>
           </div>
-          <div class="graphics">
+          <div className="graphics">
             <svg width="148" height="73" viewBox="0 0 148 73" fill="none"
               xmlns="http://www.w3.org/2000/svg">
               <rect x="26" y="50" width="18" height="23" fill="#E6E6E2" fillOpacity="0.84" />
@@ -33,11 +32,11 @@ export default function Home() {
           </div>
         </div>
 
-        <div class="graph_box current_visitor">
-          <div class="graph_infos">
-            <p class="graph_title">Total visitors</p>
-            <div class="graph_number_box">
-              <h1 class="graph_number">251</h1>
+        <div className="graph_box current_visitor">
+          <div className="graph_infos">
+            <p className="graph_title">Total visitors</p>
+            <div className="graph_number_box">
+              <h1 className="graph_number">251</h1>
               <div>
                 23
                 <svg width="9" height="9" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -45,9 +44,9 @@ export default function Home() {
                 </svg>
               </div>
             </div>
-            <p class="period"> This moth</p>
+            <p className="period"> This moth</p>
           </div>
-          <div class="graphics">
+          <div className="graphics">
             <svg width="148" height="73" viewBox="0 0 148 73" fill="none"
               xmlns="http://www.w3.org/2000/svg">
               <rect x="26" width="18" height="73" fill="#50449E" />
@@ -60,11 +59,11 @@ export default function Home() {
           </div>
         </div>
 
-        <div class="graph_box quote_request_stat">
-          <div class="graph_infos">
-            <p class="graph_title">Total visitors</p>
-            <div class="graph_number_box">
-              <h1 class="graph_number">251</h1>
+        <div className="graph_box quote_request_stat">
+          <div className="graph_infos">
+            <p className="graph_title">Total visitors</p>
+            <div className="graph_number_box">
+              <h1 className="graph_number">251</h1>
               <div>
                 23
                 <svg width="9" height="9" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -72,9 +71,9 @@ export default function Home() {
                 </svg>
               </div>
             </div>
-            <p class="period"> This month</p>
+            <p className="period"> This month</p>
           </div>
-          <div class="graphics">
+          <div className="graphics">
             <svg width="148" height="72" viewBox="0 0 148 72" fill="none"
               xmlns="http://www.w3.org/2000/svg">
               <rect x="26" y="49" width="18" height="23" fill="#E6E6E2" fillOpacity="0.84" />
@@ -90,14 +89,14 @@ export default function Home() {
 
       </div>
 
-      <div class="stats_chart">
-        <div class="blog_stats">
-          <div class="title">
+      <div className="stats_chart">
+        <div className="blog_stats">
+          <div className="title">
             <h2>
               Blog activity
             </h2>
           </div>
-          <div class="circular_chart">
+          <div className="circular_chart">
             <svg width="189" height="152" viewBox="0 0 189 152" fill="none"
               xmlns="http://www.w3.org/2000/svg">
               <path
@@ -137,41 +136,41 @@ export default function Home() {
             </svg>
           </div>
 
-          <div class="chart_numbers">
-            <div class="blog_stat">
+          <div className="chart_numbers">
+            <div className="blog_stat">
               <p>Blog posts </p>
-              <div class="stat_value">22</div>
+              <div className="stat_value">22</div>
             </div>
-            <div class="blog_stat">
+            <div className="blog_stat">
               <p>Mothly traffic</p>
-              <div class="stat_value">322 <span> 12%</span></div>
+              <div className="stat_value">322 <span> 12%</span></div>
             </div>
           </div>
 
         </div>
 
-        <div class="monthly_activity">
-          <div class="chart_header">
+        <div className="monthly_activity">
+          <div className="chart_header">
             <h2>Monthly activity board</h2>
-            <div class="right_conent">
-              <span class="dash"></span>
-              <div class="prev_month">
+            <div className="right_conent">
+              <span className="dash"></span>
+              <div className="prev_month">
                 <p>Previous motnth</p>
               </div>
-              <div class="current_month">
+              <div className="current_month">
                 <p>March 2023
                 </p>
                 <span>
                   <img src="../assets/media/images/icons/calendar.svg" alt="calendar" />
                 </span>
               </div>
-              <div class="options">
+              <div className="options">
                 <img src="../assets/media/images/icons/dot-icon.svg" alt="" />
               </div>
             </div>
 
           </div>
-          <div class="activity_chart">
+          <div className="activity_chart">
             <svg width="671" height="262" viewBox="0 0 671 262" fill="none"
               xmlns="http://www.w3.org/2000/svg">
               <path
@@ -261,14 +260,14 @@ export default function Home() {
         </div>
       </div>
 
-      <div class="quote_request_list">
-        <div class="quote_request_list_header">
+      <div className="quote_request_list">
+        <div className="quote_request_list_header">
           <h1>Latest quote request</h1>
-          <a class="btn btn_primary" href="http://">View all</a>
+          <a className="btn btn_primary" href="http://">View all</a>
         </div>
 
-        <div class="table-wrap">
-          <table class="table table-striped">
+        <div className="table-wrap">
+          <table className="table table-striped">
             <thead>
               <tr>
                 <th>Full name</th>
@@ -276,72 +275,72 @@ export default function Home() {
                 <th>Location</th>
                 <th>Service needed</th>
                 <th>Date</th>
-                <th class="text-last">Actions</th>
+                <th className="text-last">Actions</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td class="full_name">
-                  <div class="requester-picture">
+                <td className="full_name">
+                  <div className="requester-picture">
                     <img src="../assets/media/images/admin/images/quote-req-profile.png" alt="" />
                   </div>
-                  <div class="requester_name">Attah Foli Kangni</div>
+                  <div className="requester_name">Attah Foli Kangni</div>
                 </td>
-                <td class="email">attahfolikangni@jonescorp.com</td>
-                <td class="location">Merlbourne</td>
-                <td class="service">
-                  <span class="service_name">Graphic design</span>
+                <td className="email">attahfolikangni@jonescorp.com</td>
+                <td className="location">Merlbourne</td>
+                <td className="service">
+                  <span className="service_name">Graphic design</span>
                 </td>
-                <td class="date">23/11/2022</td>
-                <td class="actions">
-                  <span class="view-info">
+                <td className="date">23/11/2022</td>
+                <td className="actions">
+                  <span className="view-info">
                     <img src="../assets/media/images/icons/eye-icon.svg" alt="view-info" />
                   </span>
-                  <span class="delete-item">
+                  <span className="delete-item">
                     <img src="../assets/media/images/icons/trash-dark.svg" alt="delete-item" />
                   </span>
                 </td>
               </tr>
               <tr>
-                <td class="full_name">
-                  <div class="requester-picture">
+                <td className="full_name">
+                  <div className="requester-picture">
                     <img src="../assets/media/images/admin/images/quote-req-profile.png" alt="" />
                   </div>
-                  <div class="requester_name">Arthur Blunt</div>
+                  <div className="requester_name">Arthur Blunt</div>
                 </td>
-                <td class="email">arthurblunt@gmail.com</td>
-                <td class="location">Accra</td>
-                <td class="service">
-                  <span class="service_name">Process impovment</span>
+                <td className="email">arthurblunt@gmail.com</td>
+                <td className="location">Accra</td>
+                <td className="service">
+                  <span className="service_name">Process impovment</span>
                 </td>
-                <td class="date">23/11/2022</td>
-                <td class="actions">
-                  <span class="view-info">
+                <td className="date">23/11/2022</td>
+                <td className="actions">
+                  <span className="view-info">
                     <img src="../assets/media/images/icons/eye-icon.svg" alt="view-info" />
                   </span>
-                  <span class="delete-item">
+                  <span className="delete-item">
                     <img src="../assets/media/images/icons/trash-dark.svg" alt="delete-item" />
                   </span>
                 </td>
               </tr>
               <tr>
-                <td class="full_name">
-                  <div class="requester-picture">
+                <td className="full_name">
+                  <div className="requester-picture">
                     <img src="../assets/media/images/admin/images/quote-req-profile.png" alt="" />
                   </div>
-                  <div class="requester_name">Kemi Oluwa</div>
+                  <div className="requester_name">Kemi Oluwa</div>
                 </td>
-                <td class="email">kemioluwa23@gmail.com</td>
-                <td class="location">Gaborome</td>
-                <td class="service">
-                  <span class="service_name">Web development</span>
+                <td className="email">kemioluwa23@gmail.com</td>
+                <td className="location">Gaborome</td>
+                <td className="service">
+                  <span className="service_name">Web development</span>
                 </td>
-                <td class="date">23/11/2022</td>
-                <td class="actions">
-                  <span class="view-info">
+                <td className="date">23/11/2022</td>
+                <td className="actions">
+                  <span className="view-info">
                     <img src="../assets/media/images/icons/eye-icon.svg" alt="view-info" />
                   </span>
-                  <span class="delete-item">
+                  <span className="delete-item">
                     <img src="../assets/media/images/icons/trash-dark.svg" alt="delete-item" />
                   </span>
                 </td>

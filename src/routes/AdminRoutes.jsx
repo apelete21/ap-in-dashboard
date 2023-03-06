@@ -23,11 +23,11 @@ function AdminRoutes() {
 
             <Head />
 
-            <div class="main_wrapper">
+            <div className="main_wrapper">
 
                 <Aside />
 
-                <div class="main">
+                <div className="main">
 
                     <Nav />
 

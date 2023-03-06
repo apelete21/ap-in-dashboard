@@ -9,7 +9,7 @@ export default function ApplicationList() {
                 <div className="job-item mb-5">
                     <div className="job-item-top-bar">
                         <div className="item-head-description">
-                            <div className="item-picture" style="--item-picture: darkviolet">
+                            <div className="item-picture" style={{"--item-picture": "darkviolet"}}>
                                 <img src="../assets/media/images/icons/chair-icon.svg" alt="" />
                             </div>
                             <div className="item-title-details">
