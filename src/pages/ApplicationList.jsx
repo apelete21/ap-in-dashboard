@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import { icons } from '../service/icons'
 
 export default function ApplicationList() {
     return (
@@ -10,7 +12,7 @@ export default function ApplicationList() {
                     <div className="job-item-top-bar">
                         <div className="item-head-description">
                             <div className="item-picture" style={{"--item-picture": "darkviolet"}}>
-                                <img src="../assets/media/images/icons/chair-icon.svg" alt="" />
+                                <img src={icons.chairIcon} alt="" />
                             </div>
                             <div className="item-title-details">
                                 <div className="job-title">
@@ -26,7 +28,7 @@ export default function ApplicationList() {
                         <div className="publication-date">
                             <span>1 week ago</span>
                             <span>
-                                <img src="../assets/media/images/icons/calendar.svg" alt="" />
+                                <img src={icons.grayCalendar} alt="" />
                             </span>
                         </div>
                     </div>
@@ -88,7 +90,6 @@ export default function ApplicationList() {
                                     <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M9.49935 3.5625C5.54102 3.5625 2.1606 6.02458 0.791016 9.5C2.1606 12.9754 5.54102 15.4375 9.49935 15.4375C13.4577 15.4375 16.8381 12.9754 18.2077 9.5C16.8381 6.02458 13.4577 3.5625 9.49935 3.5625ZM9.49935 13.4583C7.31435 13.4583 5.54102 11.685 5.54102 9.5C5.54102 7.315 7.31435 5.54167 9.49935 5.54167C11.6844 5.54167 13.4577 7.315 13.4577 9.5C13.4577 11.685 11.6844 13.4583 9.49935 13.4583ZM9.49935 7.125C8.18518 7.125 7.12435 8.18583 7.12435 9.5C7.12435 10.8142 8.18518 11.875 9.49935 11.875C10.8135 11.875 11.8744 10.8142 11.8744 9.5C11.8744 8.18583 10.8135 7.125 9.49935 7.125Z" fill="#AAAAAA" />
                                     </svg>
-
                                 </a>
                             </div>
                             <div className="action action-edit">
@@ -106,7 +107,6 @@ export default function ApplicationList() {
                                 </a>
                             </div>
                         </div>
-
                     </div>
 
                 </div>
@@ -133,7 +133,7 @@ export default function ApplicationList() {
                                 <td className="full_name">
                                     <input type="checkbox" name="" id="" />
                                     <div className="requester-picture">
-                                        <img src="../assets/media/images/admin/images/quote-req-profile.png" alt="" />
+                                        <img src={icons.prIcon} alt="" />
                                     </div>
                                     <div className="requester_name">Attah Foli Kangni</div>
                                 </td>
@@ -142,10 +142,10 @@ export default function ApplicationList() {
                                 <td className="date">23/11/2022</td>
                                 <td className="actions">
                                     <span className="view-info">
-                                        <img src="../assets/media/images/icons/eye-icon.svg" alt="view-info" />
+                                        <img src={icons.eyeIcon} alt="view-info" />
                                     </span>
                                     <span className="delete-item">
-                                        <img src="../assets/media/images/icons/trash-dark.svg" alt="delete-item" />
+                                        <img src={icons.trashIcon} alt="delete-item" />
                                     </span>
                                 </td>
                             </tr>
@@ -153,7 +153,7 @@ export default function ApplicationList() {
                                 <td className="full_name">
                                     <input type="checkbox" />
                                     <div className="requester-picture">
-                                        <img src="../assets/media/images/admin/images/quote-req-profile.png" alt="" />
+                                        <img src={icons.prIcon} alt="" />
                                     </div>
                                     <div className="requester_name">Arthur Blunt</div>
                                 </td>
@@ -162,10 +162,10 @@ export default function ApplicationList() {
                                 <td className="date">23/11/2022</td>
                                 <td className="actions">
                                     <span className="view-info">
-                                        <img src="../assets/media/images/icons/eye-icon.svg" alt="view-info" />
+                                        <img src={icons.eyeIcon} alt="view-info" />
                                     </span>
                                     <span className="delete-item">
-                                        <img src="../assets/media/images/icons/trash-dark.svg" alt="delete-item" />
+                                        <img src={icons.trashIcon} alt="delete-item" />
                                     </span>
                                 </td>
                             </tr>
@@ -173,7 +173,7 @@ export default function ApplicationList() {
                                 <td className="full_name">
                                     <input type="checkbox" name="" id="" />
                                     <div className="requester-picture">
-                                        <img src="../assets/media/images/admin/images/quote-req-profile.png" alt="" />
+                                        <img src={icons.prIcon} alt="" />
                                     </div>
                                     <div className="requester_name">Kemi Oluwa</div>
                                 </td>
@@ -182,10 +182,10 @@ export default function ApplicationList() {
                                 <td className="date">23/11/2022</td>
                                 <td className="actions">
                                     <span className="view-info">
-                                        <img src="../assets/media/images/icons/eye-icon.svg" alt="view-info" />
+                                        <img src={icons.eyeIcon} alt="view-info" />
                                     </span>
                                     <span className="delete-item">
-                                        <img src="../assets/media/images/icons/trash-dark.svg" alt="delete-item" />
+                                        <img src={icons.trashIcon} alt="delete-item" />
                                     </span>
                                 </td>
                             </tr>
@@ -194,12 +194,12 @@ export default function ApplicationList() {
                 </div>
 
                 <div className="add-application-btn">
-                    <a className="btn cs_btn btn_secondary" href="http://">
+                    <Link className="btn cs_btn btn_secondary" to="/jobs/new">
                         <span className="">
-                            <img src="../assets/media/images/icons/feather.svg" alt="" />
+                            <img src={icons.feather} alt="" />
                         </span>
                         <span>Add a new job</span>
-                    </a>
+                    </Link>
                 </div>
 
 

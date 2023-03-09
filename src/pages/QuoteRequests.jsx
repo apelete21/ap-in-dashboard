@@ -1,4 +1,5 @@
 import React from 'react'
+import { icons } from '../service/icons'
 
 export default function QuoteRequests() {
   return (
@@ -6,11 +7,11 @@ export default function QuoteRequests() {
       <div className="quotes-requests-container">
         <div className="quotes-requests-lists-container">
           <div className="quotes-search-bar-container">
-            <form action="#">
+            <form>
               <div className="quotes-search-bar">
                 <input type="text" placeholder="Rechercher" />
-                <button type="submit">
-                  <img src="../assets/media/images/icons/search-white.svg" alt="search icon" />
+                <button>
+                  <img src={icons.searchIcon} alt="search icon" />
                 </button>
               </div>
             </form>
@@ -19,7 +20,7 @@ export default function QuoteRequests() {
             {/* <!-- Item --> */}
             <div className="quote-request-item">
               <div className="quote-request-picture">
-                <img src="../assets/media/images/admin/images/quotes-img.png" alt="" />
+                <img src={icons.prIcon} alt="" />
               </div>
               <div className="quote-request-item-details">
                 <div className="quote-request-title">
@@ -31,176 +32,14 @@ export default function QuoteRequests() {
               </div>
               <div className="quotes-button-trash">
                 <div className="button-trash-quote">
-                  <img src="../assets/media/images/icons/trash-dark.svg" alt="" />
+                  <img src={icons.trashIcon} alt="" />
                 </div>
               </div>
             </div>
-            {/* <!-- Item -->
-                        <!-- Item --> */}
-            <div className="quote-request-item">
-              <div className="quote-request-picture">
-                <img src="../assets/media/images/admin/images/quotes-img.png" alt="" />
-              </div>
-              <div className="quote-request-item-details">
-                <div className="quote-request-title">
-                  Beautiful places to
-                </div>
-                <div className="quote-time-requested">
-                  2 days ago
-                </div>
-              </div>
-              <div className="quotes-button-trash">
-                <div className="button-trash-quote">
-                  <img src="../assets/media/images/icons/trash-dark.svg" alt="" />
-                </div>
-              </div>
-            </div>
-            {/* <!-- Item -->
-                        <!-- Item --> */}
-            <div className="quote-request-item">
-              <div className="quote-request-picture">
-                <img src="../assets/media/images/admin/images/quotes-img.png" alt="" />
-              </div>
-              <div className="quote-request-item-details">
-                <div className="quote-request-title">
-                  Beautiful places to
-                </div>
-                <div className="quote-time-requested">
-                  2 days ago
-                </div>
-              </div>
-              <div className="quotes-button-trash">
-                <div className="button-trash-quote">
-                  <img src="../assets/media/images/icons/trash-dark.svg" alt="" />
-                </div>
-              </div>
-            </div>
-            {/* <!-- Item -->
-                        <!-- Item --> */}
-            <div className="quote-request-item">
-              <div className="quote-request-picture">
-                <img src="../assets/media/images/admin/images/quotes-img.png" alt="" />
-              </div>
-              <div className="quote-request-item-details">
-                <div className="quote-request-title">
-                  Beautiful places to
-                </div>
-                <div className="quote-time-requested">
-                  2 days ago
-                </div>
-              </div>
-              <div className="quotes-button-trash">
-                <div className="button-trash-quote">
-                  <img src="../assets/media/images/icons/trash-dark.svg" alt="" />
-                </div>
-              </div>
-            </div>
-            {/* <!-- Item -->
-                        <!-- Item --> */}
-            <div className="quote-request-item">
-              <div className="quote-request-picture">
-                <img src="../assets/media/images/admin/images/quotes-img.png" alt="" />
-              </div>
-              <div className="quote-request-item-details">
-                <div className="quote-request-title">
-                  Beautiful places to
-                </div>
-                <div className="quote-time-requested">
-                  2 days ago
-                </div>
-              </div>
-              <div className="quotes-button-trash">
-                <div className="button-trash-quote">
-                  <img src="../assets/media/images/icons/trash-dark.svg" alt="" />
-                </div>
-              </div>
-            </div>
-            {/* <!-- Item -->
-                        
-                        <!-- Item --> */}
-            <div className="quote-request-item">
-              <div className="quote-request-picture">
-                <img src="../assets/media/images/admin/images/quotes-img.png" alt="" />
-              </div>
-              <div className="quote-request-item-details">
-                <div className="quote-request-title">
-                  Beautiful places to
-                </div>
-                <div className="quote-time-requested">
-                  2 days ago
-                </div>
-              </div>
-              <div className="quotes-button-trash">
-                <div className="button-trash-quote">
-                  <img src="../assets/media/images/icons/trash-dark.svg" alt="" />
-                </div>
-              </div>
-            </div>
-            {/* <!-- Item -->
-                        <!-- Item --> */}
-            <div className="quote-request-item">
-              <div className="quote-request-picture">
-                <img src="../assets/media/images/admin/images/quotes-img.png" alt="" />
-              </div>
-              <div className="quote-request-item-details">
-                <div className="quote-request-title">
-                  Beautiful places to
-                </div>
-                <div className="quote-time-requested">
-                  2 days ago
-                </div>
-              </div>
-              <div className="quotes-button-trash">
-                <div className="button-trash-quote">
-                  <img src="../assets/media/images/icons/trash-dark.svg" alt="" />
-                </div>
-              </div>
-            </div>
-            {/* <!-- Item -->
-                        <!-- Item --> */}
-            <div className="quote-request-item">
-              <div className="quote-request-picture">
-                <img src="../assets/media/images/admin/images/quotes-img.png" alt="" />
-              </div>
-              <div className="quote-request-item-details">
-                <div className="quote-request-title">
-                  Beautiful places to
-                </div>
-                <div className="quote-time-requested">
-                  2 days ago
-                </div>
-              </div>
-              <div className="quotes-button-trash">
-                <div className="button-trash-quote">
-                  <img src="../assets/media/images/icons/trash-dark.svg" alt="" />
-                </div>
-              </div>
-            </div>
-            {/* <!-- Item -->
-                        <!-- Item --> */}
-            <div className="quote-request-item">
-              <div className="quote-request-picture">
-                <img src="../assets/media/images/admin/images/quotes-img.png" alt="" />
-              </div>
-              <div className="quote-request-item-details">
-                <div className="quote-request-title">
-                  Beautiful places to
-                </div>
-                <div className="quote-time-requested">
-                  2 days ago
-                </div>
-              </div>
-              <div className="quotes-button-trash">
-                <div className="button-trash-quote">
-                  <img src="../assets/media/images/icons/trash-dark.svg" alt="" />
-                </div>
-              </div>
-            </div>
-            {/* <!-- Item --> */}
           </div>
           <div className="quote-pagination-controller">
             <div className="pagination-back-btn">
-              <img src="../assets/media/images/icons/chevron_left.svg" alt="" />
+              <img src={icons.chevronLeft} alt="" />
             </div>
             <div className="controller-pages-number">
               <span className="selected">1</span>
@@ -210,7 +49,7 @@ export default function QuoteRequests() {
               <span>14</span>
             </div>
             <div className="pagination-forward-btn">
-              <img src="../assets/media/images/icons/chevron_right.svg" alt="" />
+              <img src={icons.chevronRight} alt="" />
             </div>
           </div>
         </div>

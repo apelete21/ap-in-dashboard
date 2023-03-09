@@ -1,26 +1,25 @@
 import React from 'react'
+import { icons } from '../service/icons'
+import welIllust from "../assets/media/images/admin/welcome_illustration.png"
 
 export default function Aside() {
     return (
         <>
             <div className="aside">
-
                 <div className="logo_box">
-                    <img className="logo" src="../assets/media/images/logo/logo-dark.png" alt="" />
+                    <img className="logo" src={icons.lgDark} alt="" />
                     <p className="tagline">Appeal of innovation</p>
                 </div>
-
                 <div className="onborard_card">
                     <h3>Welcom to your administration board</h3>
                     <p>Visualize an manage your website here</p>
-                    <img src="../assets/media/images/admin/welcome_illustration.png" alt="" />
+                    <img src={welIllust} alt="" />
                 </div>
-
                 <div className="latest_post">
                     <h1>Latest posts</h1>
                     <div className="post_box">
                         <div className="post_item">
-                            <img className="thumbnail" src="../assets/media/images/post/bigstock.jpg" alt="" />
+                            <img className="thumbnail" src={icons.prIcon} alt="" />
                             <div className="post_description">
                                 <p className="post_title">
                                     beautiful places
@@ -30,7 +29,7 @@ export default function Aside() {
                         </div>
 
                         <div className="post_item">
-                            <img className="thumbnail" src="../assets/media/images/post/bigstock.jpg" alt="" />
+                            <img className="thumbnail" src={icons.prIcon} alt="" />
                             <div className="post_description">
                                 <p className="post_title">
                                     beautiful places
@@ -40,7 +39,7 @@ export default function Aside() {
                         </div>
 
                         <div className="post_item">
-                            <img className="thumbnail" src="../assets/media/images/post/bigstock.jpg" alt="" />
+                            <img className="thumbnail" src={icons.prIcon} alt="" />
                             <div className="post_description">
                                 <p className="post_title">
                                     beautiful places

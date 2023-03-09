@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import React, { useContext, useEffect } from 'react'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import Head from '../components/Head'
 import Aside from '../components/Aside'
 import Home from '../pages/Home'
@@ -16,6 +16,15 @@ import { AppContext } from '../Contexts/AppContext'
 function AdminRoutes() {
 
     const { login } = useContext(AppContext)
+
+    const { pathname } = useLocation()
+
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        })
+    }, [pathname])
 
     if (login) return (
 

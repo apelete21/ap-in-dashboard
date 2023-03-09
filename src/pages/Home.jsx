@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import { icons } from '../service/icons'
 
 export default function Home() {
   return (
@@ -9,12 +11,11 @@ export default function Home() {
             <p className="graph_title">Total visitors</p>
             <div className="graph_number_box">
               <h1 className="graph_number">251</h1>
-              <div>
+              <div> 
                 23
                 <svg width="9" height="9" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M1.8 10.5L0.75 9.45L7.95 2.25H1.5V0.75H10.5V9.75H9V3.3L1.8 10.5Z" fill="#DC3635" />
                 </svg>
-
               </div>
             </div>
             <p className="period"> This month</p>
@@ -161,11 +162,11 @@ export default function Home() {
                 <p>March 2023
                 </p>
                 <span>
-                  <img src="../assets/media/images/icons/calendar.svg" alt="calendar" />
+                  <img src={icons.grayCalendar} alt="calendar" />
                 </span>
               </div>
               <div className="options">
-                <img src="../assets/media/images/icons/dot-icon.svg" alt="" />
+                <img src={icons.dotIcon} alt="" />
               </div>
             </div>
 
@@ -263,7 +264,7 @@ export default function Home() {
       <div className="quote_request_list">
         <div className="quote_request_list_header">
           <h1>Latest quote request</h1>
-          <a className="btn btn_primary" href="http://">View all</a>
+          <Link className="btn btn_primary" to="/quote-requests">View all</Link>
         </div>
 
         <div className="table-wrap">
@@ -282,7 +283,7 @@ export default function Home() {
               <tr>
                 <td className="full_name">
                   <div className="requester-picture">
-                    <img src="../assets/media/images/admin/images/quote-req-profile.png" alt="" />
+                    <img src={icons.prIcon} alt="" />
                   </div>
                   <div className="requester_name">Attah Foli Kangni</div>
                 </td>
@@ -294,17 +295,17 @@ export default function Home() {
                 <td className="date">23/11/2022</td>
                 <td className="actions">
                   <span className="view-info">
-                    <img src="../assets/media/images/icons/eye-icon.svg" alt="view-info" />
+                    <img src={icons.eyeIcon} alt="view-info" />
                   </span>
                   <span className="delete-item">
-                    <img src="../assets/media/images/icons/trash-dark.svg" alt="delete-item" />
+                    <img src={icons.trashIcon} alt="delete-item" />
                   </span>
                 </td>
               </tr>
               <tr>
                 <td className="full_name">
                   <div className="requester-picture">
-                    <img src="../assets/media/images/admin/images/quote-req-profile.png" alt="" />
+                    <img src={icons.prIcon} alt="" />
                   </div>
                   <div className="requester_name">Arthur Blunt</div>
                 </td>
@@ -316,17 +317,17 @@ export default function Home() {
                 <td className="date">23/11/2022</td>
                 <td className="actions">
                   <span className="view-info">
-                    <img src="../assets/media/images/icons/eye-icon.svg" alt="view-info" />
+                    <img src={icons.eyeIcon} alt="view-info" />
                   </span>
                   <span className="delete-item">
-                    <img src="../assets/media/images/icons/trash-dark.svg" alt="delete-item" />
+                    <img src={icons.trashIcon} alt="delete-item" />
                   </span>
                 </td>
               </tr>
               <tr>
                 <td className="full_name">
                   <div className="requester-picture">
-                    <img src="../assets/media/images/admin/images/quote-req-profile.png" alt="" />
+                    <img src={icons.prIcon} alt="" />
                   </div>
                   <div className="requester_name">Kemi Oluwa</div>
                 </td>
@@ -338,10 +339,10 @@ export default function Home() {
                 <td className="date">23/11/2022</td>
                 <td className="actions">
                   <span className="view-info">
-                    <img src="../assets/media/images/icons/eye-icon.svg" alt="view-info" />
+                    <img src={icons.eyeIcon} alt="view-info" />
                   </span>
                   <span className="delete-item">
-                    <img src="../assets/media/images/icons/trash-dark.svg" alt="delete-item" />
+                    <img src={icons.trashIcon} alt="delete-item" />
                   </span>
                 </td>
               </tr>

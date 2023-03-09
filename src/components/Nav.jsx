@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { icons } from '../service/icons'
 
 function Nav() {
 
@@ -19,7 +20,7 @@ function Nav() {
 
                 <div className="profile_box">
                     <p>Jane Doe</p>
-                    <img src="../assets/media/images/post/bigstock.jpg" alt="" />
+                    <img src={icons.prIcon} alt="profile" />
                 </div>
             </div>
         </>
