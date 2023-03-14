@@ -1,356 +1,63 @@
-import React from 'react'
+import moment from "moment";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { getNewsletters } from "../requests/getnewsletters";
 
 export default function Newsletters() {
-  return (
-    <>
-      <div className="newsletter-request-list">
+    const [emails, setEmails] = useState();
 
+    const [reload, setreload] = useState(true);
 
-        <div className="newsletter-lists-top-bar">
-          <h1>Newletters contacts list</h1>
-          <a className="btn btn_primary" href="http://">Delete the selection</a>
-        </div>
+    const [todelete, setTodelete] = useState([]);
 
-        <div className="requests-lists">
-          <div className="request-item">
-            <div className="requester-letter-logo">
-              J
-            </div>
-            <div className="requester-details">
-              <div className="requester-email">
-                johndoe@gmail.com
-              </div>
-              <div className="resquest-date">
-                12/06/2023
-              </div>
-            </div>
-            <input type="checkbox"/>
-          </div>
-          <div className="request-item">
-            <div className="requester-letter-logo">
-              J
-            </div>
-            <div className="requester-details">
-              <div className="requester-email">
-                johndoe@gmail.com
-              </div>
-              <div className="resquest-date">
-                12/06/2023
-              </div>
-            </div>
-            <input type="checkbox"/>
-          </div>
-          <div className="request-item">
-            <div className="requester-letter-logo">
-              J
-            </div>
-            <div className="requester-details">
-              <div className="requester-email">
-                johndoe@gmail.com
-              </div>
-              <div className="resquest-date">
-                12/06/2023
-              </div>
-            </div>
-            <input type="checkbox"/>
-          </div>
-          <div className="request-item">
-            <div className="requester-letter-logo">
-              J
-            </div>
-            <div className="requester-details">
-              <div className="requester-email">
-                johndoe@gmail.com
-              </div>
-              <div className="resquest-date">
-                12/06/2023
-              </div>
-            </div>
-            <input type="checkbox"/>
-          </div>
-          <div className="request-item">
-            <div className="requester-letter-logo">
-              J
-            </div>
-            <div className="requester-details">
-              <div className="requester-email">
-                johndoe@gmail.com
-              </div>
-              <div className="resquest-date">
-                12/06/2023
-              </div>
-            </div>
-            <input type="checkbox"/>
-          </div>
-          <div className="request-item">
-            <div className="requester-letter-logo">
-              J
-            </div>
-            <div className="requester-details">
-              <div className="requester-email">
-                johndoe@gmail.com
-              </div>
-              <div className="resquest-date">
-                12/06/2023
-              </div>
-            </div>
-            <input type="checkbox"/>
-          </div>
-          <div className="request-item">
-            <div className="requester-letter-logo">
-              J
-            </div>
-            <div className="requester-details">
-              <div className="requester-email">
-                johndoe@gmail.com
-              </div>
-              <div className="resquest-date">
-                12/06/2023
-              </div>
-            </div>
-            <input type="checkbox"/>
-          </div>
-          <div className="request-item">
-            <div className="requester-letter-logo">
-              J
-            </div>
-            <div className="requester-details">
-              <div className="requester-email">
-                johndoe@gmail.com
-              </div>
-              <div className="resquest-date">
-                12/06/2023
-              </div>
-            </div>
-            <input type="checkbox"/>
-          </div>
-          <div className="request-item">
-            <div className="requester-letter-logo">
-              J
-            </div>
-            <div className="requester-details">
-              <div className="requester-email">
-                johndoe@gmail.com
-              </div>
-              <div className="resquest-date">
-                12/06/2023
-              </div>
-            </div>
-            <input type="checkbox"/>
-          </div>
-          <div className="request-item">
-            <div className="requester-letter-logo">
-              J
-            </div>
-            <div className="requester-details">
-              <div className="requester-email">
-                johndoe@gmail.com
-              </div>
-              <div className="resquest-date">
-                12/06/2023
-              </div>
-            </div>
-            <input type="checkbox"/>
-          </div>
-          <div className="request-item">
-            <div className="requester-letter-logo">
-              J
-            </div>
-            <div className="requester-details">
-              <div className="requester-email">
-                johndoe@gmail.com
-              </div>
-              <div className="resquest-date">
-                12/06/2023
-              </div>
-            </div>
-            <input type="checkbox"/>
-          </div>
-          <div className="request-item">
-            <div className="requester-letter-logo">
-              J
-            </div>
-            <div className="requester-details">
-              <div className="requester-email">
-                johndoe@gmail.com
-              </div>
-              <div className="resquest-date">
-                12/06/2023
-              </div>
-            </div>
-            <input type="checkbox"/>
-          </div>
-          <div className="request-item">
-            <div className="requester-letter-logo">
-              J
-            </div>
-            <div className="requester-details">
-              <div className="requester-email">
-                johndoe@gmail.com
-              </div>
-              <div className="resquest-date">
-                12/06/2023
-              </div>
-            </div>
-            <input type="checkbox"/>
-          </div>
-          <div className="request-item">
-            <div className="requester-letter-logo">
-              J
-            </div>
-            <div className="requester-details">
-              <div className="requester-email">
-                johndoe@gmail.com
-              </div>
-              <div className="resquest-date">
-                12/06/2023
-              </div>
-            </div>
-            <input type="checkbox"/>
-          </div>
-          <div className="request-item">
-            <div className="requester-letter-logo">
-              J
-            </div>
-            <div className="requester-details">
-              <div className="requester-email">
-                johndoe@gmail.com
-              </div>
-              <div className="resquest-date">
-                12/06/2023
-              </div>
-            </div>
-            <input type="checkbox"/>
-          </div>
-          <div className="request-item">
-            <div className="requester-letter-logo">
-              J
-            </div>
-            <div className="requester-details">
-              <div className="requester-email">
-                johndoe@gmail.com
-              </div>
-              <div className="resquest-date">
-                12/06/2023
-              </div>
-            </div>
-            <input type="checkbox"/>
-          </div>
-          <div className="request-item">
-            <div className="requester-letter-logo">
-              J
-            </div>
-            <div className="requester-details">
-              <div className="requester-email">
-                johndoe@gmail.com
-              </div>
-              <div className="resquest-date">
-                12/06/2023
-              </div>
-            </div>
-            <input type="checkbox"/>
-          </div>
-          <div className="request-item">
-            <div className="requester-letter-logo">
-              J
-            </div>
-            <div className="requester-details">
-              <div className="requester-email">
-                johndoe@gmail.com
-              </div>
-              <div className="resquest-date">
-                12/06/2023
-              </div>
-            </div>
-            <input type="checkbox"/>
-          </div>
-          <div className="request-item">
-            <div className="requester-letter-logo">
-              J
-            </div>
-            <div className="requester-details">
-              <div className="requester-email">
-                johndoe@gmail.com
-              </div>
-              <div className="resquest-date">
-                12/06/2023
-              </div>
-            </div>
-            <input type="checkbox"/>
-          </div>
-          <div className="request-item">
-            <div className="requester-letter-logo">
-              J
-            </div>
-            <div className="requester-details">
-              <div className="requester-email">
-                johndoe@gmail.com
-              </div>
-              <div className="resquest-date">
-                12/06/2023
-              </div>
-            </div>
-            <input type="checkbox"/>
-          </div>
-          <div className="request-item">
-            <div className="requester-letter-logo">
-              J
-            </div>
-            <div className="requester-details">
-              <div className="requester-email">
-                johndoe@gmail.com
-              </div>
-              <div className="resquest-date">
-                12/06/2023
-              </div>
-            </div>
-            <input type="checkbox"/>
-          </div>
-          <div className="request-item">
-            <div className="requester-letter-logo">
-              J
-            </div>
-            <div className="requester-details">
-              <div className="requester-email">
-                johndoe@gmail.com
-              </div>
-              <div className="resquest-date">
-                12/06/2023
-              </div>
-            </div>
-            <input type="checkbox"/>
-          </div>
-          <div className="request-item">
-            <div className="requester-letter-logo">
-              J
-            </div>
-            <div className="requester-details">
-              <div className="requester-email">
-                johndoe@gmail.com
-              </div>
-              <div className="resquest-date">
-                12/06/2023
-              </div>
-            </div>
-            <input type="checkbox"/>
-          </div>
-          <div className="request-item">
-            <div className="requester-letter-logo">
-              J
-            </div>
-            <div className="requester-details">
-              <div className="requester-email">
-                johndoe@gmail.com
-              </div>
-              <div className="resquest-date">
-                12/06/2023
-              </div>
-            </div>
-            <input type="checkbox"/>
-          </div>
-        </div>
+    /**
+    |--------------------------------------------------
+    | First newsletters data load
+    |--------------------------------------------------
+    */
+    useEffect(() => {
+        const request = async () => {
+            if (reload) {
+                const data = await getNewsletters();
+                setEmails(data);
+                setreload(false);
+                return data;
+            }
+        };
+        request();
+    }, [emails]);
 
-      </div>
-    </>
-  )
+    return (
+        <>
+            <div className="newsletter-request-list">
+                <div className="newsletter-lists-top-bar">
+                    <h1>Newletters contacts list</h1>
+                    <Link className="btn btn_primary" to={"/delete"}>
+                        Delete the selection
+                    </Link>
+                </div>
+
+                <div className="requests-lists">
+                    {emails?.map((item, index) => {
+                        return (
+                            <div className="request-item" key={index}>
+                                <div className="requester-letter-logo">
+                                    {item.email.charAt(0).toUpperCase()}
+                                </div>
+                                <div className="requester-details">
+                                    <div className="requester-email">
+                                        {item.email}
+                                    </div>
+                                    <div className="resquest-date">
+                                        {moment(item?.createdAt).calendar()}
+                                    </div>
+                                </div>
+                                <input type="checkbox" />
+                            </div>
+                        );
+                    })}
+                </div>
+            </div>
+        </>
+    );
 }
