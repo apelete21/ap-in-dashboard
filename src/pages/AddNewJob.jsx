@@ -1,26 +1,30 @@
-import React from 'react'
+import React, { useEffect, useRef } from "react";
+import JobEditor from "../components/TextEditor";
 
 export default function AddNewJob() {
+
+    const details = useRef()
+
+    useEffect(()=> {
+        console.log(details.current?.value)
+    }, [details])
+    
     return (
         <>
             <div className="add-new-job">
-
                 <div className="add-new-job-title">
-                    <h1>
-                        Add a new job
-                    </h1>
+                    <h1>Add a new job</h1>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum,
-                        ac aliquet odio mattis. ipsum dolor.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Nunc vulputate libero et velit interdum, ac aliquet odio
+                        mattis. ipsum dolor.
                     </p>
                 </div>
 
                 <div className="add-new-job-form">
                     <form action="">
                         <div className="input-job-element">
-                            <p className="input-element-title">
-                                Job title
-                            </p>
+                            <p className="input-element-title">Job title</p>
                             <input type="text" placeholder="Job title" />
                         </div>
                         <div className="input-job-element">
@@ -28,7 +32,9 @@ export default function AddNewJob() {
                                 Select a category
                             </p>
                             <select name="" id="">
-                                <option value="" default>Select a category</option>
+                                <option value="" default>
+                                    Select a category
+                                </option>
                             </select>
                         </div>
                         <div className="input-job-element">
@@ -36,7 +42,9 @@ export default function AddNewJob() {
                                 Employment type
                             </p>
                             <select name="" id="">
-                                <option value="" default>Select a type</option>
+                                <option value="" default>
+                                    Select a type
+                                </option>
                             </select>
                         </div>
                         <div className="input-job-element">
@@ -44,71 +52,24 @@ export default function AddNewJob() {
                                 Seniority Level
                             </p>
                             <select name="" id="">
-                                <option value="" default>Select a type</option>
+                                <option value="" default>
+                                    Select a type
+                                </option>
                             </select>
                         </div>
                         <div className="input-job-element">
-                            <p className="input-element-title">
-                                Validity
-                            </p>
+                            <p className="input-element-title">Validity</p>
                             <select name="" id="">
-                                <option value="" default>Select a type</option>
+                                <option value="" default>
+                                    Select a type
+                                </option>
                             </select>
                         </div>
                         <div className="input-job-element">
                             <p className="input-element-title">
                                 Job description
                             </p>
-                            <div className="text-edition-section">
-                                <div>
-                                    <select name="" id="">
-                                        <option value="" default>Paragraph</option>
-                                    </select>
-                                    <div className="text-style">
-                                        <span>
-                                            <img src="../assets/media/images/icons/format-bold.svg" alt="" />
-                                        </span>
-                                        <span>
-                                            <img src="../assets/media/images/icons/italic-line.svg" alt="" />
-                                        </span>
-                                        <span>
-                                            <img src="../assets/media/images/icons/underline.svg" alt="" />
-                                        </span>
-                                    </div>
-                                    <div className="text-alignment">
-                                        <span>
-                                            <img src="../assets/media/images/icons/format-align-left.svg" alt="" />
-                                        </span>
-                                        <span>
-                                            <img src="../assets/media/images/icons/format-align-center.svg" alt="" />
-                                        </span>
-                                        <span>
-                                            <img src="../assets/media/images/icons/format-align-right.svg" alt="" />
-                                        </span>
-                                    </div>
-                                    <div className="text-list">
-                                        <span>
-                                            <img src="../assets/media/images/icons/format-list-bulleted.svg" alt="" />
-                                        </span>
-                                        <span>
-                                            <img src="../assets/media/images/icons/format-list-numbered.svg" alt="" />
-                                        </span>
-                                        <span>
-                                            <img src="../assets/media/images/icons/link-variant.svg" alt="" />
-                                        </span>
-                                    </div>
-
-                                </div>
-                                <div>
-                                    <span>
-                                        <img src="../assets/media/images/icons/undo.svg" alt="" />
-                                    </span>
-                                    <span>
-                                        <img src="../assets/media/images/icons/forward.svg" alt="" />
-                                    </span>
-                                </div>
-                            </div>
-                            <textarea></textarea>
+                            <JobEditor ref={details} />
                         </div>
                     </form>
                 </div>
@@ -118,10 +79,7 @@ export default function AddNewJob() {
                         <span>Publish</span>
                     </a>
                 </div>
-
             </div>
-
-
         </>
-    )
+    );
 }
