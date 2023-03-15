@@ -11,6 +11,22 @@ export const getNewsletters = async () => {
     });
 
     const data = await response.json();
-    console.log(data);
+    return data;
+};
+
+export const deleteManyEmails = async ( items ) => {
+    const headersList = {
+        "Accept": "*/*",
+        "Content-Type": "application/json",
+    };
+
+    const bodyContent = JSON.stringify(items);
+
+    const response = await fetch(`${baseUrl}/newsletters/del`, {
+        method: "POST",
+        body: bodyContent,
+        headers: headersList,
+    });
+    const data = await response.json();
     return data;
 };
