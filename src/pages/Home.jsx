@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { icons } from '../service/icons'
 import Visits from "../components/Visits"
+import HomeQuotesList from '../components/HomeQuotesList'
 
 export default function Home() {
   return (
@@ -180,95 +181,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="quote_request_list">
-        <div className="quote_request_list_header">
-          <h1>Latest quote request</h1>
-          <Link className="btn btn_primary" to="/quote-requests">View all</Link>
-        </div>
-
-        <div className="table-wrap">
-          <table className="table table-striped">
-            <thead>
-              <tr>
-                <th>Full name</th>
-                <th>Email</th>
-                <th>Location</th>
-                <th>Service needed</th>
-                <th>Date</th>
-                <th className="text-last">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td className="full_name">
-                  <div className="requester-picture">
-                    <img src={icons.prIcon} alt="" />
-                  </div>
-                  <div className="requester_name">Attah Foli Kangni</div>
-                </td>
-                <td className="email">attahfolikangni@jonescorp.com</td>
-                <td className="location">Merlbourne</td>
-                <td className="service">
-                  <span className="service_name">Graphic design</span>
-                </td>
-                <td className="date">23/11/2022</td>
-                <td className="actions">
-                  <span className="view-info">
-                    <img src={icons.eyeIcon} alt="view-info" />
-                  </span>
-                  <span className="delete-item">
-                    <img src={icons.trashIcon} alt="delete-item" />
-                  </span>
-                </td>
-              </tr>
-              <tr>
-                <td className="full_name">
-                  <div className="requester-picture">
-                    <img src={icons.prIcon} alt="" />
-                  </div>
-                  <div className="requester_name">Arthur Blunt</div>
-                </td>
-                <td className="email">arthurblunt@gmail.com</td>
-                <td className="location">Accra</td>
-                <td className="service">
-                  <span className="service_name">Process impovment</span>
-                </td>
-                <td className="date">23/11/2022</td>
-                <td className="actions">
-                  <span className="view-info">
-                    <img src={icons.eyeIcon} alt="view-info" />
-                  </span>
-                  <span className="delete-item">
-                    <img src={icons.trashIcon} alt="delete-item" />
-                  </span>
-                </td>
-              </tr>
-              <tr>
-                <td className="full_name">
-                  <div className="requester-picture">
-                    <img src={icons.prIcon} alt="" />
-                  </div>
-                  <div className="requester_name">Kemi Oluwa</div>
-                </td>
-                <td className="email">kemioluwa23@gmail.com</td>
-                <td className="location">Gaborome</td>
-                <td className="service">
-                  <span className="service_name">Web development</span>
-                </td>
-                <td className="date">23/11/2022</td>
-                <td className="actions">
-                  <span className="view-info">
-                    <img src={icons.eyeIcon} alt="view-info" />
-                  </span>
-                  <span className="delete-item">
-                    <img src={icons.trashIcon} alt="delete-item" />
-                  </span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <HomeQuotesList />
     </>
   )
 }

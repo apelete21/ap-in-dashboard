@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import JobEditor from "../components/TextEditor";
 
 export default function AddNewJob() {
@@ -75,9 +76,9 @@ export default function AddNewJob() {
                 </div>
 
                 <div className="add-job-btn">
-                    <a className="btn btn_secondary">
+                    <Link className="btn btn_secondary" to={"/jobs"} onClick={(e)=> e.preventDefault()}>
                         <span>Publish</span>
-                    </a>
+                    </Link>
                 </div>
             </div>
         </>

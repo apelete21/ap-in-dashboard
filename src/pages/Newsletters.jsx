@@ -1,7 +1,7 @@
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { deleteManyEmails, getNewsletters } from "../requests/getnewsletters";
+import { deleteManyEmails, getNewsletters } from "../requests/newsletters";
 
 export default function Newsletters() {
     const [emails, setEmails] = useState();

@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import { login } from "../requests/login";
+import { getQuotes } from "../requests/quotes";
 
 /**
 |--------------------------------------------------
@@ -14,15 +15,23 @@ export const AppContext = createContext();
 |--------------------------------------------------
 */
 export const AppContextProvider = ({ children }) => {
+    const [isDataLoading, setIsDataLoading] = useState(true);
     // user logged in or not state
     const [isUserLoggedIn, setisUserLoggedIn] = useState(false);
+    const [userLoadingState, setUserLoadingState] = useState(true);
 
     // login user data states
-    const [user, setUser] = useState({});
-    // const [currentUser, setCurrentUser] = useState({});
+    const [user, setUser] = useState({})
 
     // login errors messages
     const [loginError, setLoginError] = useState("");
+
+    // constant variable to set the selected item
+    // on quote request route
+    const [quoteSelected, setQuoteSelected] = useState("");
+
+    // constant to store the requested quotes
+    const [quotesRequested, setQuotesRequested] = useState(null);
 
     /**
   |--------------------------------------------------
@@ -58,12 +67,45 @@ export const AppContextProvider = ({ children }) => {
   |--------------------------------------------------
   */
     useEffect(() => {
-        const currentUser = localStorage.getItem("user");
-        if (currentUser) {
-            setUser(JSON.parse(currentUser));
-            setisUserLoggedIn(true);
-        }
-    }, []);
+        const checking = () => {
+            if (userLoadingState) {
+                const currentUser = localStorage.getItem("user");
+                if (currentUser) {
+                    setUser(JSON.parse(currentUser));
+                    setisUserLoggedIn(true);
+                    return;
+                }
+                setUserLoadingState(false);
+                return;
+            }
+        };
+        checking();
+    }, [userLoadingState]);
+
+    /**
+    |--------------------------------------------------
+    | get quotes every time one's deleted, or the contents is updated
+    |--------------------------------------------------
+    */
+    useEffect(() => {
+        const request = async () => {
+            if (isDataLoading) {
+                const data = await getQuotes();
+                setQuotesRequested(data);
+                setIsDataLoading(false);
+            }
+        };
+        request();
+    }, [quotesRequested, isDataLoading]);
+
+    /**
+    |--------------------------------------------------
+    | Function to change item
+    |--------------------------------------------------
+    */
+    function ChangeItem(item) {
+        setQuoteSelected(item);
+    }
 
     return (
         <AppContext.Provider
@@ -73,6 +115,11 @@ export const AppContextProvider = ({ children }) => {
                 isUserLoggedIn,
                 loginError,
                 UserLogOut,
+                setQuoteSelected,
+                quoteSelected,
+                setQuotesRequested,
+                quotesRequested,
+                ChangeItem,
             }}
         >
             {children}

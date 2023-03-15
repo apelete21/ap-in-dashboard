@@ -8,6 +8,7 @@ const TextEditor = ({ data }) => {
     const handlechange = (e, editor) => {
         const data = editor.getData();
         setValue(data);
+        console.log(value)
     };
 
     return (
