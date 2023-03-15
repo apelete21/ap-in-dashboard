@@ -33,3 +33,26 @@ export const login = async ({ username, password }) => {
 
     return { ...data };
 };
+
+/**
+|--------------------------------------------------
+| Function pour demande d'authentication de l'utilisateur
+|--------------------------------------------------
+*/
+
+export async function AuthUser(token) {
+    if(!token) return
+    try {
+        const response = await fetch(`${baseUrl}/users/auth`, {
+            headers: {
+                authorization: `Bearer ${token}`,
+            },
+        })
+        if (!response.ok) {
+            throw new Error(response.statusText);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error(`Error fetching data: ${error}`);
+    }
+}

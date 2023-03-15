@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import { login } from "../requests/login";
+import { AuthUser, login } from "../requests/login";
 import { getQuotes } from "../requests/quotes";
 
 /**
@@ -21,7 +21,7 @@ export const AppContextProvider = ({ children }) => {
     const [userLoadingState, setUserLoadingState] = useState(true);
 
     // login user data states
-    const [user, setUser] = useState({})
+    const [user, setUser] = useState({});
 
     // login errors messages
     const [loginError, setLoginError] = useState("");
@@ -48,7 +48,6 @@ export const AppContextProvider = ({ children }) => {
             setisUserLoggedIn(false);
             setLoginError(response.data);
         }
-        console.log(response);
     };
 
     /**
@@ -67,13 +66,17 @@ export const AppContextProvider = ({ children }) => {
   |--------------------------------------------------
   */
     useEffect(() => {
-        const checking = () => {
+        const checking = async () => {
             if (userLoadingState) {
                 const currentUser = localStorage.getItem("user");
                 if (currentUser) {
                     setUser(JSON.parse(currentUser));
-                    setisUserLoggedIn(true);
-                    return;
+                    const res = AuthUser(currentUser.token);
+                    if (res.ok) {
+                        return setisUserLoggedIn(true);
+                    } else {
+                        localStorage.removeItem("user");
+                    }
                 }
                 setUserLoadingState(false);
                 return;
