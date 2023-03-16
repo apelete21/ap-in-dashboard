@@ -9,6 +9,7 @@ const Message = () => {
         style={{
           position: "fixed",
           bottom: 0,
+          width: "100%",
           textAlign: "center",
           color: "gray",
           background: "white",
