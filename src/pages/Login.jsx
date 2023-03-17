@@ -60,19 +60,24 @@ export default function Login() {
             </form>
             <ErrorParagraph error={loginError} />
           </div>
-        </div> : <h2
+        </div> : <div
           style={{
             height: "100%",
-            width: "100%",
-            display: "grid",
+            display: "flex",
             padding: "1rem",
             alignContent: 'center',
             alignItems: "center",
+            margin: "0 auto",
             justifyContent: "center"
           }}
         >
-          <img src={icons.loader} alt="Loader" />
-        </h2> }
+          <img src={icons.loader} alt="Loader"
+            style={{
+              width: '40%',
+              margin: "0 auto"
+            }}
+           />
+        </div> }
       </div>
     </>
   );
