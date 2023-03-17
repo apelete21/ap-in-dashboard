@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import { AppContext } from "../Contexts/AppContext";
 
 const Message = () => {
-  const { quotedelStatus } = useContext(AppContext);
-  if (!quotedelStatus)
+  const { statusMessage } = useContext(AppContext);
+  if (!statusMessage)
     return (
       <div
         style={{
@@ -12,7 +12,7 @@ const Message = () => {
           width: "100%",
           textAlign: "center",
           color: "gray",
-          background: "white",
+          background: "#d0d0d0",
           paddingBlock: "0.5rem",
         }}
       >

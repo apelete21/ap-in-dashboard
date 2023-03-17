@@ -43,3 +43,17 @@ export const getOneQuote = async (id) => {
     let data = await response.json();
     return data;
 };
+
+export const deleteOneQuote = async (id) => {
+    const headersList = {
+        Accept: "*/*",
+    };
+
+    const response = await fetch(`${baseUrl}/quotes/delete/${id}`, {
+        method: "POST",
+        headers: headersList,
+    });
+
+    let data = await response.json();
+    return data;
+}

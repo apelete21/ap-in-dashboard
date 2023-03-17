@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import { AuthUser, login } from "../requests/login";
-import { getQuotes } from "../requests/quotes";
+import { deleteOneQuote, getQuotes } from "../requests/quotes";
 
 /**
 |--------------------------------------------------
@@ -32,6 +32,9 @@ export const AppContextProvider = ({ children }) => {
 
     // constant to store the requested quotes
     const [quotesRequested, setQuotesRequested] = useState(null);
+
+    // state storing the response message of the quote to delete
+    const [statusMessage, setStatusMessage] = useState()
 
     /**
   |--------------------------------------------------
@@ -99,7 +102,7 @@ export const AppContextProvider = ({ children }) => {
             }
         };
         request();
-    }, [quotesRequested, isDataLoading]);
+    }, [isDataLoading]);
 
     /**
     |--------------------------------------------------
@@ -108,6 +111,22 @@ export const AppContextProvider = ({ children }) => {
     */
     function ChangeItem(item) {
         setQuoteSelected(item);
+    }
+
+    /**
+    |--------------------------------------------------
+    | Funtion to delete one quote request
+    |--------------------------------------------------
+    */
+
+    async function deleteQuote(id) {
+        const res = await deleteOneQuote(id)
+        setStatusMessage(res.message)
+        ChangeItem("")
+        setIsDataLoading(true)
+        setTimeout(() => {
+            setStatusMessage(null)
+        }, 1000);
     }
 
     return (
@@ -123,6 +142,8 @@ export const AppContextProvider = ({ children }) => {
                 setQuotesRequested,
                 quotesRequested,
                 ChangeItem,
+                deleteQuote,
+                statusMessage
             }}
         >
             {children}
