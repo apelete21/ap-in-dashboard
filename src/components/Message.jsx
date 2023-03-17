@@ -3,22 +3,24 @@ import { AppContext } from "../Contexts/AppContext";
 
 const Message = () => {
   const { statusMessage } = useContext(AppContext);
-  if (!statusMessage)
+  if (statusMessage)
     return (
-      <div
+      <h2
         style={{
           position: "fixed",
-          bottom: 0,
+          fontWeight: "bold",
+          zIndex: 1000,
+          top: "100vh",
+          translate: "0 -100%",
           width: "100%",
           textAlign: "center",
-          color: "gray",
+          color: "black",
           background: "#d0d0d0",
           paddingBlock: "0.5rem",
         }}
       >
-        {" "}
-        {quotedelStatus}{" "}
-      </div>
+        Hello je suis un lessage de status
+      </h2>
     );
 };
 

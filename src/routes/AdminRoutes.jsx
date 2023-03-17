@@ -14,6 +14,7 @@ import Login from "../pages/Login";
 import { AppContext } from "../Contexts/AppContext";
 import LoginHead from "../components/Headers/LoginHead";
 import ErrorBoundary from "../components/Error/ErrorBoundary";
+import Message from "../components/Message";
 
 function AdminRoutes() {
   const { isUserLoggedIn } = useContext(AppContext);
@@ -53,6 +54,7 @@ function AdminRoutes() {
               </Routes>
             </div>
           </div>
+          <Message />
         </ErrorBoundary>
       </>
     );
