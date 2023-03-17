@@ -168,7 +168,7 @@ img {
 }
 
 .main_wrapper {
-    padding: 1.2rem 5rem 0;
+    padding: 0rem 5rem 0;
 }
 
 .aside {
@@ -307,7 +307,7 @@ img {
     width: 100%;
     border-bottom: 1px solid var(--clay);
     margin-bottom: 0.7rem;
-    padding-bottom: 20px;
+    padding-block: 20px;
     align-items: center;
     position: sticky;
     top: 0;
