@@ -13,6 +13,7 @@ import ApplicationList from "../pages/ApplicationList";
 import Login from "../pages/Login";
 import { AppContext } from "../Contexts/AppContext";
 import LoginHead from "../components/Headers/LoginHead";
+import ErrorBoundary from "../components/Error/ErrorBoundary";
 
 function AdminRoutes() {
   const { isUserLoggedIn } = useContext(AppContext);
@@ -29,34 +30,39 @@ function AdminRoutes() {
   if (isUserLoggedIn) {
     return (
       <>
-        <Head />
+        <ErrorBoundary>
+          <Head />
 
-        <div className="main_wrapper">
-          <Aside />
+          <div className="main_wrapper">
+            <Aside />
 
-          <div className="main">
-            <Nav />
+            <div className="main">
+              <Nav />
 
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/quote-requests" element={<QuoteRequests />} />
-              <Route path="/jobs" element={<Jobs />} />
-              <Route path="/jobs/new" element={<AddNewJob />} />
-              <Route path="/jobs/applications" element={<ApplicationList />} />
-              <Route path="/newsletters" element={<Newsletters />} />
-              <Route path="/blog" element={<Blog />} />
-            </Routes>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/quote-requests" element={<QuoteRequests />} />
+                <Route path="/jobs" element={<Jobs />} />
+                <Route path="/jobs/new" element={<AddNewJob />} />
+                <Route
+                  path="/jobs/applications"
+                  element={<ApplicationList />}
+                />
+                <Route path="/newsletters" element={<Newsletters />} />
+                <Route path="/blog" element={<Blog />} />
+              </Routes>
+            </div>
           </div>
-        </div>
+        </ErrorBoundary>
       </>
     );
   } else {
     return (
       <>
-      <LoginHead />
-      <Routes>
-        <Route path={"*"} element={<Login />} />
-      </Routes>
+        <LoginHead />
+        <Routes>
+          <Route path={"*"} element={<Login />} />
+        </Routes>
       </>
     );
   }
