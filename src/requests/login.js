@@ -11,24 +11,26 @@ import { baseUrl } from "../api/url";
 |--------------------------------------------------
 */
 export const login = async (loginData) => {
-    const bodyContent = JSON.stringify(loginData);
+  if (!loginData) return;
 
-    const headersList = {
-        Accept: "*/*",
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-    };
+  const bodyContent = JSON.stringify(loginData);
 
-    const data = await fetch(`${baseUrl}/users/login`, {
-        method: "POST",
-        body: bodyContent,
-        headers: headersList,
-    }).then(async (response) => {
-        const data = await response.json();
-        return { data: data, ok: response.ok };
-    });
+  const headersList = {
+    Accept: "*/*",
+    "Access-Control-Allow-Origin": "*",
+    "Content-Type": "application/json",
+  };
 
-    return { ...data };
+  const data = await fetch(`${baseUrl}/users/login`, {
+    method: "POST",
+    body: bodyContent,
+    headers: headersList,
+  }).then(async (response) => {
+    const data = await response.json();
+    return { data, ok: response.ok };
+  });
+
+  return { ...data };
 };
 
 /**
@@ -37,19 +39,38 @@ export const login = async (loginData) => {
 |--------------------------------------------------
 */
 
-export async function AuthUser(token) {
-    if(!token) return
-    try {
-        const response = await fetch(`${baseUrl}/users/auth`, {
-            headers: {
-                authorization: `Bearer ${token}`,
-            },
-        })
-        if (!response.ok) {
-            throw new Error(response.statusText);
-        }
-        return await response.json();
-    } catch (error) {
-        console.error(`Error fetching data: ${error}`);
-    }
+export async function AuthUser(token, id) {
+  if (!id || !token) return;
+
+  const headersList = {
+    Accept: "*/*",
+    authorization: `Bearer ${token}`,
+    "Content-Type": "application/json",
+  };
+  let bodyContent = JSON.stringify({
+    user: id,
+  });
+
+  let response = await fetch(`${baseUrl}/users/auth`, {
+    method: "POST",
+    body: bodyContent,
+    headers: headersList,
+  }).then(async (response) => {
+    const data = await response.json();
+    return { ...data, ok: response.ok };
+  });
+  return response;
+}
+
+export async function getOneUser(id) {
+  if (!id) return;
+  const headersList = {
+    Accept: "*/*",
+    "Content-Type": "application/json",
+  };
+  let response = await fetch(`${baseUrl}/users/find/${id}`, {
+    method: "GET",
+    headers: headersList,
+  });
+  return await response.json();
 }

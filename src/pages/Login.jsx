@@ -4,7 +4,7 @@ import { AppContext } from "../Contexts/AppContext";
 import { icons } from "../service/icons";
 
 export default function Login() {
-  const { UserLogin, loginError } = useContext(AppContext);
+  const { UserLogin, loginError, userLoadingState } = useContext(AppContext);
   const email = useRef("");
   const password = useRef("");
 
@@ -22,7 +22,7 @@ export default function Login() {
     <>
       <div className="body_wrapper login_page">
         <div className="img_container"></div>
-        <div className="main_content">
+        {userLoadingState ? <div className="main_content">
           <div className="logo_box">
             <img className="logo" src={icons.lgDark} alt="" />
           </div>
@@ -60,7 +60,19 @@ export default function Login() {
             </form>
             <ErrorParagraph error={loginError} />
           </div>
-        </div>
+        </div> : <h2
+          style={{
+            height: "100%",
+            width: "100%",
+            display: "grid",
+            padding: "1rem",
+            alignContent: 'center',
+            alignItems: "center",
+            justifyContent: "center"
+          }}
+        >
+          <img src={icons.loader} alt="Loader" />
+        </h2> }
       </div>
     </>
   );

@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
-import { AuthUser, login } from "../requests/login";
-import { deleteOneQuote, getQuotes } from "../requests/quotes";
+import { AuthUser, getOneUser, login } from "../requests/login";
+import { deleteOneQuote, getOneQuote, getQuotes } from "../requests/quotes";
 
 /**
 |--------------------------------------------------
@@ -15,138 +15,142 @@ export const AppContext = createContext();
 |--------------------------------------------------
 */
 export const AppContextProvider = ({ children }) => {
-    const [isDataLoading, setIsDataLoading] = useState(true);
-    // user logged in or not state
-    const [isUserLoggedIn, setisUserLoggedIn] = useState(false);
-    const [userLoadingState, setUserLoadingState] = useState(true);
+  const [isDataLoading, setIsDataLoading] = useState(true);
+  // user logged in or not state
+  const [isUserLoggedIn, setisUserLoggedIn] = useState(false);
+  const [userLoadingState, setUserLoadingState] = useState(true);
 
-    // login user data states
-    const [user, setUser] = useState({});
+  // login user data states
+  const [user, setUser] = useState({});
 
-    // login errors messages
-    const [loginError, setLoginError] = useState("");
+  // login errors messages
+  const [loginError, setLoginError] = useState("");
 
-    // constant variable to set the selected item
-    // on quote request route
-    const [quoteSelected, setQuoteSelected] = useState("");
+  // constant variable to set the selected item
+  // on quote request route
+  const [quoteSelected, setQuoteSelected] = useState("");
 
-    // constant to store the requested quotes
-    const [quotesRequested, setQuotesRequested] = useState(null);
+  // constant to store the requested quotes
+  const [quotesRequested, setQuotesRequested] = useState(null);
 
-    // state storing the response message of the quote to delete
-    const [statusMessage, setStatusMessage] = useState()
+  // state storing the response message of the quote to delete
+  const [statusMessage, setStatusMessage] = useState();
 
-    /**
+  /**
   |--------------------------------------------------
   | On demand user login function
   |--------------------------------------------------
   */
-    const UserLogin = async (loginData) => {
-        const response = await login(loginData);
-        if (response?.ok) {
-            setUser({ ...response.data });
-            localStorage.setItem("user", JSON.stringify(response.data));
-            setisUserLoggedIn(true);
-        } else {
-            setisUserLoggedIn(false);
-            setLoginError(response.data);
+  const UserLogin = async (loginData) => {
+    const response = await login(loginData);
+    if (response?.ok) {
+      setUser({ ...response.data });
+      localStorage.setItem(
+        "user",
+        JSON.stringify({ token: response.data.token, id: response.data._id })
+      );
+      setisUserLoggedIn(true);
+    } else {
+      setisUserLoggedIn(false);
+      setLoginError(response.data.message);
+    }
+  };
+
+  /**
+  |--------------------------------------------------
+  | On demand user login function
+  |--------------------------------------------------
+  */
+  const UserLogOut = () => {
+    setisUserLoggedIn(false);
+    localStorage.removeItem("user");
+  };
+
+  /**
+  |--------------------------------------------------
+  | User Authentication control method
+  |--------------------------------------------------
+  */
+  useEffect(() => {
+    const checking = async () => {
+      if (userLoadingState) {
+        const currentUser = await JSON.parse(localStorage.getItem("user"));
+        if (currentUser) {
+          const res = await AuthUser(currentUser.token, currentUser.id);
+          if (res.ok) {
+            const newUser = await getOneUser(res.id)
+            setUser(newUser)
+            return setisUserLoggedIn(true);
+          } else {
+            localStorage.removeItem("user");
+          }
         }
+        setUserLoadingState(false);
+        return;
+      }
     };
+    checking();
+  }, [userLoadingState]);
 
-    /**
-  |--------------------------------------------------
-  | On demand user login function
-  |--------------------------------------------------
-  */
-    const UserLogOut = () => {
-        setisUserLoggedIn(false);
-        localStorage.removeItem("user");
-    };
-
-    /**
-  |--------------------------------------------------
-  | Controlling if user already connected
-  |--------------------------------------------------
-  */
-    useEffect(() => {
-        const checking = async () => {
-            if (userLoadingState) {
-                const currentUser = localStorage.getItem("user");
-                if (currentUser) {
-                    setUser(JSON.parse(currentUser));
-                    const res = AuthUser(currentUser.token);
-                    if (res.ok) {
-                        return setisUserLoggedIn(true);
-                    } else {
-                        localStorage.removeItem("user");
-                    }
-                }
-                setUserLoadingState(false);
-                return;
-            }
-        };
-        checking();
-    }, [userLoadingState]);
-
-    /**
+  /**
     |--------------------------------------------------
     | get quotes every time one's deleted, or the contents is updated
     |--------------------------------------------------
     */
-    useEffect(() => {
-        const request = async () => {
-            if (isDataLoading) {
-                const data = await getQuotes();
-                setQuotesRequested(data);
-                setIsDataLoading(false);
-            }
-        };
-        request();
-    }, [isDataLoading]);
+  useEffect(() => {
+    const request = async () => {
+      if (isDataLoading) {
+        const data = await getQuotes();
+        setQuotesRequested(data);
+        setIsDataLoading(false);
+      }
+    };
+    request();
+  }, [isDataLoading]);
 
-    /**
+  /**
     |--------------------------------------------------
     | Function to change item
     |--------------------------------------------------
     */
-    function ChangeItem(item) {
-        setQuoteSelected(item);
-    }
+  function ChangeItem(item) {
+    setQuoteSelected(item);
+  }
 
-    /**
+  /**
     |--------------------------------------------------
     | Funtion to delete one quote request
     |--------------------------------------------------
     */
 
-    async function deleteQuote(id) {
-        const res = await deleteOneQuote(id)
-        setStatusMessage(res.message)
-        ChangeItem("")
-        setIsDataLoading(true)
-        setTimeout(() => {
-            setStatusMessage(null)
-        }, 1000);
-    }
+  async function deleteQuote(id) {
+    const res = await deleteOneQuote(id);
+    setStatusMessage(res.message);
+    ChangeItem("");
+    setIsDataLoading(true);
+    setTimeout(() => {
+      setStatusMessage(null);
+    }, 1000);
+  }
 
-    return (
-        <AppContext.Provider
-            value={{
-                user,
-                UserLogin,
-                isUserLoggedIn,
-                loginError,
-                UserLogOut,
-                setQuoteSelected,
-                quoteSelected,
-                setQuotesRequested,
-                quotesRequested,
-                ChangeItem,
-                deleteQuote,
-                statusMessage
-            }}
-        >
-            {children}
-        </AppContext.Provider>
-    );
+  return (
+    <AppContext.Provider
+      value={{
+        user,
+        UserLogin,
+        isUserLoggedIn,
+        loginError,
+        UserLogOut,
+        setQuoteSelected,
+        quoteSelected,
+        setQuotesRequested,
+        quotesRequested,
+        ChangeItem,
+        deleteQuote,
+        statusMessage,
+      }}
+    >
+      {children}
+    </AppContext.Provider>
+  );
 };
