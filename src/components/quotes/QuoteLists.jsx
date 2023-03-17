@@ -22,7 +22,7 @@ function QuoteLists() {
         <div className="quotes-requests-lists">
           {/* <!-- Item --> */}
           {quotesRequested &&
-            quotesRequested?.slice(0, 5).map((item, index) => {
+            quotesRequested?.map((item, index) => {
               return (
                 <div
                   className="quote-request-item"

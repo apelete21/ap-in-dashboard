@@ -78,6 +78,7 @@ export const AppContextProvider = ({ children }) => {
   */
   const UserLogOut = () => {
     setisUserLoggedIn(false);
+    setUserLoadingState(false);
     localStorage.removeItem("user");
   };
 
@@ -90,19 +91,20 @@ export const AppContextProvider = ({ children }) => {
     const checking = async () => {
       if (userLoadingState) {
         const currentUser = await JSON.parse(localStorage.getItem("user"));
-        if (currentUser) {
-          const res = await AuthUser(currentUser.token, currentUser.id);
-          if (res.ok) {
-            const newUser = await getOneUser(res.id);
-            setUser(newUser);
-            return setisUserLoggedIn(true);
-          } else {
-            localStorage.removeItem("user");
-          }
+        if (!currentUser) {
+          return setUserLoadingState(false);
         }
-        setUserLoadingState(false);
-        return;
-      }
+        const res = await AuthUser(currentUser.token, currentUser.id);
+        if (res.ok) {
+          const newUser = await getOneUser(res.id);
+          setUser(newUser);
+          setUserLoadingState(false);
+          return setisUserLoggedIn(true);
+        } else {
+          localStorage.removeItem("user");
+          return setUserLoadingState(false);
+        }
+      } else return setUserLoadingState(false);
     };
     checking();
   }, [userLoadingState]);
@@ -143,9 +145,6 @@ export const AppContextProvider = ({ children }) => {
     setStatusMessage(res.message);
     ChangeItem("");
     setIsDataLoading(true);
-    setTimeout(() => {
-      setStatusMessage(null);
-    }, 1000);
   }
 
   return (
@@ -163,7 +162,8 @@ export const AppContextProvider = ({ children }) => {
         ChangeItem,
         deleteQuote,
         statusMessage,
-        setStatusMessage
+        setStatusMessage,
+        userLoadingState
       }}
     >
       {children}
