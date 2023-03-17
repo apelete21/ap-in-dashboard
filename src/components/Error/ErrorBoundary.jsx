@@ -16,13 +16,14 @@ export default class ErrorBoundary extends Component {
       return (
         <div
           style={{
-            height: "100%",
+            height: "100vh",
             display: "flex",
             padding: "1rem",
             alignContent: "center",
             alignItems: "center",
             margin: "0 auto",
             justifyContent: "center",
+            textAlign: "center"
           }}
         >
           <h2

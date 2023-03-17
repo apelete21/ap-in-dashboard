@@ -17,7 +17,7 @@ import ErrorBoundary from "../components/Error/ErrorBoundary";
 import Message from "../components/Message";
 
 function AdminRoutes() {
-  const { isUserLoggedIn } = useContext(AppContext);
+  const { isUserLoggedIn, statusMessage } = useContext(AppContext);
 
   const { pathname } = useLocation();
 
@@ -54,7 +54,7 @@ function AdminRoutes() {
               </Routes>
             </div>
           </div>
-          <Message />
+          {statusMessage && <Message data={statusMessage} />}
         </ErrorBoundary>
       </>
     );

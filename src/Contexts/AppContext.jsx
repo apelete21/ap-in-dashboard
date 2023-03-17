@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import { AuthUser, getOneUser, login } from "../requests/login";
-import { deleteOneQuote, getOneQuote, getQuotes } from "../requests/quotes";
+import { deleteOneQuote, getQuotes } from "../requests/quotes";
 
 /**
 |--------------------------------------------------
@@ -34,7 +34,22 @@ export const AppContextProvider = ({ children }) => {
   const [quotesRequested, setQuotesRequested] = useState(null);
 
   // state storing the response message of the quote to delete
-  const [statusMessage, setStatusMessage] = useState();
+  const [statusMessage, setStatusMessage] = useState("");
+
+  /**
+  |--------------------------------------------------
+  | Function to set view & automatic hiding operations status message
+  |--------------------------------------------------
+  */
+
+  useEffect(() => {
+    function status() {
+      setTimeout(() => {
+        setStatusMessage();
+      }, 2000);
+    }
+    status();
+  }, [statusMessage]);
 
   /**
   |--------------------------------------------------
@@ -78,8 +93,8 @@ export const AppContextProvider = ({ children }) => {
         if (currentUser) {
           const res = await AuthUser(currentUser.token, currentUser.id);
           if (res.ok) {
-            const newUser = await getOneUser(res.id)
-            setUser(newUser)
+            const newUser = await getOneUser(res.id);
+            setUser(newUser);
             return setisUserLoggedIn(true);
           } else {
             localStorage.removeItem("user");
@@ -148,6 +163,7 @@ export const AppContextProvider = ({ children }) => {
         ChangeItem,
         deleteQuote,
         statusMessage,
+        setStatusMessage
       }}
     >
       {children}
