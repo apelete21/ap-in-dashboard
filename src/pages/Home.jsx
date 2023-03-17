@@ -1,8 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { icons } from '../service/icons'
 import Visits from "../components/Visits"
-import HomeQuotesList from '../components/HomeQuotesList'
+import HomeQuotesList from '../components/quotes/HomeQuotesList'
 
 export default function Home() {
   return (

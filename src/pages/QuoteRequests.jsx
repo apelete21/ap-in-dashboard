@@ -1,5 +1,5 @@
-import QuoteDetails from "../components/QuoteDetails";
-import QuoteLists from "../components/QuoteLists";
+import QuoteDetails from "../components/quotes/QuoteDetails";
+import QuoteLists from "../components/quotes/QuoteLists";
 
 export default function QuoteRequests() {
     

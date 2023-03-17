@@ -1,8 +1,8 @@
 import moment from "moment";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { AppContext } from "../Contexts/AppContext";
-import { icons } from "../service/icons";
+import { AppContext } from "../../Contexts/AppContext";
+import { icons } from "../../service/icons";
 
 const HomeQuotesList = () => {
     const { setQuoteSelected, quotesRequested } = useContext(AppContext);

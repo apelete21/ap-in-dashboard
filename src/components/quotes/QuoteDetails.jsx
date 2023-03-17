@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AppContext } from "../Contexts/AppContext";
+import { AppContext } from "../../Contexts/AppContext";
 
 function QuoteDetails() {
     const { quoteSelected } = useContext(AppContext);

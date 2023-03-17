@@ -1,7 +1,7 @@
 import moment from "moment";
 import React, { useContext } from "react";
-import { AppContext } from "../Contexts/AppContext";
-import { icons } from "../service/icons";
+import { AppContext } from "../../Contexts/AppContext";
+import { icons } from "../../service/icons";
 
 function QuoteLists() {
   const { quotesRequested, ChangeItem, deleteQuote } = useContext(AppContext);
