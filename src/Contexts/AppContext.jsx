@@ -41,8 +41,8 @@ export const AppContextProvider = ({ children }) => {
   | On demand user login function
   |--------------------------------------------------
   */
-    const UserLogin = async ({ username, password }) => {
-        const response = await login({ username, password });
+    const UserLogin = async (loginData) => {
+        const response = await login(loginData);
         if (response?.ok) {
             setUser({ ...response.data });
             localStorage.setItem("user", JSON.stringify(response.data));

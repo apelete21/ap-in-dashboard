@@ -10,11 +10,8 @@ import { baseUrl } from "../api/url";
 | Admin user login function with data as variable
 |--------------------------------------------------
 */
-export const login = async ({ username, password }) => {
-    const bodyContent = JSON.stringify({
-        username: username,
-        password: password,
-    });
+export const login = async (loginData) => {
+    const bodyContent = JSON.stringify(loginData);
 
     const headersList = {
         Accept: "*/*",

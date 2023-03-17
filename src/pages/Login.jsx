@@ -5,17 +5,17 @@ import { icons } from "../service/icons";
 
 export default function Login() {
   const { UserLogin, loginError } = useContext(AppContext);
-  const username = useRef("");
+  const email = useRef("");
   const password = useRef("");
 
   const HandleLogin = (e) => {
     e.preventDefault();
 
     const loginData = {
-      username: username.current?.value,
+      email: email.current?.value,
       password: password.current?.value,
     };
-    UserLogin({ ...loginData });
+    UserLogin(loginData);
   };
 
   return (
@@ -37,7 +37,7 @@ export default function Login() {
               <div className="input-job-element">
                 <input
                   type="text"
-                  ref={username}
+                  ref={email}
                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                   minLength={"5"}
                   placeholder="Email"
