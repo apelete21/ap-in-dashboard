@@ -4,7 +4,6 @@ import { useLocation } from "react-router-dom";
 
 export default function Head() {
   const { pathname } = useLocation();
-  console.log(pathname)
   return (
     <Helmet>
       <meta charset="UTF-8" />
@@ -24,7 +23,7 @@ export default function Head() {
           ? "Dashboard - Newsletters"
           : pathname === "/blog"
           ? "Dashboard - Blog"
-          : "Dashboard - AP'IN"}{" "}
+          : "Dashboard - Welcome"}{" "}
       </title>
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
