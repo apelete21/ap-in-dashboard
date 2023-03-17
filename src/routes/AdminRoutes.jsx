@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-import Head from "../components/Head";
+import Head from "../components/Headers/Head";
 import Aside from "../components/Aside";
 import Home from "../pages/Home";
 import Nav from "../components/Nav";
@@ -12,6 +12,7 @@ import AddNewJob from "../pages/AddNewJob";
 import ApplicationList from "../pages/ApplicationList";
 import Login from "../pages/Login";
 import { AppContext } from "../Contexts/AppContext";
+import LoginHead from "../components/Headers/LoginHead";
 
 function AdminRoutes() {
   const { isUserLoggedIn } = useContext(AppContext);
@@ -51,9 +52,12 @@ function AdminRoutes() {
     );
   } else {
     return (
+      <>
+      <LoginHead />
       <Routes>
         <Route path={"*"} element={<Login />} />
       </Routes>
+      </>
     );
   }
 }
