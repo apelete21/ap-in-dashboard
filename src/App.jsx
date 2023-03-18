@@ -1,17 +1,16 @@
-import { BrowserRouter, useLocation } from "react-router-dom"
-import AdminRoutes from "./routes/AdminRoutes"
-import "./assets/style/dashboard.css"
-import { AppContextProvider } from "./Contexts/AppContext"
+import { BrowserRouter } from "react-router-dom";
+import AppRoutes from "./routes/Routes";
+import { AppContextProvider } from "./Contexts/AppContext";
+import "./assets/style/dashboard.css";
 
 function App() {
-
   return (
     <AppContextProvider>
       <BrowserRouter>
-        <AdminRoutes />
+        <AppRoutes />
       </BrowserRouter>
     </AppContextProvider>
-  )
+  );
 }
 
-export default App
+export default App;

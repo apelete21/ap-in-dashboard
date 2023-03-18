@@ -16,7 +16,7 @@ import LoginHead from "../components/Headers/LoginHead";
 import ErrorBoundary from "../components/Error/ErrorBoundary";
 import Message from "../components/Message";
 
-function AdminRoutes() {
+function AppRoutes() {
   const { isUserLoggedIn, statusMessage } = useContext(AppContext);
 
   const { pathname } = useLocation();
@@ -70,4 +70,4 @@ function AdminRoutes() {
   }
 }
 
-export default AdminRoutes;
+export default AppRoutes;
