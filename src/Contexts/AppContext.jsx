@@ -95,7 +95,7 @@ export const AppContextProvider = ({ children }) => {
           return setUserLoadingState(false);
         }
         const res = await AuthUser(currentUser.token, currentUser.id);
-        if (res.ok) {
+        if (res?.ok) {
           const newUser = await getOneUser(res.id);
           setUser(newUser);
           setUserLoadingState(false);

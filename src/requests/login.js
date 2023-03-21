@@ -40,7 +40,7 @@ export const login = async (loginData) => {
 */
 
 export async function AuthUser(token, id) {
-  if (!id || !token) return;
+  if (!id || !token) return {data: null, ok: false};
 
   const headersList = {
     Accept: "*/*",
