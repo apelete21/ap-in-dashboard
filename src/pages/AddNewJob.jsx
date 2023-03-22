@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import JobEditor from "../components/TextEditor";
+import JobEditor from "../components/Editor/TextEditor";
 
 export default function AddNewJob() {
 
