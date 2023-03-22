@@ -58,6 +58,7 @@ export const AppContextProvider = ({ children }) => {
   */
   const UserLogin = async (loginData) => {
     const response = await login(loginData);
+    console.log(response)
     if (response?.ok) {
       setUser({ ...response.data });
       localStorage.setItem(

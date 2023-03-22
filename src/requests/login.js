@@ -11,7 +11,10 @@ import { baseUrl } from "../api/url";
 |--------------------------------------------------
 */
 export const login = async (loginData) => {
-  if (!loginData) return;
+  if (!loginData) {
+    const data = { message: "Something went wrong!!", ok: false };
+    return data;
+  }
 
   const bodyContent = JSON.stringify(loginData);
 
@@ -25,10 +28,15 @@ export const login = async (loginData) => {
     method: "POST",
     body: bodyContent,
     headers: headersList,
-  }).then(async (response) => {
-    const data = await response.json();
-    return { data, ok: response.ok };
-  });
+  })
+    .then(async (response) => {
+      const data = await response.json();
+      return { data, ok: response.ok };
+    })
+    .catch((error) => {
+      const data = { message: "Something went wrong!!", ok: false };
+      return data;
+    });
 
   return { ...data };
 };
@@ -40,7 +48,7 @@ export const login = async (loginData) => {
 */
 
 export async function AuthUser(token, id) {
-  if (!id || !token) return {data: null, ok: false};
+  if (!id || !token) return { data: null, ok: false };
 
   const headersList = {
     Accept: "*/*",
@@ -55,10 +63,14 @@ export async function AuthUser(token, id) {
     method: "POST",
     body: bodyContent,
     headers: headersList,
-  }).then(async (response) => {
-    const data = await response.json();
-    return { ...data, ok: response.ok };
-  });
+  })
+    .then(async (response) => {
+      const data = await response.json();
+      return { ...data, ok: response.ok };
+    })
+    .catch((error) => {
+      return { ...error, ok: false };
+    });
   return response;
 }
 
