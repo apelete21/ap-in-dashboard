@@ -1057,7 +1057,7 @@ a.views {
 .add-application-btn {
     display: flex;
     width: 100%;
-    position: fixed;
+    position: sticky;
     bottom: 2rem;
     right: 5rem;
     z-index: 999;
