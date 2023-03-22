@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { icons } from "../../service/icons";
 import "./editor.css";
 
 const TextEditor = () => {
@@ -55,7 +56,18 @@ const TextEditor = () => {
             </div>
           </div>
         </div>
-        <div className="output">{output}</div>
+        <div className="output">
+          {output?.map((item, index) => {
+            return (
+              <React.Fragment key={index}>
+                {item}
+                <button className="deletebutton">
+                  <img src={icons.trashIcon} alt="trash icon" />
+                </button>
+              </React.Fragment>
+            );
+          })}
+        </div>
       </div>
     </>
   );
