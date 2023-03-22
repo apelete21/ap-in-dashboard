@@ -6,17 +6,25 @@ const TextEditor = () => {
   let [output, setOutput] = useState([]);
   let [listItem, setListItem] = useState([]);
 
-  // tag creation function
+  /**
+  |--------------------------------------------------
+  | tag creation function
+  |--------------------------------------------------
+  */
   const createItem = (tag) => {
     const data = React.createElement(
       tag,
       { className: "knjsliqcij", contentEditable: "true" },
-      `Modify your ${tag} content here`
+      `${tag} content`
     );
     setOutput([...output, data]);
   };
 
-  // List item creation function
+  /**
+  |--------------------------------------------------
+  |  List item creation function
+  |--------------------------------------------------
+  */
   async function createListItem() {
     const li = React.createElement(
       "li",
@@ -57,10 +65,20 @@ const TextEditor = () => {
           </div>
         </div>
         <div className="output">
+          {/**
+        |--------------------------------------------------
+        | Mapping elements
+        |--------------------------------------------------
+        */}
           {output?.map((item, index) => {
             return (
               <React.Fragment key={index}>
                 {item}
+                {/**
+                |--------------------------------------------------
+                | Append a delete function button to each element
+                |--------------------------------------------------
+                */}
                 <button className="deletebutton">
                   <img src={icons.trashIcon} alt="trash icon" />
                 </button>
