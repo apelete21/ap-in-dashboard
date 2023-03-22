@@ -17,7 +17,7 @@
   padding: .2rem;
   border: none;
   cursor: pointer;
-  margin-top: -1rem;
+  margin-top: -1em;
 }
 
 .editor .editor-pane div {
@@ -42,9 +42,13 @@
 
 .output {
   position: relative;
-  padding-top: 5vh;
+  padding-block: 3vh;
   width: 100%;
   min-height: 20vh;
   max-height: 80vh;
   border-top: solid #eee 0.1px;
+}
+
+.output > * {
+  margin-block: 1rem;
 }

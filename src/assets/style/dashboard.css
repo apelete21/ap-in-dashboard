@@ -1278,8 +1278,11 @@ div.input-job-element > select {
 .newsletter-request-list .requests-lists {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
     margin-bottom: 4rem;
+    align-items: stretch;
+    align-content: center;
+    gap: 3%;
 }
 
 .newsletter-request-list .requests-lists .request-item {
