@@ -77,9 +77,9 @@ export const AppContextProvider = ({ children }) => {
   |--------------------------------------------------
   */
   const UserLogOut = () => {
+    localStorage.removeItem("user");
     setisUserLoggedIn(false);
     setUserLoadingState(false);
-    localStorage.removeItem("user");
   };
 
   /**
