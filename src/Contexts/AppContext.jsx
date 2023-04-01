@@ -58,7 +58,6 @@ export const AppContextProvider = ({ children }) => {
   */
   const UserLogin = async (loginData) => {
     const response = await login(loginData);
-    console.log(response)
     if (response?.ok) {
       setUser({ ...response.data });
       localStorage.setItem(
@@ -68,6 +67,9 @@ export const AppContextProvider = ({ children }) => {
       setisUserLoggedIn(true);
     } else {
       setisUserLoggedIn(false);
+      if (response.data == null) {
+        setLoginError("An error happenned");
+      }
       setLoginError(response.data.message);
     }
   };
@@ -164,7 +166,7 @@ export const AppContextProvider = ({ children }) => {
         deleteQuote,
         statusMessage,
         setStatusMessage,
-        userLoadingState
+        userLoadingState,
       }}
     >
       {children}
