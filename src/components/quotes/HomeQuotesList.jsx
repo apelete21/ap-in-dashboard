@@ -7,6 +7,7 @@ import { icons } from "../../service/icons";
 const HomeQuotesList = () => {
   const { setQuoteSelected, quotesRequested, deleteQuote } =
     useContext(AppContext);
+
   return (
     <>
       <div className="quote_request_list">
@@ -17,21 +18,21 @@ const HomeQuotesList = () => {
           </Link>
         </div>
 
-        <div className="table-wrap">
-          <table className="table table-striped">
-            <thead>
-              <tr>
-                <th>Full name</th>
-                <th>Email</th>
-                <th>Location</th>
-                <th>Service needed</th>
-                <th>Date</th>
-                <th className="text-last">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {quotesRequested &&
-                quotesRequested.slice(0, 5).map((item, index) => {
+        {quotesRequested?.length ? (
+          <div className="table-wrap">
+            <table className="table table-striped">
+              <thead>
+                <tr>
+                  <th>Full name</th>
+                  <th>Email</th>
+                  <th>Location</th>
+                  <th>Service needed</th>
+                  <th>Date</th>
+                  <th className="text-last">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {quotesRequested?.slice(0, 5).map((item, index) => {
                   return (
                     <tr key={index}>
                       <td className="full_name">
@@ -69,9 +70,12 @@ const HomeQuotesList = () => {
                     </tr>
                   );
                 })}
-            </tbody>
-          </table>
-        </div>
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <p style={{ textAlign: "center" }}>No data found</p>
+        )}
       </div>
     </>
   );
