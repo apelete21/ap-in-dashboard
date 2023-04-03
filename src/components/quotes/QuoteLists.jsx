@@ -21,7 +21,7 @@ function QuoteLists() {
         </div>
         <div className="quotes-requests-lists">
           {/* <!-- Item --> */}
-          {quotesRequested &&
+          {quotesRequested?.length ? (
             quotesRequested?.map((item, index) => {
               return (
                 <div
@@ -48,25 +48,32 @@ function QuoteLists() {
                   </div>
                 </div>
               );
-            })}
+            })
+          ) : (
+            <p style={{ textAlign: "center" }}>No data found</p>
+          )}
         </div>
 
         {/* item end */}
-        <div className="quote-pagination-controller">
-          <div className="pagination-back-btn">
-            <img src={icons.chevronLeft} alt="" />
+        {quotesRequested?.length !== 0 ? (
+          <div className="quote-pagination-controller">
+            <div className="pagination-back-btn">
+              <img src={icons.chevronLeft} alt="" />
+            </div>
+            <div className="controller-pages-number">
+              <span className="selected">1</span>
+              <span>2</span>
+              <span>3</span>
+              <span>...</span>
+              <span>14</span>
+            </div>
+            <div className="pagination-forward-btn">
+              <img src={icons.chevronRight} alt="" />
+            </div>
           </div>
-          <div className="controller-pages-number">
-            <span className="selected">1</span>
-            <span>2</span>
-            <span>3</span>
-            <span>...</span>
-            <span>14</span>
-          </div>
-          <div className="pagination-forward-btn">
-            <img src={icons.chevronRight} alt="" />
-          </div>
-        </div>
+        ) : (
+          <></>
+        )}
       </div>
     </>
   );
