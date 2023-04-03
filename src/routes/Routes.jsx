@@ -46,7 +46,7 @@ function AppRoutes() {
                 <Route path="/jobs" element={<Jobs />} />
                 <Route path="/jobs/new" element={<AddNewJob />} />
                 <Route
-                  path="/jobs/applications"
+                  path="/jobs/:title"
                   element={<ApplicationList />}
                 />
                 <Route path="/newsletters" element={<Newsletters />} />

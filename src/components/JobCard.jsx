@@ -1,9 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { icons } from "../service/icons";
 import { Link } from "react-router-dom";
 import moment from "moment";
+import { allApplications } from "../requests/applications";
 
 export default function JobCard({ data }) {
+  const [isAppLoading, setIsAppLoading] = useState(true);
+  const [apply, setApply] = useState([]);
+  const [appError, setAppError] = useState("");
+
+  useEffect(() => {
+    const getData = async () => {
+      if (isAppLoading) {
+        const response = await allApplications();
+        if (response?.ok) {
+          setApply(response?.data);
+        } else {
+          setAppError("error");
+        }
+        setIsAppLoading(false);
+      }
+    };
+    getData();
+  }, [isAppLoading]);
   return (
     <>
       <div className="job-item">
@@ -66,7 +85,7 @@ export default function JobCard({ data }) {
                 <b>44</b> views
               </div>
             </Link>
-            <Link className="applications" to={"/jobs/applications"}>
+            <Link className="applications" to={`/jobs/${data?.title}`}>
               <div className="applications-icon stat_icon">
                 <svg
                   width="24"
@@ -82,14 +101,14 @@ export default function JobCard({ data }) {
                 </svg>
               </div>
               <div className="applications-number">
-                <b>21</b> applications
+                <b> {apply?.length} </b> applications
               </div>
             </Link>
           </div>
 
           <div className="actions">
             <div className=" action action-view">
-              <a href="#">
+              <Link to={`/jobs/${data?.title}`}>
                 <svg
                   width="19"
                   height="19"
@@ -102,10 +121,10 @@ export default function JobCard({ data }) {
                     fill="#AAAAAA"
                   />
                 </svg>
-              </a>
+              </Link>
             </div>
             <div className="action action-edit">
-              <a href="#">
+              <Link to="/jobs/edit">
                 <svg
                   width="19"
                   height="19"
@@ -118,10 +137,10 @@ export default function JobCard({ data }) {
                     fill="#AAAAAA"
                   />
                 </svg>
-              </a>
+              </Link>
             </div>
             <div className="action action-delete">
-              <Link to="#" onClick={(e) => e.preventDefault()}>
+              <Link to="#delete" onClick={(e) => e.preventDefault()}>
                 <svg
                   width="19"
                   height="19"
