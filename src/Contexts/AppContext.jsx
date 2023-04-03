@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import { AuthUser, getOneUser, login } from "../requests/login";
 import { deleteOneQuote, getQuotes } from "../requests/quotes";
+import { useNavigate } from "react-router-dom";
 
 /**
 |--------------------------------------------------
@@ -81,6 +82,7 @@ export const AppContextProvider = ({ children }) => {
   */
   const UserLogOut = () => {
     localStorage.removeItem("user");
+    window.location = "/";
     setisUserLoggedIn(false);
     setUserLoadingState(false);
   };
@@ -95,7 +97,8 @@ export const AppContextProvider = ({ children }) => {
       if (userLoadingState) {
         const currentUser = await JSON.parse(localStorage.getItem("user"));
         if (!currentUser) {
-          return setUserLoadingState(false);
+          setUserLoadingState(false);
+          return;
         }
         const res = await AuthUser(currentUser.token, currentUser.id);
         if (res?.ok) {
@@ -125,8 +128,8 @@ export const AppContextProvider = ({ children }) => {
         setIsDataLoading(false);
       }
     };
-    request();
-  }, [isDataLoading]);
+    if(isUserLoggedIn) request();
+  }, [isDataLoading, isUserLoggedIn]);
 
   /**
     |--------------------------------------------------
