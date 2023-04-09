@@ -1,11 +1,11 @@
 import { baseUrl } from "../api/url";
 
-export async function allApplications() {
+export async function allApplications(jobId) {
   const headersList = {
     Accept: "*/*",
     "Content-Type": "application/json",
   };
-  let response = await fetch(`${baseUrl}/applications`, {
+  let response = await fetch(`${baseUrl}/applications/find/${jobId}`, {
     method: "GET",
     headers: headersList,
   });

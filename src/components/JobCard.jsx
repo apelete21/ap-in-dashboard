@@ -4,25 +4,25 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 import { allApplications } from "../requests/applications";
 
-export default function JobCard({ data }) {
+export default function JobCard({ data, isDataLoading }) {
   const [isAppLoading, setIsAppLoading] = useState(true);
   const [apply, setApply] = useState([]);
   const [appError, setAppError] = useState("");
 
   useEffect(() => {
     const getData = async () => {
-      if (isAppLoading) {
-        const response = await allApplications();
+      if (isAppLoading && !isDataLoading) {
+        const response = await allApplications(data._id);
         if (response?.ok) {
           setApply(response?.data);
         } else {
           setAppError("error");
         }
         setIsAppLoading(false);
-      }
+      } else return;
     };
     getData();
-  }, [isAppLoading]);
+  }, [isAppLoading, data, isDataLoading]);
   return (
     <>
       <div className="job-item">
@@ -101,7 +101,7 @@ export default function JobCard({ data }) {
                 </svg>
               </div>
               <div className="applications-number">
-                <b> {apply?.length} </b> applications
+                <b> {apply.length} </b> applications
               </div>
             </Link>
           </div>

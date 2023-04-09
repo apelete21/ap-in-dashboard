@@ -4,25 +4,25 @@ import { Link } from "react-router-dom";
 import { allApplications } from "../requests/applications";
 import moment from "moment";
 
-export default function ApplicationsTable() {
+export default function ApplicationsTable({ isDataLoading, jobId }) {
   const [isAppLoading, setIsAppLoading] = useState(true);
   const [apply, setApply] = useState([]);
   const [appError, setAppError] = useState("");
 
   useEffect(() => {
     const getData = async () => {
-      if (isAppLoading) {
-        const response = await allApplications();
+      if (isAppLoading && !isDataLoading) {
+        const response = await allApplications(jobId);
         if (response?.ok) {
           setApply(response?.data);
         } else {
           setAppError(response?.data.message);
         }
         setIsAppLoading(false);
-      }
+      } else return
     };
     getData();
-  }, [isAppLoading]);
+  }, [isAppLoading, isDataLoading, jobId]);
 
   if (appError == "") {
     return (
@@ -58,11 +58,16 @@ export default function ApplicationsTable() {
                         <div className="requester-picture">
                           <img src={icons.prIcon} alt="" />
                         </div>
-                        <div className="requester_name"> {element?.fullname} </div>
+                        <div className="requester_name">
+                          {" "}
+                          {element?.fullname}{" "}
+                        </div>
                       </td>
                       <td className="email">{element?.email}</td>
                       <td className="location">{element?.location}</td>
-                      <td className="date">{moment(element?.createdAt).calendar()}</td>
+                      <td className="date">
+                        {moment(element?.createdAt).calendar()}
+                      </td>
                       <td className="actions">
                         <span className="view-info">
                           <img src={icons.eyeIcon} alt="view-info" />

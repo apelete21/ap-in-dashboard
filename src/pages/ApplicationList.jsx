@@ -26,18 +26,18 @@ export default function ApplicationList() {
       }
     };
     getData();
-  }, [job, isDataLoading]);
+  }, [job, isDataLoading, title]);
 
   return (
     <>
       <div className="list-of-application">
         {job !== {} ? (
-          <JobCard className="mb-5" data={job} />
+          <JobCard className="mb-5" data={job} isDataLoading={isDataLoading} />
         ) : (
           <div> {error} </div>
         )}
 
-        <ApplicationsTable />
+        <ApplicationsTable isDataLoading={isDataLoading} jobId={job._id} />
 
         <div className="add-application-btn">
           <Link className="btn cs_btn btn_secondary" to="/jobs/new">
