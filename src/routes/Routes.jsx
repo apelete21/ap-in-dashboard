@@ -15,9 +15,10 @@ import { AppContext } from "../Contexts/AppContext";
 import LoginHead from "../components/Headers/LoginHead";
 import ErrorBoundary from "../components/Error/ErrorBoundary";
 import Message from "../components/Message";
+import ApplicationDetails from "../pages/ApplicationDetails";
 
 function AppRoutes() {
-  const { isUserLoggedIn, statusMessage } = useContext(AppContext);
+  const { isUserLoggedIn, statusMessage, JobApp } = useContext(AppContext);
 
   const { pathname } = useLocation();
 
@@ -33,7 +34,7 @@ function AppRoutes() {
       <>
         <ErrorBoundary>
           <Head />
-
+          {JobApp !== null && <ApplicationDetails />}
           <div className="main_wrapper">
             <Aside />
 
@@ -45,10 +46,7 @@ function AppRoutes() {
                 <Route path="/quote-requests" element={<QuoteRequests />} />
                 <Route path="/jobs" element={<Jobs />} />
                 <Route path="/jobs/new" element={<AddNewJob />} />
-                <Route
-                  path="/jobs/:title"
-                  element={<ApplicationList />}
-                />
+                <Route path="/jobs/:title" element={<ApplicationList />} />
                 <Route path="/newsletters" element={<Newsletters />} />
                 <Route path="/blog" element={<Blog />} />
               </Routes>

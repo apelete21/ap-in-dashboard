@@ -37,7 +37,7 @@ export default function ApplicationList() {
           <div> {error} </div>
         )}
 
-        <ApplicationsTable isDataLoading={isDataLoading} jobId={job._id} />
+        <ApplicationsTable setIsDataLoading={setIsDataLoading} isDataLoading={isDataLoading} jobId={job._id} />
 
         <div className="add-application-btn">
           <Link className="btn cs_btn btn_secondary" to="/jobs/new">
@@ -51,89 +51,3 @@ export default function ApplicationList() {
     </>
   );
 }
-
-// const ApplicationList = () => {
-//     return (
-//         <>
-//             <div className="right-popup">
-//                 <div className="job-application-details">
-
-//                     <div className="details-top-sections">
-//                         <a href="#" className="close-popup">
-//                             <img src="../assets/media/images/icons/outline-arrow-back.svg" alt="" />
-//                         </a>
-//                         <h1>
-//                             Applications details
-//                         </h1>
-//                     </div>
-
-//                     <div className="details-specifications">
-//                         <div className="detail-item flex-basis-45">
-//                             <div className="detail-item-name">
-//                                 Full name
-//                             </div>
-//                             <div className="detail-item-value">
-//                                 Sam Smith
-//                             </div>
-//                         </div>
-//                         <div className="detail-item flex-basis-45">
-//                             <div className="detail-item-name">
-//                                 Location
-//                             </div>
-//                             <div className="detail-item-value">
-//                                 Lomé
-//                             </div>
-//                         </div>
-//                         <div className="detail-item">
-//                             <div className="detail-item-name">
-//                                 E-mail
-//                             </div>
-//                             <div className="detail-item-value">
-//                                 samsmith@mybusiness.com
-//                             </div>
-//                         </div>
-//                         <div className="detail-item">
-//                             <div className="detail-item-name">
-//                                 Phone number
-//                             </div>
-//                             <div className="detail-item-value">
-//                                 +228 90654322
-//                             </div>
-//                         </div>
-//                         <div className="detail-item">
-//                             <div className="detail-item-name">
-//                                 Resume
-//                             </div>
-//                             <div className="detail-item-value resume">
-
-//                                 <div>
-//                                     <div className="document-picture">
-//                                         <img src="../assets/media/images/icons/pdf-icon.svg" alt="" />
-//                                     </div>
-//                                     <div className="document-name">
-//                                         resume-samsmith.pdf
-//                                     </div>
-//                                 </div>
-
-//                                 <a href="">
-//                                     Download
-//                                 </a>
-
-//                             </div>
-//                         </div>
-//                         <div className="detail-item">
-//                             <div className="detail-item-name">
-//                                 Cover letter
-//                             </div>
-//                             <div className="detail-item-value">
-//                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit
-//                                 interdum, ac aliquet odio mattis. ipsum dolor sit amet, consectetur adipiscing elit.
-//                                 Nunc vulputate libero et velit interdum, ac aliquetmattis.
-//                             </div>
-//                         </div>
-//                     </div>
-//                 </div>
-//             </div>
-//         </>
-//     )
-// }

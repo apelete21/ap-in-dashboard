@@ -1077,7 +1077,15 @@ a.views {
     left: 0;
     background: #0005;
     z-index: 999;
-    display: none;
+}
+
+.right-popup-bg {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #0005;
 }
 
 .job-application-details {

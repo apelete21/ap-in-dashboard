@@ -1,10 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { icons } from "../service/icons";
-import { Link } from "react-router-dom";
-import { allApplications } from "../requests/applications";
+import { Link, useParams } from "react-router-dom";
+import {
+  allApplications,
+  deleteOneApplication,
+} from "../requests/applications";
 import moment from "moment";
 
-export default function ApplicationsTable({ isDataLoading, jobId }) {
+import { AppContext } from "../Contexts/AppContext";
+
+export default function ApplicationsTable({
+  isDataLoading,
+  setIsDataLoading,
+  jobId,
+}) {
+  const { setJobApp, setStatusMessage } = useContext(AppContext);
+
   const [isAppLoading, setIsAppLoading] = useState(true);
   const [apply, setApply] = useState([]);
   const [appError, setAppError] = useState("");
@@ -19,10 +30,24 @@ export default function ApplicationsTable({ isDataLoading, jobId }) {
           setAppError(response?.data.message);
         }
         setIsAppLoading(false);
-      } else return
+      } else return;
     };
     getData();
   }, [isAppLoading, isDataLoading, jobId]);
+
+  /**
+    |--------------------------------------------------
+    | Funtion to delete one Job application
+    |--------------------------------------------------
+    */
+
+  async function handleDeleteJobApp(id) {
+    console.log(id);
+    const response = await deleteOneApplication(id);
+    setStatusMessage(response?.data.message);
+    setIsAppLoading(true);
+    setIsDataLoading(true);
+  }
 
   if (appError == "") {
     return (
@@ -31,7 +56,7 @@ export default function ApplicationsTable({ isDataLoading, jobId }) {
           <h1>Applications list</h1>
           <Link
             className="btn btn_primary"
-            to="/delete"
+            to="delete"
             onClick={(e) => e.preventDefault()}
           >
             Delete the selection
@@ -69,10 +94,18 @@ export default function ApplicationsTable({ isDataLoading, jobId }) {
                         {moment(element?.createdAt).calendar()}
                       </td>
                       <td className="actions">
-                        <span className="view-info">
+                        <span
+                          className="view-info"
+                          title="view"
+                          onClick={() => setJobApp(element)}
+                        >
                           <img src={icons.eyeIcon} alt="view-info" />
                         </span>
-                        <span className="delete-item">
+                        <span
+                          className="delete-item"
+                          title="delete"
+                          onClick={() => handleDeleteJobApp(element._id)}
+                        >
                           <img src={icons.trashIcon} alt="delete-item" />
                         </span>
                       </td>

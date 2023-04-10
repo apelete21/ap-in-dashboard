@@ -1,7 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import { AuthUser, getOneUser, login } from "../requests/login";
 import { deleteOneQuote, getQuotes } from "../requests/quotes";
-import { useNavigate } from "react-router-dom";
 
 /**
 |--------------------------------------------------
@@ -36,6 +35,9 @@ export const AppContextProvider = ({ children }) => {
 
   // state storing the response message of the quote to delete
   const [statusMessage, setStatusMessage] = useState("");
+
+  // state to control the application details data
+  const [JobApp, setJobApp] = useState(null);
 
   /**
   |--------------------------------------------------
@@ -128,7 +130,7 @@ export const AppContextProvider = ({ children }) => {
         setIsDataLoading(false);
       }
     };
-    if(isUserLoggedIn) request();
+    if (isUserLoggedIn) request();
   }, [isDataLoading, isUserLoggedIn]);
 
   /**
@@ -170,6 +172,8 @@ export const AppContextProvider = ({ children }) => {
         statusMessage,
         setStatusMessage,
         userLoadingState,
+        JobApp,
+        setJobApp,
       }}
     >
       {children}
