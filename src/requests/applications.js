@@ -25,3 +25,5 @@ export async function deleteOneApplication(appId) {
   const data = await response.json();
   return { data, ok: response.ok };
 }
+
+export const DownloadFileRoute = `${baseUrl}/applications/file`;

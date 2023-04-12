@@ -1076,7 +1076,7 @@ a.views {
     top: 0;
     left: 0;
     background: #0005;
-    z-index: 999;
+    z-index: 150000;
 }
 
 .right-popup-bg {

@@ -1,6 +1,8 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AppContext } from "../Contexts/AppContext";
 import { icons } from "../service/icons";
+import { DownloadFile, DownloadFileRoute } from "../requests/applications";
+import { useLocation } from "react-router-dom";
 
 export default function ApplicationDetails() {
   const { JobApp, setJobApp } = useContext(AppContext);
@@ -47,19 +49,25 @@ export default function ApplicationDetails() {
                       alt=""
                     />
                   </div>
-                  <div className="document-name">resume-samsmith.pdf</div>
+                  <div className="document-name">{JobApp?.cv}</div>
                 </div>
 
-                <a href="">Download</a>
+                <a
+                  href={`${DownloadFileRoute}/${JobApp.cv}`}
+                  title="Download resume"
+                  target="_blank"
+                >
+                  Download
+                </a>
               </div>
             </div>
             <div className="detail-item">
-              <div className="detail-item-name">Cover letter</div>
-              <div className="detail-item-value">
-                {JobApp?.profile}
-                <br />
-                {JobApp?.motivation}
-              </div>
+              <div className="detail-item-name">Profile</div>
+              <div className="detail-item-value">{JobApp?.profile}</div>
+            </div>
+            <div className="detail-item">
+              <div className="detail-item-name">Motivation</div>
+              <div className="detail-item-value">{JobApp?.motivation}</div>
             </div>
           </div>
         </div>
