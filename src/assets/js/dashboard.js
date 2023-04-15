@@ -1,7 +1,6 @@
 document.querySelectorAll('a').forEach(element => {
     element.addEventListener("click", (e) => {
         e.preventDefault()
-        console.log(e)
     })
 });
 
