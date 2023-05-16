@@ -1,7 +1,11 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React, { useRef } from "react";
+import { Link } from "react-router-dom";
 
 export default function NewPost() {
+
+  const title = useRef();
+  const author = useRef();
+ 
   return (
     <>
       <div className="add-new-job-title">
@@ -17,7 +21,7 @@ export default function NewPost() {
       <form action="">
         <div className="input-job-element">
           <p className="input-element-title">Article title</p>
-          <input type="text" placeholder="Article title" required />
+          <input type="text" ref={title} placeholder="Article title" required />
         </div>
         <br />
         <div className="input-job-element">
@@ -31,14 +35,17 @@ export default function NewPost() {
         <br />
         <div className="input-job-element">
           <p className="input-element-title">Author</p>
-          <input type="text" placeholder="Author" required />
+          <input type="text" ref={author} placeholder="Author" required />
         </div>
       </form>
 
       <div className="add-job-btn">
-        <span className="btn btn_secondary" onClick={(e) => e.preventDefault()}>
+        <Link
+          className="btn btn_secondary"
+          to={`#`}
+        >
           <span>Next</span>
-        </span>
+        </Link>
       </div>
     </>
   );
