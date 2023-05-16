@@ -25,23 +25,20 @@ export default function Jobs() {
     getData();
   }, [jobs, isDataLoading]);
 
-  
-
   return (
     <>
       <div className="list-of-jobs">
         <div className="job-list-title">
           <h1>List of jobs</h1>
         </div>
-
-        <div className="jobs-search-bar">
-          <form action="#">
+        <br />
+        <div className="quotes-search-bar-container">
+          <form>
             <div className="quotes-search-bar">
-              <div className="search-bar-icon">
-                <img src={icons.searchDark} alt="search icon" />
-              </div>
               <input type="text" placeholder="Rechercher" />
-              <button type="submit">Search</button>
+              <button>
+                <img src={icons.searchIcon} alt="search icon" />
+              </button>
             </div>
           </form>
         </div>
