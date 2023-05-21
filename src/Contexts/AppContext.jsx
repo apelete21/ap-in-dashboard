@@ -60,6 +60,7 @@ export const AppContextProvider = ({ children }) => {
   |--------------------------------------------------
   */
   const UserLogin = async (loginData) => {
+    setUserLoadingState(true)
     const response = await login(loginData);
     if (response?.ok) {
       setUser({ ...response.data });
