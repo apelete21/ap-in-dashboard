@@ -7,3 +7,13 @@ export default function Button({ onClick }) {
     </>
   );
 }
+
+export function AddBtn({onClick}) {
+  return (
+    <>
+      <button className="addBtn" onClick={onClick}>
+        add
+      </button>
+    </>
+  );
+}

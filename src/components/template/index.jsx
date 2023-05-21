@@ -1,8 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import "./template.css";
-import { Section } from "./elements/section";
+import Section from "./elements/section";
 
-export default function JobTemplate({ content, setContent, setShowModal }) {
+export default function JobTemplate({ setShowModal }) {
+  const modifyElement = (element, id) => {
+    console.log(id, element);
+    if (element === "title") {
+      document.querySelector(`.s-${id}`).toggleAttribute("contenteditable");
+    }
+    if (element === "paragraph") {
+      document.querySelector(`.p-${id}`).toggleAttribute("contenteditable");
+    }
+    return;
+  };
+
+  const newParagraphs = (fn) => {
+    fn();
+  };
+
+  const [content, setContent] = useState([
+    <Section modifyElement={modifyElement} newParagraphs={newParagraphs} />,
+  ]);
+
+  const addSection = () => {
+    setContent([
+      ...content,
+      <Section
+        modifyElement={modifyElement}
+        newParagraphs={newParagraphs}
+      />,
+    ]);
+  };
+
   return (
     <section className="modal-root">
       <div className="modal-closer" onClick={() => setShowModal(false)} />
@@ -45,12 +74,14 @@ export default function JobTemplate({ content, setContent, setShowModal }) {
             </div>
             <div className="paragraph-pane">
               <div className="section">
-                <span className="label" onClick={()=>{
-                  setContent([...content, <Section />])
-                  console.log(<Section />)}}>section</span>
+                <span className="label" onClick={addSection}>
+                  section
+                </span>
               </div>
               <div className="paragraph">
-                <span className="label">paragraph</span>
+                <span className="label" onClick={newParagraphs}>
+                  paragraph
+                </span>
               </div>
             </div>
             <div className="list-pane">

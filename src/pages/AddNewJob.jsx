@@ -1,24 +1,15 @@
 import React, { useState } from "react";
 import { createPortal } from "react-dom";
 import JobTemplate from "../components/template";
-import { Section } from "../components/template/elements/section";
 
 export default function AddNewJob() {
   const [showModal, setShowModal] = useState(false);
-  const [content, setContent] = useState([<Section />]);
-  console.log(content);
   return (
     <>
       <>
         {showModal &&
           createPortal(
-            <>
-              <JobTemplate
-                setShowModal={setShowModal}
-                content={content}
-                setContent={setContent}
-              />
-            </>,
+            <JobTemplate setShowModal={setShowModal} />,
             document.body
           )}
       </>

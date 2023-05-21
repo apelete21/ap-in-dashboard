@@ -15,6 +15,11 @@
   width: 0;
 }
 
+.job_tasks_section {
+  position: relative;
+  padding-right: 8vw;
+}
+
 .modal-closer {
   width: 100%;
   height: 100%;
@@ -66,7 +71,7 @@
 }
 
 .detailsContainer {
-  padding: 20vh 20vw 10vh 8vw;
+  padding: 20vh 10vw 10vh 8vw;
   margin-bottom: 12vh;
   color: #000;
 }
@@ -149,13 +154,21 @@
   right: 1rem;
 }
 
+.detailsContainer .addBtn {
+  display: none;
+  position: absolute;
+  padding-inline: 2px;
+  height: 20px;
+  top: 10%;
+  right: 1rem;
+}
 .overview_title {
   width: 100%;
 }
 
 .p-18:hover .editBtn,
-.overview_title:hover .editBtn
-{
+.overview_title:hover .editBtn,
+.job_tasks_section:hover .addBtn {
   display: block;
 }
 
