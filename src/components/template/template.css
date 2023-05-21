@@ -140,11 +140,41 @@
   font-size: 2.5rem;
   margin-bottom: 5vh;
 }
+.detailsContainer div .h4 {
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-bottom: 5vh;
+}
 
 .detailsContainer .p-18 {
   position: relative;
   margin-bottom: 1.4rem;
   width: 100%;
+}
+
+.detailsContainer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+}
+
+.detailsContainer .task_ {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 1vh;
+    font-size: 18px;
+    font-style: italic;
+}
+
+.detailsContainer .square {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background-color: #3c3c3c;
+    margin-right: 1.5vw;
+    border-radius: 50%;
 }
 
 .detailsContainer .editBtn {
@@ -169,9 +199,11 @@
   width: 100%;
 }
 
-.p-18:hover .editBtn,
-.overview_title:hover .editBtn,
-.job_tasks_section:hover .addBtn {
+.p-18:hover > .editBtn,
+.overview_title:hover > .editBtn,
+.tasks_list_section:hover > .editBtn,
+.h4:hover > .editBtn,
+.job_tasks_section:hover > .addBtn {
   display: block;
 }
 

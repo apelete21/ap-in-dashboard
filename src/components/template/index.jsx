@@ -3,7 +3,7 @@ import "./template.css";
 import Section from "./elements/section";
 
 export default function JobTemplate({ setShowModal }) {
-  const modifyElement = (element, id) => {
+  const modifyElement = (id) => {
     document.querySelector(`.${id}`).toggleAttribute("contenteditable");
   };
 
