@@ -4,14 +4,7 @@ import Section from "./elements/section";
 
 export default function JobTemplate({ setShowModal }) {
   const modifyElement = (element, id) => {
-    console.log(id, element);
-    if (element === "title") {
-      document.querySelector(`.s-${id}`).toggleAttribute("contenteditable");
-    }
-    if (element === "paragraph") {
-      document.querySelector(`.p-${id}`).toggleAttribute("contenteditable");
-    }
-    return;
+    document.querySelector(`.${id}`).toggleAttribute("contenteditable");
   };
 
   const newParagraphs = (fn) => {
@@ -25,10 +18,7 @@ export default function JobTemplate({ setShowModal }) {
   const addSection = () => {
     setContent([
       ...content,
-      <Section
-        modifyElement={modifyElement}
-        newParagraphs={newParagraphs}
-      />,
+      <Section modifyElement={modifyElement} newParagraphs={newParagraphs} />,
     ]);
   };
 
@@ -61,32 +51,11 @@ export default function JobTemplate({ setShowModal }) {
         </header>
         <div className="editor offset-canva">
           <div className="editor-pane">
-            <div className="header-pane">
-              <div className="h1tag">
-                <span className="label">H1</span>
-              </div>
-              <div className="h2tag">
-                <span className="label">H2</span>
-              </div>
-              <div className="h3tag">
-                <span className="label">H3</span>
-              </div>
-            </div>
             <div className="paragraph-pane">
               <div className="section">
                 <span className="label" onClick={addSection}>
-                  section
+                  Add a new section
                 </span>
-              </div>
-              <div className="paragraph">
-                <span className="label" onClick={newParagraphs}>
-                  paragraph
-                </span>
-              </div>
-            </div>
-            <div className="list-pane">
-              <div className="list">
-                <span className="label">list</span>
               </div>
             </div>
           </div>

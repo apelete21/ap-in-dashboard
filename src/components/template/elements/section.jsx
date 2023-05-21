@@ -15,9 +15,9 @@ export default function Section({ newParagraphs, modifyElement }) {
     <>
       <div className="job_tasks_section">
         <AddBtn onClick={() => newParagraphs(addNewParagraph)} />
-        <h2 className={`overview_title s-${sectId}`}>
+        <h2 className={`overview_title ${sectId}`}>
           Here goes the title...
-          <Button onClick={() => modifyElement("title", sectId)} />
+          <Button onClick={() => modifyElement(sectId)} />
         </h2>
         <div className="role_description">{par}</div>
       </div>

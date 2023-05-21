@@ -81,11 +81,14 @@
 }
 
 .editor {
+  position: sticky;
+  top: 1vh;
   margin-top: 2vh;
   margin-left: 20vw;
   width: fit-content;
   color: #000;
   border: solid #eee 0.1px;
+  z-index: 22222;
 }
 
 .editor .editor-pane {
@@ -128,7 +131,7 @@
   cursor: pointer;
 }
 
-.detailsContainer div {
+.detailsContainer > div {
   margin-bottom: 12vh;
 }
 
