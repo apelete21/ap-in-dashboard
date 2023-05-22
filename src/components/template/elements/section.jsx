@@ -35,21 +35,14 @@ export default function Section() {
           <ActionBtn onClick={openActionList} />
         ) : (
           <ActionBtn>
-            <div>
-              <ActionListBtn onClick={addNewSubtitle}>subtitle</ActionListBtn>
-            </div>
-            <div>
-              <ActionListBtn onClick={addNewParagraph}>paragraph</ActionListBtn>
-            </div>
-            <div>
-              <ActionListBtn onClick={addNewList}>list</ActionListBtn>
-            </div>
-            <div>
-              <ActionListBtn>remove</ActionListBtn>
-            </div>
-            <div>
-              <ActionListBtn onClick={openActionList}>close</ActionListBtn>
-            </div>
+            <ActionListBtn onClick={addNewSubtitle}>subtitle</ActionListBtn>
+            <ActionListBtn onClick={addNewParagraph}>paragraph</ActionListBtn>
+
+            <ActionListBtn onClick={addNewList}>list</ActionListBtn>
+
+            <ActionListBtn>remove</ActionListBtn>
+
+            <ActionListBtn onClick={openActionList}>close</ActionListBtn>
           </ActionBtn>
         )}
         <HoverEdit>
