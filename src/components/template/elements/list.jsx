@@ -1,8 +1,8 @@
 import { useState } from "react";
 import random from "../../../service/random";
-import Button, { AddBtn } from "./button";
+import Button, { ActionBtn } from "./button";
 
-export default function List({ modifyElement, newParagraphs }) {
+export default function List({ modifyElement }) {
   const [listItems, setListItems] = useState([
     <ListElement modifyElement={modifyElement} />,
   ]);
@@ -12,7 +12,7 @@ export default function List({ modifyElement, newParagraphs }) {
   return (
     <>
       <div class="tasks_list_section">
-        <AddBtn onClick={() => newParagraphs(addNewListItem)} />
+        <ActionBtn onClick={() => addNewListItem()} />
         <ul class="tasks_list">{listItems}</ul>
       </div>
     </>

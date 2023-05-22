@@ -204,7 +204,7 @@
 .tasks_list_section:hover > .editBtn,
 .h4:hover > .editBtn,
 .job_tasks_section:hover > .addBtn {
-  display: block;
+  display: inline-block;
 }
 
 [contenteditable] {

@@ -8,12 +8,28 @@ export default function Button({ onClick }) {
   );
 }
 
-export function AddBtn({onClick}) {
+export function ActionBtn({ onClick }) {
   return (
     <>
       <button className="addBtn" onClick={onClick}>
-        add
+        <span className="open_action">See actions</span>
       </button>
     </>
+  );
+}
+
+export function ActionList({ onClick, className, children }) {
+  return (
+    <button className={`${className} `} onClick={onClick}>
+      {children}
+    </button>
+  );
+}
+
+export function ActionButton({ onClick, className, children }) {
+  return (
+    <button className={`${className} `} onClick={onClick}>
+      {children}
+    </button>
   );
 }

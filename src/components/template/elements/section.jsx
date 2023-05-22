@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Button, { AddBtn } from "./button";
+import Button, { ActionBtn } from "./button";
 import Paragraph from "./paragraph";
 import random from "../../../service/random";
 import Subtitle from "./subtitle";
@@ -7,6 +7,7 @@ import List from "./list";
 
 export default function Section({ newParagraphs, modifyElement }) {
   let sectId = "s-" + random();
+  const [openActions, setOpenActions] = useState(false)
   const [sectionContent, setSectionContent] = useState([
     <Paragraph modifyElement={modifyElement} />,
   ]);
@@ -32,10 +33,14 @@ export default function Section({ newParagraphs, modifyElement }) {
     ]);
   }
 
+  const openActionList =() => {
+    setOpenActions(true)
+  }
+
   return (
     <>
       <div className="job_tasks_section">
-        <AddBtn onClick={() => newParagraphs(addNewList)} />
+        <ActionBtn onClick={() => newParagraphs()} />
         <h2 className={`overview_title ${sectId}`}>
           Here goes the title...
           <Button onClick={() => modifyElement(sectId)} />
