@@ -159,42 +159,72 @@
 }
 
 .detailsContainer .task_ {
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    align-items: center;
-    margin-bottom: 1vh;
-    font-size: 18px;
-    font-style: italic;
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 1vh;
+  font-size: 18px;
+  font-style: italic;
 }
 
 .detailsContainer .square {
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    background-color: #3c3c3c;
-    margin-right: 1.5vw;
-    border-radius: 50%;
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: #3c3c3c;
+  margin-right: 1.5vw;
+  border-radius: 50%;
 }
 
 .detailsContainer .editBtn {
   display: none;
-  position: absolute;
-  padding-inline: 2px;
   width: 20px;
   height: 20px;
-  top: 0;
+  cursor: pointer;
+  position: absolute;
+  border: 0px none;
+  background: #000;
+  padding-inline: 2px;
+  top: 50%;
   right: 1rem;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
 }
 
-.detailsContainer .addBtn {
+.detailsContainer .action-btn {
+  width: fit-content;
+  word-wrap: normal;
   display: none;
   position: absolute;
-  padding-inline: 2px;
-  height: 20px;
+  padding: 4px;
+  border: 1px solid grey;
   top: 10%;
-  right: 1rem;
+  left: 100%;
+  transform: translate(-100%, -0%);
+  -webkit-transform: translate(-100%, -0%);
+  -moz-transform: translate(-100%, -0%);
+  -ms-transform: translate(-100%, -0%);
+  -o-transform: translate(-100%, -0%);
 }
+
+.detailsContainer .action-list-btn {
+  background: #999;
+  color: #fff;
+  border: none;
+  width: 100%;
+  margin-block: 1px;
+  padding: 2px;
+  cursor: pointer;
+}
+
+.detailsContainer .action-list-btn:hover {
+  background: royalblue;
+}
+
 .overview_title {
   width: 100%;
 }
@@ -203,7 +233,7 @@
 .overview_title:hover > .editBtn,
 .tasks_list_section:hover > .editBtn,
 .h4:hover > .editBtn,
-.job_tasks_section:hover > .addBtn {
+.job_tasks_section:hover > .action-btn {
   display: inline-block;
 }
 
@@ -215,8 +245,4 @@
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
-}
-
-[contenteditable]:hover .editBtn {
-  top: 10px;
 }

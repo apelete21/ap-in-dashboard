@@ -1,34 +1,26 @@
-export default function Button({ onClick }) {
-  return (
-    <>
-      <button className="editBtn" onClick={onClick}>
-        +
-      </button>
-    </>
-  );
-}
+import { icons } from "../../../service/icons";
 
-export function ActionBtn({ onClick }) {
+export default function Button({ onClick, children }) {
   return (
-    <>
-      <button className="addBtn" onClick={onClick}>
-        <span className="open_action">See actions</span>
-      </button>
-    </>
-  );
-}
-
-export function ActionList({ onClick, className, children }) {
-  return (
-    <button className={`${className} `} onClick={onClick}>
-      {children}
+    <button className="editBtn" onClick={onClick}>
+      {<img src={icons.feather} alt="" width={"100%"} height={"100%"} /> || children}
     </button>
   );
 }
 
-export function ActionButton({ onClick, className, children }) {
+export function ActionBtn({ children, className, onClick }) {
   return (
-    <button className={`${className} `} onClick={onClick}>
+    <>
+      <div className={`${className} btn action-btn`} onClick={onClick}>
+        {children || "Options"}
+      </div>
+    </>
+  );
+}
+
+export function ActionListBtn({ onClick, className, children }) {
+  return (
+    <button className={`${className} action-list-btn`} onClick={onClick}>
       {children}
     </button>
   );
