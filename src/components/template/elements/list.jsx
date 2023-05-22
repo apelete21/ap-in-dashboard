@@ -6,14 +6,14 @@ import { modifyElement, removeElement } from "./methods";
 
 export default function List() {
   const [listItems, setListItems] = useState([
-    <ListElement modifyElement={modifyElement} />,
+    <ListElement />,
   ]);
   function addNewListItem() {
-    setListItems([...listItems, <ListElement modifyElement={modifyElement} />]);
+    setListItems([...listItems, <ListElement />]);
   }
   return (
     <HoverEdit>
-      <ActionBtn onClick={() => addNewListItem()} />
+      <EditBtn className={"listBtn"} onClick={() => addNewListItem()} />
       <div class="tasks_list_section">
         <ul class="tasks_list">{listItems}</ul>
       </div>

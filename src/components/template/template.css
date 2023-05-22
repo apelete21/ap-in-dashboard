@@ -248,6 +248,10 @@
   display: flex;
 }
 
+.job_tasks_section:hover .action-btn{
+  display: block;
+}
+
 [contenteditable] {
   border: 4px solid rgba(0, 183, 255, 0.471);
   padding: 10px;

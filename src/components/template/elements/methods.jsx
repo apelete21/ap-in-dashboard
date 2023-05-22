@@ -1,5 +1,4 @@
 export const removeElement = (id) => {
-  console.log(document.querySelector(`${id}`));
   document.querySelector(`.${id}`).remove();
 };
 

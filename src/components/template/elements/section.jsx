@@ -8,7 +8,9 @@ import HoverEdit from "./hoverWrapper";
 import { modifyElement, removeElement } from "./methods";
 
 export default function Section() {
+  let sectId = "s-" + random();
   let titleId = "t-" + random();
+
   const [openActions, setOpenActions] = useState(false);
   const [sectionContent, setSectionContent] = useState([<Paragraph />]);
 
@@ -30,7 +32,7 @@ export default function Section() {
 
   return (
     <>
-      <div className="job_tasks_section">
+      <div className={`job_tasks_section ${sectId}`}>
         {!openActions ? (
           <ActionBtn onClick={openActionList} />
         ) : (
@@ -40,7 +42,9 @@ export default function Section() {
 
             <ActionListBtn onClick={addNewList}>list</ActionListBtn>
 
-            <ActionListBtn>remove</ActionListBtn>
+            <ActionListBtn onClick={() => removeElement(sectId)}>
+              remove
+            </ActionListBtn>
 
             <ActionListBtn onClick={openActionList}>close</ActionListBtn>
           </ActionBtn>

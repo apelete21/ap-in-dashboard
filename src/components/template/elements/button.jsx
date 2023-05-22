@@ -1,8 +1,8 @@
 import { icons } from "../../../service/icons";
 
-export function EditBtn({ deleteFunc, editFunc, children }) {
+export function EditBtn({ deleteFunc, editFunc, children, className }) {
   return (
-    <div className="editBtn">
+    <div className={`editBtn ${className}`}>
       <button className="" onClick={editFunc}>
         {<img src={icons.feather} alt="" width={"100%"} height={"100%"} /> ||
           children}
