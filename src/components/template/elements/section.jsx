@@ -4,7 +4,6 @@ import Paragraph from "./paragraph";
 import random from "../../../service/random";
 import Subtitle from "./subtitle";
 import List from "./list";
-import { createPortal } from "react-dom";
 import HoverEdit from "./hoverWrapper";
 
 export default function Section({ newParagraphs, modifyElement }) {

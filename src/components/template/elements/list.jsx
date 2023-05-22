@@ -12,7 +12,7 @@ export default function List({ modifyElement }) {
   }
   return (
     <HoverEdit>
-        <ActionBtn onClick={() => addNewListItem()} />
+      <ActionBtn onClick={() => addNewListItem()} />
       <div class="tasks_list_section">
         <ul class="tasks_list">{listItems}</ul>
       </div>
@@ -22,11 +22,14 @@ export default function List({ modifyElement }) {
 
 export function ListElement({ modifyElement }) {
   let listElId = "li-" + random();
+  let listElIdChild = "li-li-" + random();
   return (
-    <li class={`task_ ${listElId}`}>
-      <span class="square"></span>
-      Providing quality assistance to management
-      <Button onClick={() => modifyElement(listElId)} />
-    </li>
+    <HoverEdit>
+      <li class={`task_ ${listElId}`}>
+        <span class="square"></span>
+        <span className={listElIdChild}>Here goes the list text...</span>
+      </li>
+      <Button onClick={() => modifyElement(listElIdChild)} />
+    </HoverEdit>
   );
 }
