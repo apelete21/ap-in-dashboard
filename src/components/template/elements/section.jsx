@@ -5,6 +5,7 @@ import random from "../../../service/random";
 import Subtitle from "./subtitle";
 import List from "./list";
 import { createPortal } from "react-dom";
+import HoverEdit from "./hoverWrapper";
 
 export default function Section({ newParagraphs, modifyElement }) {
   let titleId = "t-" + random();
@@ -62,10 +63,12 @@ export default function Section({ newParagraphs, modifyElement }) {
             </div>
           </ActionBtn>
         )}
-        <h2 className={`overview_title ${titleId}`}>
-          Here goes the title...
+        <HoverEdit>
+          <h2 className={`overview_title ${titleId}`}>
+            Here goes the title...
+          </h2>
           <Button onClick={() => modifyElement(titleId)} />
-        </h2>
+        </HoverEdit>
         <div className="role_description">{sectionContent}</div>
       </div>
     </>

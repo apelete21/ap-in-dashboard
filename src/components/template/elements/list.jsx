@@ -1,6 +1,7 @@
 import { useState } from "react";
 import random from "../../../service/random";
 import Button, { ActionBtn } from "./button";
+import HoverEdit from "./hoverWrapper";
 
 export default function List({ modifyElement }) {
   const [listItems, setListItems] = useState([
@@ -10,12 +11,12 @@ export default function List({ modifyElement }) {
     setListItems([...listItems, <ListElement modifyElement={modifyElement} />]);
   }
   return (
-    <>
-      <div class="tasks_list_section">
+    <HoverEdit>
         <ActionBtn onClick={() => addNewListItem()} />
+      <div class="tasks_list_section">
         <ul class="tasks_list">{listItems}</ul>
       </div>
-    </>
+    </HoverEdit>
   );
 }
 

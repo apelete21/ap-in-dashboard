@@ -229,7 +229,7 @@
   width: 100%;
 }
 
-.p-18:hover > .editBtn,
+.onhover:hover > .editBtn,
 .overview_title:hover > .editBtn,
 .tasks_list_section:hover > .editBtn,
 .h4:hover > .editBtn,
