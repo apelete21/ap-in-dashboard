@@ -1,41 +1,31 @@
 import React, { useState } from "react";
-import Button, { ActionBtn, ActionListBtn } from "./button";
+import { ActionBtn, ActionListBtn, EditBtn } from "./button";
 import Paragraph from "./paragraph";
 import random from "../../../service/random";
 import Subtitle from "./subtitle";
 import List from "./list";
 import HoverEdit from "./hoverWrapper";
+import { modifyElement, removeElement } from "./methods";
 
-export default function Section({ newParagraphs, modifyElement }) {
+export default function Section() {
   let titleId = "t-" + random();
   const [openActions, setOpenActions] = useState(false);
-  const [sectionContent, setSectionContent] = useState([
-    <Paragraph modifyElement={modifyElement} />,
-  ]);
+  const [sectionContent, setSectionContent] = useState([<Paragraph />]);
 
   const openActionList = () => {
     setOpenActions(!openActions);
   };
 
   const addNewParagraph = () => {
-    setSectionContent([
-      ...sectionContent,
-      <Paragraph modifyElement={modifyElement} />,
-    ]);
+    setSectionContent([...sectionContent, <Paragraph />]);
   };
 
   const addNewSubtitle = () => {
-    setSectionContent([
-      ...sectionContent,
-      <Subtitle modifyElement={modifyElement} />,
-    ]);
+    setSectionContent([...sectionContent, <Subtitle />]);
   };
 
   const addNewList = () => {
-    setSectionContent([
-      ...sectionContent,
-      <List modifyElement={modifyElement} />,
-    ]);
+    setSectionContent([...sectionContent, <List />]);
   };
 
   return (
@@ -66,7 +56,10 @@ export default function Section({ newParagraphs, modifyElement }) {
           <h2 className={`overview_title ${titleId}`}>
             Here goes the title...
           </h2>
-          <Button onClick={() => modifyElement(titleId)} />
+          <EditBtn
+            editFunc={() => modifyElement(titleId)}
+            deleteFunc={() => removeElement(titleId)}
+          />
         </HoverEdit>
         <div className="role_description">{sectionContent}</div>
       </div>

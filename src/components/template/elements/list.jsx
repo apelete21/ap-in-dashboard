@@ -1,9 +1,10 @@
 import { useState } from "react";
 import random from "../../../service/random";
-import Button, { ActionBtn } from "./button";
+import { ActionBtn, EditBtn } from "./button";
 import HoverEdit from "./hoverWrapper";
+import { modifyElement, removeElement } from "./methods";
 
-export default function List({ modifyElement }) {
+export default function List() {
   const [listItems, setListItems] = useState([
     <ListElement modifyElement={modifyElement} />,
   ]);
@@ -20,16 +21,16 @@ export default function List({ modifyElement }) {
   );
 }
 
-export function ListElement({ modifyElement }) {
+export function ListElement() {
   let listElId = "li-" + random();
   let listElIdChild = "li-li-" + random();
   return (
     <HoverEdit>
       <li class={`task_ ${listElId}`}>
-        <span class="square"></span>
+        <span class="square"/>
         <span className={listElIdChild}>Here goes the list text...</span>
       </li>
-      <Button onClick={() => modifyElement(listElIdChild)} />
+      <EditBtn editFunc={() => modifyElement(listElIdChild)} deleteFunc={()=>removeElement(listElId) } />
     </HoverEdit>
   );
 }

@@ -3,22 +3,14 @@ import "./template.css";
 import Section from "./elements/section";
 
 export default function JobTemplate({ setShowModal }) {
-  const modifyElement = (id) => {
-    document.querySelector(`.${id}`).toggleAttribute("contenteditable");
-  };
-
-  const newParagraphs = (fn) => {
-    fn();
-  };
-
   const [content, setContent] = useState([
-    <Section modifyElement={modifyElement} newParagraphs={newParagraphs} />,
+    <Section />,
   ]);
 
   const addSection = () => {
     setContent([
       ...content,
-      <Section modifyElement={modifyElement} newParagraphs={newParagraphs} />,
+      <Section />,
     ]);
   };
 

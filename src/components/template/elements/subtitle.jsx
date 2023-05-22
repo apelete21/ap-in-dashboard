@@ -1,12 +1,16 @@
 import random from "../../../service/random";
-import Button from "./button";
+import { EditBtn } from "./button";
+import { modifyElement, removeElement } from "./methods";
 
-export default function Subtitle({ modifyElement }) {
+export default function Subtitle() {
   let subTId = "st-" + random();
   return (
     <h4 className={`h4 ${subTId}`}>
       Here goes the Subtitle...
-      <Button onClick={() => modifyElement(subTId)} />
+      <EditBtn
+        editFunc={() => modifyElement(subTId)}
+        deleteFunc={() => removeElement(subTId)}
+      />
     </h4>
   );
 }

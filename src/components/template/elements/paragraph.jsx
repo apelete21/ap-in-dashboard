@@ -1,14 +1,15 @@
 import React from "react";
-import Button from "./button";
+import { EditBtn } from "./button";
 import random from "../../../service/random";
 import HoverEdit from "./hoverWrapper";
+import { modifyElement, removeElement } from "./methods";
 
-export default function Paragraph({ modifyElement }) {
+export default function Paragraph() {
   let parId = "p-" + random();
   return (
     <HoverEdit>
       <p className={`p-18 ${parId}`}>Here goes the paragraph...</p>
-      <Button onClick={() => modifyElement(parId)} />
+      <EditBtn editFunc={() => modifyElement(parId)} deleteFunc={()=> removeElement(parId)} />
     </HoverEdit>
   );
 }

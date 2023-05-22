@@ -1,10 +1,17 @@
 import { icons } from "../../../service/icons";
 
-export default function Button({ onClick, children }) {
+export function EditBtn({ deleteFunc, editFunc, children }) {
   return (
-    <button className="editBtn" onClick={onClick}>
-      {<img src={icons.feather} alt="" width={"100%"} height={"100%"} /> || children}
-    </button>
+    <div className="editBtn">
+      <button className="" onClick={editFunc}>
+        {<img src={icons.feather} alt="" width={"100%"} height={"100%"} /> ||
+          children}
+      </button>
+      <button className="" onClick={deleteFunc}>
+        {<img src={icons.trashIcon} alt="" width={"100%"} height={"100%"} /> ||
+          children}
+      </button>
+    </div>
   );
 }
 
