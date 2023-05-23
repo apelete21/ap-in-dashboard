@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./template.css";
 import Section from "./elements/section";
 import moment from "moment";
+import { cleanDOM } from "./methods";
 
 export default function JobTemplate({ job, setJob, setShowModal }) {
   const [content, setContent] = useState([
@@ -15,6 +16,11 @@ export default function JobTemplate({ job, setJob, setShowModal }) {
     ]);
   };
 
+  const publishJob = () => {
+    cleanDOM()
+    // document.querySelector(".do")
+  }
+
   return (
     <section className="modal-root">
       <div className="modal-closer" onClick={() => setShowModal(false)} />
@@ -27,7 +33,7 @@ export default function JobTemplate({ job, setJob, setShowModal }) {
         </span>
         <span
           className="btn modal-btn btn-submit"
-          onClick={() => setShowModal(false)}
+          onClick={publishJob}
         >
           submit
         </span>
