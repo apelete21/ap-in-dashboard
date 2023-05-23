@@ -52,8 +52,16 @@
 
 .modal-root header {
   width: 100%;
-  background: #d33737;
   padding: 20vh 0 5vh;
+}
+
+.bg-red {
+  background: #d33737;
+}
+
+.bg-white {
+  background: #fff;
+  color: #000;
 }
 
 .fluid-wrapper {
@@ -62,7 +70,31 @@
 }
 
 .offset-canva {
-  margin-left: 12vw;
+  margin-left: 16vw;
+}
+
+.offset-canva.story-main-title .section--hero__title {
+  max-width: 90%;
+  color: #000;
+}
+
+.modal-root .container .news_details {
+  display: flex;
+  flex-direction: row;
+  color: #000;
+  font-size: 1.1rem;
+}
+.modal-root .container .news_details > div {
+      display: flex;
+    flex-direction: row;
+    padding: 0rem 1rem;
+    gap: .5rem;
+}
+.modal-root .container .news_details > div :first-child {
+   font-weight: bold; 
+}
+.modal-root .container .news_details > div:first-child {
+    border-right: 2px solid #7c7c7c;
 }
 
 .offset-canva .section--hero__title {
@@ -268,13 +300,13 @@
   left: 0;
   width: fit-content;
   height: fit-content;
-  transform:none;
+  transform: none;
   position: absolute;
   z-index: 22;
-  -webkit-transform:none;
-  -moz-transform:none;
-  -ms-transform:none;
-  -o-transform:none;
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  -o-transform: none;
 }
 
 .listBtn button {

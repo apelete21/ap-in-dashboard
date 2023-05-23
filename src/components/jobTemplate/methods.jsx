@@ -6,7 +6,7 @@ export const modifyElement = (id) => {
   document.querySelector(`.${id}`).toggleAttribute("contenteditable");
 };
 
-export const cleanDOM = () => {
+export const cleanJobDOM = () => {
   // editor elements remove
   document
     .querySelectorAll(

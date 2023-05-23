@@ -1,8 +1,15 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
+import { ArticleTemplate } from "../components/jobTemplate";
 
 export default function NewPost() {
-
+const [article, setArticle] = useState({
+  title: "",
+  category: "",
+  author: "",
+  details:""
+})
   const [showModal, setShowModal] = useState(false);
 
   const title = useRef();
@@ -10,6 +17,11 @@ export default function NewPost() {
  
   return (
     <>
+      {showModal &&
+        createPortal(
+          <ArticleTemplate setShowModal={setShowModal} article={article} setArticle={setArticle} />,
+          document.body
+        )}
       <div className="add-new-job-title">
         <h1>Add a new article</h1>
         <p>
@@ -50,9 +62,9 @@ export default function NewPost() {
       </form>
 
       <div className="add-job-btn">
-        <Link className="btn btn_secondary" to={`#`}>
+        <span className="btn btn_secondary" onClick={()=>setShowModal(true)}>
           <span>Next</span>
-        </Link>
+        </span>
       </div>
     </>
   );

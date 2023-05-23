@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { createPortal } from "react-dom";
-import JobTemplate from "../components/jobTemplate";
+import { JobTemplate } from "../components/jobTemplate";
 
 export default function AddNewJob() {
   const [showModal, setShowModal] = useState(false);
@@ -28,7 +28,11 @@ export default function AddNewJob() {
       <>
         {showModal &&
           createPortal(
-            <JobTemplate setShowModal={setShowModal} job={job} setJob={setJob} />,
+            <JobTemplate
+              setShowModal={setShowModal}
+              job={job}
+              setJob={setJob}
+            />,
             document.body
           )}
       </>
@@ -110,7 +114,9 @@ export default function AddNewJob() {
               <input
                 type="text"
                 placeholder="Here goes the description..."
-                onChange={(e) => handleChange({ lowParagraph: e.target?.value })}
+                onChange={(e) =>
+                  handleChange({ lowParagraph: e.target?.value })
+                }
               />
             </div>
           </form>
