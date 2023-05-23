@@ -1,5 +1,5 @@
-import React, { useState } from "react";
 import "./template.css";
+import React, { useState } from "react";
 import Section from "./elements/section";
 import moment from "moment";
 import { cleanJobDOM } from "./methods";
@@ -13,7 +13,19 @@ export function JobTemplate({ job, setJob, setShowModal }) {
 
   const publishJob = () => {
     cleanJobDOM();
-    // document.querySelector(".do")
+    cleanJobDOM();
+
+    let details = "";
+    const elementsList=document.querySelector(".detailsContainer").childNodes
+    elementsList.forEach((element, index)=>{
+      details = details + element.outerHTML
+    })
+
+    setJob({
+      ...job,
+      details,
+    });
+    console.log(details);
   };
 
   return (
@@ -29,7 +41,7 @@ export function JobTemplate({ job, setJob, setShowModal }) {
         <span className="btn modal-btn btn-submit" onClick={publishJob}>
           submit
         </span>
-        <header className="bg-red"> 
+        <header className="bg-red">
           <div className="fluid-wrapper main-navigation bg_primary">
             <div className="offset-canva job-main-title">
               <h2 className="section--hero__title php_job">
@@ -82,7 +94,7 @@ export const ArticleTemplate = ({ article, setArticle, setShowModal }) => {
 
   const publishJob = () => {
     cleanJobDOM();
-    // document.querySelector(".do")
+    console.log(document.querySelector(".detailsContainer").outerHTML);
   };
   return (
     <>

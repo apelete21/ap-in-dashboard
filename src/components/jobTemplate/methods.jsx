@@ -7,7 +7,9 @@ export const modifyElement = (id) => {
 };
 
 export const cleanJobDOM = () => {
-  // editor elements remove
+  /**
+   * editor elements remove
+   */
   document
     .querySelectorAll(
       ".detailsContainer .editBtn, .action-btn, .action-list-btn, .listBtn"
@@ -15,13 +17,20 @@ export const cleanJobDOM = () => {
     .forEach((element, index) => {
       element.remove();
     });
-  // empty elements remove
+
+    
+  /**
+ // empty elements remove //
+ */
   // document.querySelectorAll(".detailsContainer *").forEach((element, index) => {
   //   if (!element.hasChildNodes()) {
   //     element.remove();
   //   }
   // });
-  // removing the 
+
+  /**
+   // removing the span element that wrap editable element
+   */
   document
     .querySelectorAll(".detailsContainer .onhover")
     .forEach((element, index) => {
