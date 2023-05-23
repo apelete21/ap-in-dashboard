@@ -16,11 +16,11 @@ export const cleanJobDOM = () => {
       element.remove();
     });
   // empty elements remove
-  document.querySelectorAll(".detailsContainer *").forEach((element, index) => {
-    if (!element.hasChildNodes()) {
-      element.remove();
-    }
-  });
+  // document.querySelectorAll(".detailsContainer *").forEach((element, index) => {
+  //   if (!element.hasChildNodes()) {
+  //     element.remove();
+  //   }
+  // });
   // removing the 
   document
     .querySelectorAll(".detailsContainer .onhover")

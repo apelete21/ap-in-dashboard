@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { Link } from "react-router-dom";
 import { ArticleTemplate } from "../components/jobTemplate";
 
 export default function NewPost() {
