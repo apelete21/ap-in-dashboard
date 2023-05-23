@@ -1,6 +1,6 @@
 import random from "../../../service/random";
 import { EditBtn } from "./button";
-import { modifyElement, removeElement } from "./methods";
+import { modifyElement, removeElement } from "../methods";
 
 export default function Subtitle() {
   let subTId = "st-" + random();

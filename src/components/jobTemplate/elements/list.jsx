@@ -2,7 +2,7 @@ import { useState } from "react";
 import random from "../../../service/random";
 import { EditBtn } from "./button";
 import HoverEdit from "./hoverWrapper";
-import { modifyElement, removeElement } from "./methods";
+import { modifyElement, removeElement } from "../methods";
 
 export default function List() {
   let listId = "li-" + random();
