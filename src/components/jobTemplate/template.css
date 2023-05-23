@@ -29,7 +29,24 @@
   left: 0;
 }
 
+.modal-btn {
+  position: absolute;
+}
+
+.btn-closer {
+  top: .5rem;
+  left: .5rem;
+  background: rgba(255, 62, 62, 0.84);
+}
+
+.btn-submit {
+  top: .5rem;
+  right: .5rem;
+  background: rgba(18, 207, 1, 0.84);
+}
+
 .container {
+  position: relative;
   background: #fff;
 }
 
