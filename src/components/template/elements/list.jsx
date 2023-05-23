@@ -1,10 +1,12 @@
 import { useState } from "react";
 import random from "../../../service/random";
-import { ActionBtn, EditBtn } from "./button";
+import { EditBtn } from "./button";
 import HoverEdit from "./hoverWrapper";
 import { modifyElement, removeElement } from "./methods";
 
 export default function List() {
+  let listId = "li-" + random();
+
   const [listItems, setListItems] = useState([
     <ListElement />,
   ]);
@@ -12,8 +14,13 @@ export default function List() {
     setListItems([...listItems, <ListElement />]);
   }
   return (
-    <HoverEdit>
-      <EditBtn className={"listBtn"} onClick={() => addNewListItem()} />
+    <HoverEdit className={`${listId}`}>
+      <EditBtn
+        className={"listBtn"}
+        editFunc={() => addNewListItem()}
+        deleteFunc={() => removeElement(listId)}
+        children1={<span>+</span>}
+      />
       <div class="tasks_list_section">
         <ul class="tasks_list">{listItems}</ul>
       </div>
@@ -25,12 +32,15 @@ export function ListElement() {
   let listElId = "li-" + random();
   let listElIdChild = "li-li-" + random();
   return (
-    <HoverEdit>
-      <li class={`task_ ${listElId}`}>
-        <span class="square"/>
+    <HoverEdit className={`${listElId}`}>
+      <li class={`task_`}>
+        <span class="square" />
         <span className={listElIdChild}>Here goes the list text...</span>
       </li>
-      <EditBtn editFunc={() => modifyElement(listElIdChild)} deleteFunc={()=>removeElement(listElId) } />
+      <EditBtn
+        editFunc={() => modifyElement(listElIdChild)}
+        deleteFunc={() => removeElement(listElId)}
+      />
     </HoverEdit>
   );
 }

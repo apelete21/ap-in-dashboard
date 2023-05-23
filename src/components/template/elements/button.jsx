@@ -1,15 +1,15 @@
 import { icons } from "../../../service/icons";
 
-export function EditBtn({ deleteFunc, editFunc, children, className }) {
+export function EditBtn({ deleteFunc, editFunc, children1, children2, className }) {
   return (
     <div className={`editBtn ${className}`}>
       <button className="" onClick={editFunc}>
-        {<img src={icons.feather} alt="" width={"100%"} height={"100%"} /> ||
-          children}
+        {children1 === undefined ? <img src={icons.feather} alt="" width={"100%"} height={"100%"} /> : children1
+          }
       </button>
       <button className="" onClick={deleteFunc}>
-        {<img src={icons.trashIcon} alt="" width={"100%"} height={"100%"} /> ||
-          children}
+        {children2 === undefined ? <img src={icons.trashIcon} alt="" width={"100%"} height={"100%"} /> :
+          children2}
       </button>
     </div>
   );

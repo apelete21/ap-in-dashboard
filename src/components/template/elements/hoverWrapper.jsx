@@ -1,3 +1,3 @@
-export default function HoverEdit({ children }) {
-  return <span className="onhover">{children}</span>;
+export default function HoverEdit({ children, className }) {
+  return <span className={`onhover ${className}`}>{children}</span>;
 }

@@ -7,8 +7,8 @@ import { modifyElement, removeElement } from "./methods";
 export default function Paragraph() {
   let parId = "p-" + random();
   return (
-    <HoverEdit>
-      <p className={`p-18 ${parId}`}>Here goes the paragraph...</p>
+    <HoverEdit className={`${parId}`}>
+      <p className={`p-18`}>Here goes the paragraph...</p>
       <EditBtn editFunc={() => modifyElement(parId)} deleteFunc={()=> removeElement(parId)} />
     </HoverEdit>
   );
