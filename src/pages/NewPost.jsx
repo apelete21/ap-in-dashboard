@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { ArticleTemplate } from "../components/jobTemplate";
+import { ArticleTemplate } from "../components/template";
 
 export default function NewPost() {
 const [article, setArticle] = useState({

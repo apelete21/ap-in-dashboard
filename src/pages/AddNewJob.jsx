@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { createPortal } from "react-dom";
-import { JobTemplate } from "../components/jobTemplate";
+import { JobTemplate } from "../components/template";
 
 export default function AddNewJob() {
   const [showModal, setShowModal] = useState(false);
