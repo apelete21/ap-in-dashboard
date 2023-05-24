@@ -3,22 +3,26 @@ import { createPortal } from "react-dom";
 import { ArticleTemplate } from "../components/template";
 
 export default function NewPost() {
-const [article, setArticle] = useState({
-  title: "",
-  category: "",
-  author: "",
-  details:""
-})
+  const [article, setArticle] = useState({
+    title: "",
+    category: "",
+    author: "",
+    details: "",
+  });
   const [showModal, setShowModal] = useState(false);
 
   const title = useRef();
   const author = useRef();
- 
+
   return (
     <>
       {showModal &&
         createPortal(
-          <ArticleTemplate setShowModal={setShowModal} article={article} setArticle={setArticle} />,
+          <ArticleTemplate
+            setShowModal={setShowModal}
+            article={article}
+            setArticle={setArticle}
+          />,
           document.body
         )}
       <div className="add-new-job-title">
@@ -61,7 +65,7 @@ const [article, setArticle] = useState({
       </form>
 
       <div className="add-job-btn">
-        <span className="btn btn_secondary" onClick={()=>setShowModal(true)}>
+        <span className="btn btn_secondary" onClick={() => setShowModal(true)}>
           <span>Next</span>
         </span>
       </div>
