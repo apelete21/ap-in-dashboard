@@ -93,13 +93,11 @@ body {
 /* input error state */
 input:invalid {
     border: rgb(243, 94, 94) solid 0.5px !important;
-    border-radius: 5px;
 }
 
 input:focus {
-    background-color: #f0f0f0 !important;
+    background-color: #0000 !important;
     color: #202020 !important;
-    border-radius: 5px;
 }
 /* input error state */
 
