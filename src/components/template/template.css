@@ -11,6 +11,62 @@
   overflow: scroll;
 }
 
+.prompt-popup {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  position: fixed;
+  z-index: 100000000;
+  align-items: center;
+  justify-content: center;
+  background-color: #0009;
+}
+
+.prompt-popup .prompt-section {
+  display: grid;
+  gap: 2rem;
+  min-width: 200px;
+  height: auto;
+  background: #fff;
+  padding: 1rem;
+}
+
+.prompt-popup .prompt-answers {
+  display: flex;
+  width: 100%;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.prompt-popup .prompt-answers button {
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    padding: .4rem;
+}
+
+.prompt-popup .prompt-answers :hover {
+    scale: 1.1;
+    transition: .2s;
+    -webkit-transition: .2s;
+    -moz-transition: .2s;
+    -ms-transition: .2s;
+    -o-transition: .2s;
+}
+
+.prompt-popup .prompt-answers :first-child {
+    background: #ff9494;
+    color: #f71d1d;
+}
+
+.prompt-popup .prompt-answers :last-child {
+    background: #a3ff9f;
+    color: #00e400;
+}
+
 .modal-root::-webkit-scrollbar {
   width: 0;
 }
@@ -52,7 +108,7 @@
 
 .modal-root header {
   width: 100%;
-  padding: 20vh 0 5vh;
+  padding: 20vh 0 10vh;
 }
 
 .bg-red {
@@ -85,16 +141,16 @@
   font-size: 1.1rem;
 }
 .modal-root .container .news_details > div {
-      display: flex;
-    flex-direction: row;
-    padding: 0rem 1rem;
-    gap: .5rem;
+  display: flex;
+  flex-direction: row;
+  padding: 0rem 1rem;
+  gap: 0.5rem;
 }
 .modal-root .container .news_details > div :first-child {
-   font-weight: bold; 
+  font-weight: bold;
 }
 .modal-root .container .news_details > div:first-child {
-    border-right: 2px solid #7c7c7c;
+  border-right: 2px solid #7c7c7c;
 }
 
 .offset-canva .section--hero__title {

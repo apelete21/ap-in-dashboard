@@ -7,11 +7,13 @@ export default function AddNewJob() {
   const [job, setJob] = useState({
     title: "",
     category: "",
+    location: "",
     enterprise: "",
-    time: "",
+    worktime: "",
+    worktype: "",
     level: "",
     validity: "",
-    lowParagraph: "",
+    description: "",
     details: "",
   });
 
@@ -20,7 +22,24 @@ export default function AddNewJob() {
       ...job,
       ...value,
     });
-    console.log(value);
+  };
+
+  const handleSubmit = () => {};
+
+  const openTemplate = () => {
+    if (
+      job.title === "" ||
+      job.category === "" ||
+      job.description === "" ||
+      job.enterprise === "" ||
+      job.level === "" ||
+      job.location === "" ||
+      job.validity === "" ||
+      job.worktime === "" ||
+      job.worktype === ""
+    )
+      return alert("All fields are required!");
+    setShowModal(true);
   };
 
   return (
@@ -32,6 +51,7 @@ export default function AddNewJob() {
               setShowModal={setShowModal}
               job={job}
               setJob={setJob}
+              handleSubmit={handleSubmit}
             />,
             document.body
           )}
@@ -67,11 +87,11 @@ export default function AddNewJob() {
             <div className="input-job-element">
               <p className="input-element-title">Select a category</p>
               <select
-                onChange={(e) => handleChange({ category: e.target?.value })}
+                onChange={(e) => {
+                  handleChange({ category: e.target.value });
+                }}
               >
-                <option value={null} defaultChecked>
-                  Select a category
-                </option>
+                <option defaultChecked>Select a category</option>
                 <option value="Process improvment">Process improvement</option>
                 <option value="SEO">SEO</option>
                 <option value="Hosting solution">Hosting solution</option>
@@ -84,10 +104,32 @@ export default function AddNewJob() {
             </div>
             <div className="input-job-element">
               <p className="input-element-title">Employment type</p>
-              <select onChange={(e) => handleChange({ time: e.target?.value })}>
-                <option defaultChecked>Select a type</option>
-                <option value="Entry Level">Full Time</option>
+              <select
+                onChange={(e) => handleChange({ worktime: e.target?.value })}
+              >
+                <option defaultChecked>Select a time</option>
+                <option value="Full Time">Full Time</option>
+                <option value="Part Time">Part Time</option>
               </select>
+            </div>
+            <div className="input-job-element">
+              <p className="input-element-title">Work Type</p>
+              <select
+                onChange={(e) => handleChange({ worktype: e.target?.value })}
+              >
+                <option defaultChecked>Select a type</option>
+                <option value="On Site">On Site</option>
+                <option value="Remote">Remote</option>
+                <option value="Hybride">Hybride</option>
+              </select>
+            </div>
+            <div className="input-job-element">
+              <p className="input-element-title">Job location</p>
+              <input
+                type="text"
+                placeholder="Job location"
+                onChange={(e) => handleChange({ location: e.target?.value })}
+              />
             </div>
             <div className="input-job-element">
               <p className="input-element-title">Seniority Level</p>
@@ -114,21 +156,14 @@ export default function AddNewJob() {
               <input
                 type="text"
                 placeholder="Here goes the description..."
-                onChange={(e) =>
-                  handleChange({ lowParagraph: e.target?.value })
-                }
+                onChange={(e) => handleChange({ description: e.target?.value })}
               />
             </div>
           </form>
         </div>
 
         <div className="add-job-btn">
-          <span
-            className="btn btn_secondary"
-            onClick={() => {
-              setShowModal(true);
-            }}
-          >
+          <span className="btn btn_secondary" onClick={openTemplate}>
             <span>Next</span>
           </span>
         </div>
