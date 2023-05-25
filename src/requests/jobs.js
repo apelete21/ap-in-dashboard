@@ -26,3 +26,17 @@ export async function getOneJob(title) {
   const data = await response.json();
   return { data, ok: response.ok };
 }
+
+export async function postJob(body) {
+  const headersList = {
+    Accept: "*/*",
+    "Content-Type": "application/json",
+  };
+  const response = await fetch(`${baseUrl}/jobs/new`, {
+    method: "GET",
+    headers: headersList,
+    body,
+  });
+  const data = await response.json();
+  return { data, ok: response.ok };
+}

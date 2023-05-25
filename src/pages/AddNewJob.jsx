@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { createPortal } from "react-dom";
 import { JobTemplate } from "../components/template";
+import { postJob } from "../requests/jobs";
+import { AppContext } from "../Contexts/AppContext";
 
 export default function AddNewJob() {
+  const { setStatusMessage } = useContext(AppContext);
+
   const [showModal, setShowModal] = useState(false);
   const [job, setJob] = useState({
     title: "",
@@ -24,7 +28,15 @@ export default function AddNewJob() {
     });
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    const { data, ok } = postJob(job);
+    if (ok) {
+      setStatusMessage(data?.message);
+      setShowModal(false);
+    } else {
+      alert("Failed!");
+    }
+  };
 
   const openTemplate = () => {
     if (

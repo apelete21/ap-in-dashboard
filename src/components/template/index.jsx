@@ -15,7 +15,7 @@ export function JobTemplate({ job, setJob, setShowModal, handleSubmit }) {
   };
 
   const publishJob = () => {
-    setSubmitPrompt(true)
+    setSubmitPrompt(true);
   };
 
   const Submit = () => {
@@ -28,11 +28,11 @@ export function JobTemplate({ job, setJob, setShowModal, handleSubmit }) {
     elementsList.forEach((element, index) => {
       details = details + element.outerHTML;
     });
-
     setJob({
       ...job,
       details,
     });
+    handleSubmit();
   };
 
   return (
