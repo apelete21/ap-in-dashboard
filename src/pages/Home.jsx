@@ -1,6 +1,6 @@
 import React from 'react'
 import { icons } from '../service/icons'
-import Visits from "../components/Visits"
+import Visits from "../components/charts/Visits"
 import HomeQuotesList from '../components/quotes/HomeQuotesList'
 
 export default function Home() {
