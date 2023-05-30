@@ -7,6 +7,7 @@ import { deleteManyEmails, getNewsletters } from "../requests/newsletters";
 export default function Newsletters() {
   const [emails, setEmails] = useState();
   const [reload, setreload] = useState(true);
+  const [error, setError] = useState(false);
   const [todelete, setTodelete] = useState([]);
 
   const { setStatusMessage } = useContext(AppContext);
@@ -17,9 +18,14 @@ export default function Newsletters() {
     */
   useEffect(() => {
     const request = async () => {
+      setError(false);
       if (reload) {
-        const data = await getNewsletters();
-        setEmails(data);
+        try {
+          const data = await getNewsletters();
+          setEmails(data);
+        } catch (error) {
+          setError(true);
+        }
         setreload(false);
         return;
       }
@@ -93,25 +99,29 @@ export default function Newsletters() {
           </Link>
         </div>
         <div className="requests-lists">
-          {emails?.map((item, index) => {
-            return (
-              <div className="request-item" key={index}>
-                <div className="requester-letter-logo">
-                  {item.email.charAt(0).toUpperCase()}
-                </div>
-                <div className="requester-details">
-                  <div className="requester-email">{item.email}</div>
-                  <div className="resquest-date">
-                    {moment(item?.createdAt).calendar()}
+          {emails?.length ? (
+            emails?.map((item, index) => {
+              return (
+                <div className="request-item" key={index}>
+                  <div className="requester-letter-logo">
+                    {item.email.charAt(0).toUpperCase()}
                   </div>
+                  <div className="requester-details">
+                    <div className="requester-email">{item.email}</div>
+                    <div className="resquest-date">
+                      {moment(item?.createdAt).calendar()}
+                    </div>
+                  </div>
+                  <input
+                    type="checkbox"
+                    onClick={() => addOrRemoveValue(item._id)}
+                  />
                 </div>
-                <input
-                  type="checkbox"
-                  onClick={() => addOrRemoveValue(item._id)}
-                />
-              </div>
-            );
-          })}
+              );
+            })
+          ) : (
+            <p style={{ textAlign: "center", width: "100%" }}>No data found!</p>
+          )}
         </div>
       </div>
     </>
