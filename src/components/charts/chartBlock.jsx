@@ -12,7 +12,7 @@ import {
 Chart.register(BarElement, CategoryScale, LinearScale, Tooltip);
 
 export const ChartBlock = (props) => {
-  const barColors = ["gray", "gray", "gray", "gray", "gray", "gray"];
+  const barColors = ["#e3e3e3", "#e3e3e3", "#e3e3e3", "#e3e3e3", "#e3e3e3", "#e3e3e3"];
   const array = props.yValues;
   let colors = barColors;
   const index = array.indexOf(higher(array));
