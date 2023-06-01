@@ -33,10 +33,11 @@ export async function postJob(body) {
     "Content-Type": "application/json",
   };
   const response = await fetch(`${baseUrl}/jobs/new`, {
-    method: "GET",
+    method: "POST",
     headers: headersList,
-    body,
+    body: JSON.stringify(body),
   });
+
   const data = await response.json();
   return { data, ok: response.ok };
 }

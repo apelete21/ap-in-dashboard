@@ -59,7 +59,7 @@ export default function JobCard({ data, isDataLoading }) {
             {data?.category && (
               <span className="type-tag">{data?.category}</span>
             )}
-            <span className="location-tag">{data?.workplace}</span>
+            <span className="location-tag">{data?.worktype}</span>
           </div>
           <div>
             {data?.activity && <span className="availabity-tag">Active</span>}

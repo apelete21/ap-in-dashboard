@@ -28,13 +28,13 @@ export default function AddNewJob() {
     });
   };
 
-  const handleSubmit = () => {
-    const { data, ok } = postJob(job);
+  const handleSubmit = async () => {
+    const { data, ok } = await postJob(job);
     if (ok) {
       setStatusMessage(data?.message);
       setShowModal(false);
     } else {
-      alert("Failed!");
+      alert(data?.message || "Failed!");
     }
   };
 
