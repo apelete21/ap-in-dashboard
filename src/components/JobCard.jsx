@@ -50,13 +50,15 @@ export default function JobCard({ data, isDataLoading }) {
         </div>
 
         <div className="job-description">
-          <p>{data?.lowParagraph}</p>
+          <p>{data?.description}</p>
         </div>
 
         <div className="job-item-tag">
           <div>
-            <span className="time-tag">{data?.time}</span>
-            <span className="type-tag">{data?.category}</span>
+            <span className="time-tag">{data?.worktime}</span>
+            {data?.category && (
+              <span className="type-tag">{data?.category}</span>
+            )}
             <span className="location-tag">{data?.workplace}</span>
           </div>
           <div>
