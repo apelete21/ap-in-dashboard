@@ -12,7 +12,7 @@ export default function JobCard({ data, isDataLoading }) {
   useEffect(() => {
     const getData = async () => {
       if (isAppLoading && !isDataLoading) {
-        const response = await allApplications(data._id);
+        const response = await allApplications(data._id, true);
         if (response?.ok) {
           setApply(response?.data);
         } else {
@@ -68,7 +68,7 @@ export default function JobCard({ data, isDataLoading }) {
 
         <div className="job-item-bottom-bar">
           <div className="job-item-statistic">
-            <Link className="views">
+            <div className="views" title={data?.views + " views"}>
               <div className="views-icon stat_icon">
                 <svg
                   width="35"
@@ -84,9 +84,9 @@ export default function JobCard({ data, isDataLoading }) {
                 </svg>
               </div>
               <div className="views-number">
-                <b>44</b> views
+                <b>{data?.views}</b> views
               </div>
-            </Link>
+            </div>
             <Link className="applications" to={`/jobs/${data?.title}`}>
               <div className="applications-icon stat_icon">
                 <svg
@@ -103,7 +103,7 @@ export default function JobCard({ data, isDataLoading }) {
                 </svg>
               </div>
               <div className="applications-number">
-                <b> {apply.length} </b> applications
+                <b> {apply?.amount || 0} </b> applications
               </div>
             </Link>
           </div>
