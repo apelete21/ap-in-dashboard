@@ -97,19 +97,24 @@ export const AppContextProvider = ({ children }) => {
   */
   useEffect(() => {
     const checking = async () => {
+      console.log(1)
       if (userLoadingState) {
         const currentUser = await JSON.parse(localStorage.getItem("user"));
+        console.log(2)
         if (!currentUser) {
           setUserLoadingState(false);
           return;
         }
+        console.log(3)
         const res = await AuthUser(currentUser.token, currentUser.id);
         if (res?.ok) {
+          console.log(4)
           const newUser = await getOneUser(res.id);
           setUser(newUser);
           setUserLoadingState(false);
           return setisUserLoggedIn(true);
         } else {
+          console.log(4)
           localStorage.removeItem("user");
           return setUserLoadingState(false);
         }
