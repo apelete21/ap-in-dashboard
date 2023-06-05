@@ -1,5 +1,5 @@
 import React from "react";
-import { ChartBlock } from "./chartBlock";
+import { BarComponent } from "./Bar";
 
 export default function Visits() {
   var xValues = ["Italy", "France", "Spain", "USA", "Togo", "Lybia"];
@@ -9,19 +9,19 @@ export default function Visits() {
   return (
     <>
       <div className="top_graphs">
-        <ChartBlock
+        <BarComponent
           xValues={xValues}
           color="#FF4133"
           fillColor={"#DC3635"}
           yValues={yValuesa}
         />
-        <ChartBlock
+        <BarComponent
           xValues={xValues}
           color="#51449d"
           fillColor={"#50449E"}
           yValues={yValuesb}
         />
-        <ChartBlock
+        <BarComponent
           xValues={xValues}
           color="#00cf9d"
           fillColor={"#00cf9d"}

@@ -1,4 +1,3 @@
-import React, { PureComponent } from "react";
 import { Bar } from "react-chartjs-2";
 import { higher } from "../../service/higherNumberGetter";
 import {
@@ -11,8 +10,15 @@ import {
 
 Chart.register(BarElement, CategoryScale, LinearScale, Tooltip);
 
-export const ChartBlock = (props) => {
-  const barColors = ["#e3e3e3", "#e3e3e3", "#e3e3e3", "#e3e3e3", "#e3e3e3", "#e3e3e3"];
+export const BarComponent = (props) => {
+  const barColors = [
+    "#e3e3e3",
+    "#e3e3e3",
+    "#e3e3e3",
+    "#e3e3e3",
+    "#e3e3e3",
+    "#e3e3e3",
+  ];
   const array = props.yValues;
   let colors = barColors;
   const index = array.indexOf(higher(array));
@@ -66,7 +72,7 @@ export const ChartBlock = (props) => {
             }}
             data={data}
             options={{
-              aspectRatio: 1,
+              responsive: true,
               scales: {
                 x: { display: false },
                 y: { display: false },
