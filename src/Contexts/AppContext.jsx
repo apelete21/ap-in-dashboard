@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import { AuthUser, getOneUser, login } from "../requests/login";
+import { UserLogin } from "../requests/login";
 import { deleteOneQuote, getQuotes } from "../requests/quotes";
 
 /**
@@ -60,8 +60,8 @@ export const AppContextProvider = ({ children }) => {
   |--------------------------------------------------
   */
   const UserLogin = async (loginData) => {
-    setUserLoadingState(true)
-    const response = await login(loginData);
+    setUserLoadingState(true);
+    const response = await UserLogin(loginData);
     if (response?.ok) {
       setUser({ ...response.data });
       localStorage.setItem(
@@ -97,24 +97,18 @@ export const AppContextProvider = ({ children }) => {
   */
   useEffect(() => {
     const checking = async () => {
-      console.log(1)
       if (userLoadingState) {
         const currentUser = await JSON.parse(localStorage.getItem("user"));
-        console.log(2)
         if (!currentUser) {
           setUserLoadingState(false);
           return;
         }
-        console.log(3)
-        const res = await AuthUser(currentUser.token, currentUser.id);
+        const res = await UserLogin(currentUser.token, currentUser.id);
         if (res?.ok) {
-          console.log(4)
-          const newUser = await getOneUser(res.id);
-          setUser(newUser);
+          setUser(res?.data);
           setUserLoadingState(false);
           return setisUserLoggedIn(true);
         } else {
-          console.log(4)
           localStorage.removeItem("user");
           return setUserLoadingState(false);
         }

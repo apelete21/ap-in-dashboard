@@ -8,81 +8,30 @@ import { baseUrl } from "../api/url";
 /**
 |--------------------------------------------------
 | Admin user login function with data as variable
+| Function pour demande d'authentication de l'utilisateur
 |--------------------------------------------------
 */
-export const login = async (loginData) => {
-  if (!loginData) {
-    const data = { message: "Something went wrong!!", ok: false };
-    return data;
-  }
 
-  const bodyContent = JSON.stringify(loginData);
+export async function UserLogin(data, token) {
+  if (!token) return { data: null, ok: false };
 
   const headersList = {
     Accept: "*/*",
-    "Access-Control-Allow-Origin": "*",
+    authorization: `Bearer ${token || null}`,
     "Content-Type": "application/json",
   };
 
-  const data = await fetch(`${baseUrl}/users/login`, {
+  const response = await fetch(`${baseUrl}/users/login`, {
     method: "POST",
-    body: bodyContent,
     headers: headersList,
+    body: JSON.stringify(data) || undefined,
   })
     .then(async (response) => {
       const data = await response.json();
       return { data, ok: response.ok };
     })
     .catch((error) => {
-      const data = { message: "Something went wrong!!", ok: false };
-      return data;
-    });
-
-  return { ...data };
-};
-
-/**
-|--------------------------------------------------
-| Function pour demande d'authentication de l'utilisateur
-|--------------------------------------------------
-*/
-
-export async function AuthUser(token, id) {
-  if (!id || !token) return { data: null, ok: false };
-
-  const headersList = {
-    Accept: "*/*",
-    authorization: `Bearer ${token}`,
-    "Content-Type": "application/json",
-  };
-  let bodyContent = JSON.stringify({
-    user: id,
-  });
-
-  let response = await fetch(`${baseUrl}/users/auth`, {
-    method: "POST",
-    body: bodyContent,
-    headers: headersList,
-  })
-    .then(async (response) => {
-      const data = await response.json();
-      return { ...data, ok: response.ok };
-    })
-    .catch((error) => {
       return { ...error, ok: false };
     });
   return response;
-}
-
-export async function getOneUser(id) {
-  if (!id) return;
-  const headersList = {
-    Accept: "*/*",
-    "Content-Type": "application/json",
-  };
-  let response = await fetch(`${baseUrl}/users/find/${id}`, {
-    method: "GET",
-    headers: headersList,
-  });
-  return await response.json();
 }
