@@ -1,10 +1,11 @@
 import React, { useContext, useRef } from "react";
-import ErrorParagraph from "../components/ErrorParagraph";
+import { ErrorParagraph } from "../components/ErrorParagraph";
 import { AppContext } from "../Contexts/AppContext";
 import { icons } from "../service/icons";
+import { Helmet } from "react-helmet";
 
 export default function Login() {
-  const { UserLogin, loginError, userLoadingState, isUserLoggedIn } =
+  const { handleUserLogin, loginError, userLoadingState, isUserLoggedIn } =
     useContext(AppContext);
   const email = useRef("");
   const password = useRef("");
@@ -16,11 +17,14 @@ export default function Login() {
       email: email.current?.value,
       password: password.current?.value,
     };
-    UserLogin(loginData);
+    handleUserLogin(loginData);
   };
 
   return (
     <>
+      <Helmet>
+        <title>Login | Dashboard AP'IN</title>
+      </Helmet>
       <div className="body_wrapper login_page">
         <div className="img_container"></div>
         {!userLoadingState && !isUserLoggedIn ? (

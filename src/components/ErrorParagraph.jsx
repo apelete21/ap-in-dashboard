@@ -6,12 +6,10 @@ const errorStyle = {
     marginTop: 1 + 'rem',
 }
 
-function ErrorParagraph({error}) {
+export function ErrorParagraph({error}) {
   return (
     <p style={errorStyle}>
       {error}
     </p>
   )
 }
-
-export default ErrorParagraph

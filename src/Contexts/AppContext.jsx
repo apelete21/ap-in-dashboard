@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import { UserLogin } from "../requests/login";
+import { loginMethod } from "../requests/login";
 import { deleteOneQuote, getQuotes } from "../requests/quotes";
 
 /**
@@ -59,23 +59,17 @@ export const AppContextProvider = ({ children }) => {
   | On demand user login function
   |--------------------------------------------------
   */
-  const UserLogin = async (loginData) => {
+  const handleUserLogin = async (loginData) => {
     setUserLoadingState(true);
-    const response = await UserLogin(loginData);
-    if (response?.ok) {
-      setUser({ ...response.data });
-      localStorage.setItem(
-        "user",
-        JSON.stringify({ token: response.data.token, id: response.data._id })
-      );
+    const { user, token, ok, message } = await loginMethod(loginData);
+    if (ok) {
+      setUser(user);
+      localStorage.setItem("user", token);
       setisUserLoggedIn(true);
     } else {
-      setisUserLoggedIn(false);
-      if (response.data == null) {
-        setLoginError("An error happenned");
-      }
-      setLoginError(response.data.message);
+      setLoginError(message);
     }
+    setUserLoadingState(false);
   };
 
   /**
@@ -89,31 +83,29 @@ export const AppContextProvider = ({ children }) => {
     setisUserLoggedIn(false);
     setUserLoadingState(false);
   };
-
   /**
   |--------------------------------------------------
   | User Authentication control method
   |--------------------------------------------------
   */
+  const checking = async () => {
+    if (userLoadingState) {
+      const currentUser = localStorage.getItem("user");
+      if (!currentUser) {
+        return setUserLoadingState(false);
+      }
+      const { user, ok } = await loginMethod({}, currentUser);
+      if (ok) {
+        setUser(user);
+        setUserLoadingState(false);
+        return setisUserLoggedIn(true);
+      } else {
+        localStorage.removeItem("user");
+        return setUserLoadingState(false);
+      }
+    } else return setUserLoadingState(false);
+  };
   useEffect(() => {
-    const checking = async () => {
-      if (userLoadingState) {
-        const currentUser = await JSON.parse(localStorage.getItem("user"));
-        if (!currentUser) {
-          setUserLoadingState(false);
-          return;
-        }
-        const res = await UserLogin(currentUser.token, currentUser.id);
-        if (res?.ok) {
-          setUser(res?.data);
-          setUserLoadingState(false);
-          return setisUserLoggedIn(true);
-        } else {
-          localStorage.removeItem("user");
-          return setUserLoadingState(false);
-        }
-      } else return setUserLoadingState(false);
-    };
     checking();
   }, [userLoadingState]);
 
@@ -159,7 +151,7 @@ export const AppContextProvider = ({ children }) => {
     <AppContext.Provider
       value={{
         user,
-        UserLogin,
+        handleUserLogin,
         isUserLoggedIn,
         loginError,
         UserLogOut,
