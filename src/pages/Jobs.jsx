@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { icons } from "../service/icons";
 import JobCard from "../components/JobCard";
 import { allJobs } from "../requests/jobs";
-import { allApplications } from "../requests/applications";
 
 export default function Jobs() {
   const [jobs, setJobs] = useState([]);
@@ -13,11 +12,11 @@ export default function Jobs() {
   useEffect(() => {
     const getData = async () => {
       if (isDataLoading) {
-        const response = await allJobs();
-        if (response?.ok) {
-          setJobs(response.data);
+        const {data, ok, message} = await allJobs();
+        if (ok) {
+          setJobs(data);
         } else {
-          setError("Something went wrong");
+          setError(message || "Something went wrong");
         }
         setIsDataLoading(false);
       }
@@ -50,7 +49,13 @@ export default function Jobs() {
 
         <div className="jobs-list-container">
           {jobs?.map((element, index) => {
-            return <JobCard data={element} key={index} />;
+            return (
+              <JobCard
+                data={element}
+                key={index}
+                setIsDataLoading={setIsDataLoading}
+              />
+            );
           })}
 
           <div className="add-application-btn">

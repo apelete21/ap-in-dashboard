@@ -32,7 +32,7 @@ export function JobTemplate({ job, setJob, setShowModal, handleSubmit }) {
       ...job,
       details,
     });
-    handleSubmit();
+    handleSubmit({details});
   };
 
   return (

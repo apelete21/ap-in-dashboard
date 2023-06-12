@@ -83,29 +83,29 @@ export const AppContextProvider = ({ children }) => {
     setisUserLoggedIn(false);
     setUserLoadingState(false);
   };
-  /**
-  |--------------------------------------------------
-  | User Authentication control method
-  |--------------------------------------------------
-  */
-  const checking = async () => {
-    if (userLoadingState) {
-      const currentUser = localStorage.getItem("user");
-      if (!currentUser) {
-        return setUserLoadingState(false);
-      }
-      const { user, ok } = await loginMethod({}, currentUser);
-      if (ok) {
-        setUser(user);
-        setUserLoadingState(false);
-        return setisUserLoggedIn(true);
-      } else {
-        localStorage.removeItem("user");
-        return setUserLoadingState(false);
-      }
-    } else return setUserLoadingState(false);
-  };
   useEffect(() => {
+    /**
+    |--------------------------------------------------
+    | User Authentication control method
+    |--------------------------------------------------
+    */
+    const checking = async () => {
+      if (userLoadingState) {
+        const currentUser = localStorage.getItem("user");
+        if (!currentUser) {
+          return setUserLoadingState(false);
+        }
+        const { user, ok } = await loginMethod({}, currentUser);
+        if (ok) {
+          setUser(user);
+          setUserLoadingState(false);
+          return setisUserLoggedIn(true);
+        } else {
+          localStorage.removeItem("user");
+          return setUserLoadingState(false);
+        }
+      } else return setUserLoadingState(false);
+    };
     checking();
   }, [userLoadingState]);
 

@@ -28,8 +28,8 @@ export default function AddNewJob() {
     });
   };
 
-  const handleSubmit = async () => {
-    const { data, ok } = await postJob(job);
+  const handleSubmit = async ({details}) => {
+    const { data, ok } = await postJob({...job, details});
     if (ok) {
       setStatusMessage(data?.message);
       setShowModal(false);

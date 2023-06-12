@@ -41,3 +41,18 @@ export async function postJob(body) {
   const data = await response.json();
   return { data, ok: response.ok };
 }
+
+
+export async function deleteJob(id) {
+  const headersList = {
+    Accept: "*/*",
+    "Content-Type": "application/json",
+  };
+  const response = await fetch(`${baseUrl}/jobs/delete/${id}`, {
+    method: "POST",
+    headers: headersList,
+  });
+
+  const data = await response.json();
+  return { data, ok: response.ok };
+}

@@ -1,13 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { icons } from "../service/icons";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import { allApplications } from "../requests/applications";
+import { deleteJob } from "../requests/jobs";
+import { AppContext } from "../Contexts/AppContext";
 
-export default function JobCard({ data, isDataLoading }) {
+export default function JobCard({ data, isDataLoading, setIsDataLoading }) {
   const [isAppLoading, setIsAppLoading] = useState(true);
   const [apply, setApply] = useState([]);
   const [appError, setAppError] = useState("");
+
+  const { setStatusMessage } = useContext(AppContext);
+
+  const deleteJobHandler = async (e, id) => {
+    e.preventDefault();
+    try {
+      const { data } = await deleteJob(id);
+      setStatusMessage(data?.message || "Success!");
+    } catch (error) {
+      alert(error?.message || "Error!");
+    }
+    setIsDataLoading(true)
+  };
 
   useEffect(() => {
     const getData = async () => {
@@ -142,7 +157,10 @@ export default function JobCard({ data, isDataLoading }) {
               </Link>
             </div>
             <div className="action action-delete">
-              <Link to="#delete" onClick={(e) => e.preventDefault()}>
+              <Link
+                to="#delete"
+                onClick={(e) => deleteJobHandler(e, data?._id)}
+              >
                 <svg
                   width="19"
                   height="19"
