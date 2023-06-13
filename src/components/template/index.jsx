@@ -32,7 +32,7 @@ export function JobTemplate({ job, setJob, setShowModal, handleSubmit }) {
       ...job,
       details,
     });
-    handleSubmit({details});
+    handleSubmit({ details });
   };
 
   return (
@@ -99,6 +99,10 @@ export function JobTemplate({ job, setJob, setShowModal, handleSubmit }) {
   );
 }
 
+/********************************************
+ ********************************************
+ ********************************************/
+
 export const ArticleTemplate = ({ article, setArticle, setShowModal }) => {
   const [content, setContent] = useState([<Section />]);
 
@@ -129,16 +133,18 @@ export const ArticleTemplate = ({ article, setArticle, setShowModal }) => {
               <>
                 <div class="offset-canva story-main-title">
                   <h2 class="section--hero__title">
-                    When is the best time of Year to Visit Japan?
+                    {article ? article?.title : "No title specified!"}
                   </h2>
                   <div class="news_details">
                     <div class="author_details">
                       <div class="author_title">Author:</div>
-                      <div class="author_name">Neil Gibson</div>
+                      <div class="author_name">
+                        {article ? article?.author : "Anonymous"}
+                      </div>
                     </div>
                     <div class="date_details">
                       <div class="date_title">Date:</div>
-                      <div class="date_name">November 2022</div>
+                      <div class="date_name">{moment().format("LL")}</div>
                     </div>
                   </div>
                 </div>

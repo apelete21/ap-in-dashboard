@@ -3,16 +3,27 @@ import { createPortal } from "react-dom";
 import { ArticleTemplate } from "../components/template";
 
 export default function NewPost() {
+  const [showModal, setShowModal] = useState(false);
   const [article, setArticle] = useState({
     title: "",
     category: "",
     author: "",
     details: "",
   });
-  const [showModal, setShowModal] = useState(false);
 
-  const title = useRef();
-  const author = useRef();
+  const handleChange = (data) => {
+    setArticle({
+      ...article,
+      ...data,
+    });
+  };
+
+  const handleShowModal = () => {
+    const {title, category, author} = article
+    if (title === "" && category === "" && author === "" ) {
+      alert("All fields are required!");
+    } else setShowModal(true);
+  };
 
   return (
     <>
@@ -38,12 +49,20 @@ export default function NewPost() {
       <form action="">
         <div className="input-job-element">
           <p className="input-element-title">Article title</p>
-          <input type="text" ref={title} placeholder="Article title" />
+          <input
+            type="text"
+            onChange={(e) => handleChange({ title: e.target?.value })}
+            placeholder="Article title"
+          />
         </div>
         <br />
         <div className="input-job-element">
           <p className="input-element-title">Select a category</p>
-          <select name="" id="">
+          <select
+            name=""
+            id=""
+            onChange={(e) => handleChange({ category: e.target?.value })}
+          >
             <option value="" defaultChecked>
               Select a category
             </option>
@@ -60,12 +79,16 @@ export default function NewPost() {
         <br />
         <div className="input-job-element">
           <p className="input-element-title">Author</p>
-          <input type="text" ref={author} placeholder="Author" />
+          <input
+            type="text"
+            onChange={(e) => handleChange({ author: e.target?.value })}
+            placeholder="Author"
+          />
         </div>
       </form>
 
       <div className="add-job-btn">
-        <span className="btn btn_secondary" onClick={() => setShowModal(true)}>
+        <span className="btn btn_secondary" onClick={handleShowModal}>
           <span>Next</span>
         </span>
       </div>
