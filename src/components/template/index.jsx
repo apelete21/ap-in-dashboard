@@ -1,10 +1,10 @@
 import "./template.css";
 import React, { useState } from "react";
-import Section from "./elements/section";
+import Section from "./elements/job/section";
 import moment from "moment";
 import { cleanJobDOM } from "./methods";
 import { createPortal } from "react-dom";
-import { PromptPopUp } from "./elements/prompt";
+import { PromptPopUp } from "./elements/job/prompt";
 
 export function JobTemplate({ job, setJob, setShowModal, handleSubmit }) {
   const [content, setContent] = useState([<Section />]);

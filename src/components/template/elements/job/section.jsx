@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { ActionBtn, ActionListBtn, EditBtn } from "./button";
 import Paragraph from "./paragraph";
-import random from "../../../service/random";
+import random from "../../../../service/random";
 import Subtitle from "./subtitle";
 import List from "./list";
-import HoverEdit from "./hoverWrapper";
-import { modifyElement, removeElement } from "../methods";
+import HoverEdit from "../hoverWrapper";
+import { modifyElement, removeElement } from "../../methods";
 
 export default function Section() {
   let sectId = "s-" + random();

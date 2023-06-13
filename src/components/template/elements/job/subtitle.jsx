@@ -1,7 +1,7 @@
-import random from "../../../service/random";
+import random from "../../../../service/random";
 import { EditBtn } from "./button";
-import { modifyElement, removeElement } from "../methods";
-import HoverEdit from "./hoverWrapper";
+import { modifyElement, removeElement } from "../../methods";
+import HoverEdit from "../hoverWrapper";
 
 export default function Subtitle() {
   let subTId = "st-" + random();
