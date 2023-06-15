@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ActionBtn, ActionListBtn, EditBtn } from "./button";
+import { ActionBtn, ActionListBtn, EditBtn } from "../button";
 import Paragraph from "./paragraph";
 import random from "../../../../service/random";
 import Subtitle from "./subtitle";

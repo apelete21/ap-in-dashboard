@@ -1,6 +1,6 @@
 import { useState } from "react";
 import random from "../../../../service/random";
-import { EditBtn } from "./button";
+import { EditBtn } from "../button";
 import HoverEdit from "../hoverWrapper";
 import { modifyElement, removeElement } from "../../methods";
 

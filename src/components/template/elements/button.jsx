@@ -1,4 +1,4 @@
-import { icons } from "../../../../service/icons";
+import { icons } from "../../../service/icons";
 
 export function EditBtn({
   deleteFunc,

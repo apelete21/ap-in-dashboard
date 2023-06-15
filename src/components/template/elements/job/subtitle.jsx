@@ -1,5 +1,5 @@
 import random from "../../../../service/random";
-import { EditBtn } from "./button";
+import { EditBtn } from "../button";
 import { modifyElement, removeElement } from "../../methods";
 import HoverEdit from "../hoverWrapper";
 

@@ -25,7 +25,7 @@ export default function NewPost() {
     } else setShowModal(true);
   };
 
-  return (
+  return ( 
     <>
       {showModal &&
         createPortal(

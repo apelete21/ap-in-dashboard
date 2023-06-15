@@ -4,7 +4,9 @@ import Section from "./elements/job/section";
 import moment from "moment";
 import { cleanJobDOM } from "./methods";
 import { createPortal } from "react-dom";
-import { PromptPopUp } from "./elements/job/prompt";
+import { PromptPopUp } from "./elements/prompt";
+import { Title } from "./elements/blog/title";
+import { Paragraph } from "./elements/blog/paragraph";
 
 export function JobTemplate({ job, setJob, setShowModal, handleSubmit }) {
   const [content, setContent] = useState([<Section />]);
@@ -104,10 +106,15 @@ export function JobTemplate({ job, setJob, setShowModal, handleSubmit }) {
  ********************************************/
 
 export const ArticleTemplate = ({ article, setArticle, setShowModal }) => {
-  const [content, setContent] = useState([<Section />]);
+  const [content, setContent] = useState([
+    <>
+      <Title />
+      <Paragraph />
+    </>,
+  ]);
 
-  const addSection = () => {
-    setContent([...content, <Section />]);
+  const addItem = (Item) => {
+    setContent([...content, Item]);
   };
 
   const publishJob = () => {
@@ -155,14 +162,26 @@ export const ArticleTemplate = ({ article, setArticle, setShowModal }) => {
             <div className="editor-pane">
               <div className="paragraph-pane">
                 <div className="section">
-                  <span className="label" onClick={addSection}>
-                    Add a new section
+                  <span className="label" onClick={() => addItem(<Title/>)}>
+                    Title
+                  </span>
+                </div>
+                <div className="section">
+                  <span className="label" onClick={() => addItem(<Paragraph/>)}>
+                    Paragraph
+                  </span>
+                </div>
+                <div className="section">
+                  <span className="label" onClick={() => {}}>
+                    Image
                   </span>
                 </div>
               </div>
             </div>
           </div>
-          <section className="offset-canva detailsContainer">{content}</section>
+          <section className="offset-canva detailsContainer">
+            <div className="news--text-block">{content}</div>
+          </section>
         </div>
       </section>
     </>
