@@ -56,6 +56,7 @@ export default function ApplicationDetails() {
                   href={`${DownloadFileRoute}/${JobApp.cv}`}
                   title="Download resume"
                   target="_blank"
+                  download
                 >
                   Download
                 </a>

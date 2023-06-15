@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { createPortal } from "react-dom";
 import { ArticleTemplate } from "../components/template";
 
@@ -66,14 +66,9 @@ export default function NewPost() {
             <option value="" defaultChecked>
               Select a category
             </option>
-            <option value="Process improvment">Design Marketing</option>
-            <option value="SEO">SEO</option>
-            <option value="Hosting solution">Hosting solution</option>
-            <option value="E-commerce">E-commerce</option>
-            <option value="Graphic design">Graphic design</option>
-            <option value="Branding and packaging">
-              Branding and packaging
-            </option>
+            <option value="SEO">Podcast</option>
+            <option value="Hosting solution">Blog post</option>
+            <option value="E-commerce">Press release</option>
           </select>
         </div>
         <br />
