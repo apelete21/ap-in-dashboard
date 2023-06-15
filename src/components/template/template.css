@@ -194,6 +194,7 @@
   color: #000;
   border: solid #eee 0.1px;
   z-index: 22222;
+  background: #fff;
 }
 
 .editor .editor-pane {
@@ -412,3 +413,8 @@
     font-size: 16px;
 }
 
+.dflex {
+  display: flex;
+  padding-top: 5vh;
+  gap: 1%;
+}

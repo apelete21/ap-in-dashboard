@@ -7,6 +7,7 @@ import { createPortal } from "react-dom";
 import { PromptPopUp } from "./elements/prompt";
 import { Title } from "./elements/blog/title";
 import { Paragraph } from "./elements/blog/paragraph";
+import { BannerImg, ImgContainer } from "./elements/blog/img";
 
 export function JobTemplate({ job, setJob, setShowModal, handleSubmit }) {
   const [content, setContent] = useState([<Section />]);
@@ -158,6 +159,7 @@ export const ArticleTemplate = ({ article, setArticle, setShowModal }) => {
               </>
             </div>
           </header>
+          <BannerImg />
           <div className="editor offset-canva">
             <div className="editor-pane">
               <div className="paragraph-pane">
@@ -172,7 +174,7 @@ export const ArticleTemplate = ({ article, setArticle, setShowModal }) => {
                   </span>
                 </div>
                 <div className="section">
-                  <span className="label" onClick={() => {}}>
+                  <span className="label" onClick={() => addItem(<ImgContainer />)}>
                     Image
                   </span>
                 </div>
