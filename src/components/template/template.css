@@ -11,6 +11,21 @@
   overflow: scroll;
 }
 
+.modal-root img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.modal-root * {
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+}
+
 .prompt-popup {
   top: 0;
   left: 0;
@@ -41,30 +56,30 @@
 }
 
 .prompt-popup .prompt-answers button {
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    padding: .4rem;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  padding: 0.4rem;
 }
 
 .prompt-popup .prompt-answers :hover {
-    scale: 1.1;
-    transition: .2s;
-    -webkit-transition: .2s;
-    -moz-transition: .2s;
-    -ms-transition: .2s;
-    -o-transition: .2s;
+  scale: 1.1;
+  transition: 0.2s;
+  -webkit-transition: 0.2s;
+  -moz-transition: 0.2s;
+  -ms-transition: 0.2s;
+  -o-transition: 0.2s;
 }
 
 .prompt-popup .prompt-answers :first-child {
-    background: #ff9494;
-    color: #f71d1d;
+  background: #ff9494;
+  color: #f71d1d;
 }
 
 .prompt-popup .prompt-answers :last-child {
-    background: #a3ff9f;
-    color: #00e400;
+  background: #a3ff9f;
+  color: #00e400;
 }
 
 .modal-root::-webkit-scrollbar {
@@ -402,26 +417,26 @@
 }
 
 .news--text-block h4 {
-    font-size: 2.2rem;
+  font-size: 2.2rem;
 }
 
 .news--text-block .text-block--title {
-    font-weight: bold;
-    margin-bottom: 4vh;
-    margin-top: 8vh;
+  font-weight: bold;
+  margin-bottom: 4vh;
+  margin-top: 8vh;
 }
 
 .news--text-block .block--paragraph {
-    margin-bottom: 4vh;
+  margin-bottom: 4vh;
 }
 
 .news--text-block p {
-    margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .news--text-block .default-paragraph {
-    color: var(--body-color);
-    font-size: 16px;
+  color: var(--body-color);
+  font-size: 16px;
 }
 
 .dflex {
@@ -449,6 +464,9 @@
 
 .illustration-image {
   position: relative;
+  width: 100%;
+ min-height: 400px;
+ background: #0005;
 }
 
 .illustration-image:hover .image-btn-remove {
@@ -472,7 +490,6 @@
   -o-border-radius: 100%;
 }
 
-
 .imageUploader {
   position: absolute;
   width: 100%;
@@ -482,15 +499,15 @@
 }
 
 .imgLoading {
-  animation: .5s fadeLoading infinite;
-  -webkit-animation: .05s fadeLoading infinite;
+  animation: 0.5s fadeLoading infinite;
+  -webkit-animation: 0.5s fadeLoading infinite;
 }
 
 @keyframes fadeLoading {
-  20%{
+  20% {
     opacity: 1;
   }
-  100%{
+  100% {
     opacity: 0;
   }
 }
@@ -502,6 +519,18 @@
   opacity: 0;
 }
 
-.news-banner:hover .imageUploader{
+.imageUploader:hover {
   background: #ddd8;
+}
+
+.news-banner .role, .illustration-image .role {
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
 }

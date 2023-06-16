@@ -6,7 +6,7 @@ import { imgUrl, pictureReq } from "../../../../requests/article";
 export const ImageUploader = ({ image, setImage }) => {
   const [success, setSuccess] = useState(false);
   const [dragActive, setDragActive] = useState(false);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   const handleDrag = function (e) {
     e.preventDefault();
@@ -29,14 +29,14 @@ export const ImageUploader = ({ image, setImage }) => {
 
   const UploadEvent = async (e) => {
     e.preventDefault();
-    setLoading(true)
+    setLoading(true);
     const body = new FormData();
     body.append("file", e?.target?.files[0]);
 
     const { data, ok } = await pictureReq("POST", "upload", body);
     console.log({ data, ok });
     setImage(data?.srcUrl);
-    setLoading(false)
+    setLoading(false);
   };
 
   return (
@@ -57,16 +57,18 @@ export const ImageUploader = ({ image, setImage }) => {
 };
 
 export function BannerImg() {
-  const [image, setImage] = useState();
+  const [image, setImage] = useState("");
   return (
     <>
-      <section class="news-banner">
+      <section className="news-banner">
         <ImageUploader image={image} setImage={setImage} />
-        <img
-          src={`${imgUrl}/${image}`}
-          alt=""
-          srcset=""
-        />
+        {image !== "" ? (
+          <img src={`${imgUrl}/${image}`} alt="" srcSet="" />
+        ) : (
+          <>
+            <div className="role">Upload your banner image</div>
+          </>
+        )}
       </section>
     </>
   );
@@ -90,7 +92,7 @@ export function ImgContainer() {
 
   return (
     <>
-      <div class={`illustration-img ${contID}`}>
+      <div className={`illustration-img ${contID}`}>
         <div className="image-btn-container">
           <button className="image-btn" onClick={addImgSection}>
             add image
@@ -102,8 +104,8 @@ export function ImgContainer() {
             remove
           </button>
         </div>
-        <div class="illustration-img--container dflex">{images}</div>
-        <p class={`img-info ${captionID}`}>
+        <div className="illustration-img--container dflex">{images}</div>
+        <p className={`img-info ${captionID}`}>
           Spring in Japan lasts from about mid
         </p>
       </div>
@@ -116,17 +118,21 @@ export function ImageCard() {
   const deleteImage = () => {
     removeElement(imageId);
   };
+  const [image, setImage] = useState("");
   return (
     <>
       <div class={`illustration-image ${imageId}`}>
+        <ImageUploader image={image} setImage={setImage} />
         <button className="image-btn-remove" onClick={deleteImage}>
           X
         </button>
-        <img
-          src="https://appealofinnovation.com/assets/media/images/banners/news.png"
-          // src="https://appealofinnovation.com/assets/media/images/news/news-two.png"
-          alt=""
-        />
+        {image !== "" ? (
+          <img src={`${imgUrl}/${image}`} alt="" srcSet="" />
+        ) : (
+          <>
+            <div className="role">Upload your banner image</div>
+          </>
+        )}
       </div>
     </>
   );
