@@ -130,14 +130,10 @@ export const ArticleTemplate = ({ article, setArticle, setShowModal }) => {
       details: blogContent,
       bannerImg: bannerLink,
     });
-    console.log({
-      ...article,
-      details: blogContent,
-      bannerImg: bannerLink,
-    });
     if (ok) {
       setShowModal(false);
     } else {
+      setSubmitPrompt(false);
       alert("An error occured!");
     }
   };

@@ -21,7 +21,7 @@ export default function NewPost() {
 
   const handleShowModal = () => {
     const {title, category, author} = article
-    if (title === "" && category === "" && author === "" ) {
+    if (title === "" || category === "" || author === "" ) {
       alert("All fields are required!");
     } else setShowModal(true);
   };

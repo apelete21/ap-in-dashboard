@@ -41,13 +41,13 @@ export const ImageUploader = ({ image, setImage }) => {
     e.preventDefault();
     setLoading(true);
     const body = new FormData();
-    body.append("file", e?.target?.files[0]);
-
-    const { data, ok } = await pictureReq("POST", "upload", body);
-    console.log({ data, ok });
-    setImage(data?.srcUrl);
+    if (e?.target?.files[0]) {
+      body.append("file", e?.target?.files[0]);
+      const { data, ok } = await pictureReq("POST", "upload", body);
+      setImage(data?.srcUrl);
+      if (ok) setSuccess(true);
+    }
     setLoading(false);
-    if (ok) setSuccess(true);
   };
 
   return (

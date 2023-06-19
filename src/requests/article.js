@@ -16,11 +16,12 @@ export const pictureReq = async (method, route, body) => {
 export const articleReq = async (method, route, body) => {
   let headersList = {
     Accept: "*/*",
+    "Content-Type": "application/json",
   };
   let response = await fetch(`${baseUrl}/article/${route}`, {
     headers: headersList,
-    method,
-    body: JSON.stringify(body) || undefined,
+    method: method,
+    body: JSON.stringify(body),
   });
   const data = await response.json();
   return { data, ok: response?.ok };
