@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import random from "../../../../service/random";
 import { modifyElement, removeElement } from "../../methods";
 import { imgUrl, pictureReq } from "../../../../requests/article";
+
+export const deleteImage = async (filename) => {
+  return await pictureReq("POST", `delete/${filename}`, {});
+};
 
 export const ImageUploader = ({ image, setImage }) => {
   const [success, setSuccess] = useState(false);
@@ -18,16 +22,22 @@ export const ImageUploader = ({ image, setImage }) => {
     }
   };
 
-  const handleDrop = function (e) {
+  const handleDrop = async function (e) {
     e.preventDefault();
     e.stopPropagation();
     setDragActive(false);
+    if (success) {
+      await deleteImage(image);
+    }
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      UploadEvent(e);
+      await UploadEvent(e);
     }
   };
 
   const UploadEvent = async (e) => {
+    if (success) {
+      await deleteImage(image);
+    }
     e.preventDefault();
     setLoading(true);
     const body = new FormData();
@@ -37,6 +47,7 @@ export const ImageUploader = ({ image, setImage }) => {
     console.log({ data, ok });
     setImage(data?.srcUrl);
     setLoading(false);
+    if (ok) setSuccess(true);
   };
 
   return (
@@ -56,14 +67,14 @@ export const ImageUploader = ({ image, setImage }) => {
   );
 };
 
-export function BannerImg() {
+export function BannerImg({ setArticle }) {
   const [image, setImage] = useState("");
   return (
     <>
       <section className="news-banner">
         <ImageUploader image={image} setImage={setImage} />
         {image !== "" ? (
-          <img src={`${imgUrl}/${image}`} alt="" srcSet="" />
+          <img src={`${imgUrl}/${image}`} className="bannerImg" alt="" srcSet="" />
         ) : (
           <>
             <div className="role">Upload your banner image</div>
@@ -78,8 +89,10 @@ export function ImgContainer() {
   const [images, setImages] = useState([<ImageCard />]);
   const captionID = "capId-" + random();
   const contID = "contId-" + random();
+  const mustDelete = [];
+
   const addImgSection = () => {
-    setImages([...images, <ImageCard />]);
+    setImages([...images, <ImageCard mustDelete={mustDelete} />]);
   };
 
   const modifyCaption = () => {
@@ -87,6 +100,9 @@ export function ImgContainer() {
   };
 
   const removeImageContainer = () => {
+    mustDelete?.forEach( async (e, i) => {
+      await deleteImage(e);
+    });
     removeElement(contID);
   };
 
@@ -113,24 +129,30 @@ export function ImgContainer() {
   );
 }
 
-export function ImageCard() {
+export function ImageCard({ mustDelete }) {
   const imageId = "img--" + random();
-  const deleteImage = () => {
-    removeElement(imageId);
-  };
   const [image, setImage] = useState("");
+  const remove = async () => {
+    removeElement(imageId);
+    deleteImage(image || "");
+  };
+
+  useEffect(() => {
+    mustDelete?.push(image);
+  }, [image]);
+
   return (
     <>
       <div class={`illustration-image ${imageId}`}>
         <ImageUploader image={image} setImage={setImage} />
-        <button className="image-btn-remove" onClick={deleteImage}>
+        <button className="image-btn-remove" onClick={remove}>
           X
         </button>
         {image !== "" ? (
           <img src={`${imgUrl}/${image}`} alt="" srcSet="" />
         ) : (
           <>
-            <div className="role">Upload your banner image</div>
+            <div className="role">Upload a image</div>
           </>
         )}
       </div>

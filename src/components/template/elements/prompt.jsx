@@ -1,6 +1,6 @@
 import React from "react";
 
-export const PromptPopUp = ({ setSubmitPrompt, Submit }) => {
+export const PromptPopUp = ({ setSubmitPrompt, publishJob }) => {
   return (
     <div className="prompt-popup">
       <div className="modal-closer" onClick={() => setSubmitPrompt(false)} />
@@ -8,7 +8,7 @@ export const PromptPopUp = ({ setSubmitPrompt, Submit }) => {
         <h4>Sure you want to continue ?</h4>
         <div className="prompt-answers">
           <button onClick={() => setSubmitPrompt(false)}>No</button>
-          <button onClick={Submit}>Yes</button>
+          <button onClick={publishJob}>Yes</button>
         </div>
       </div>
     </div>

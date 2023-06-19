@@ -2,12 +2,13 @@ import "./template.css";
 import React, { useState } from "react";
 import Section from "./elements/job/section";
 import moment from "moment";
-import { cleanJobDOM } from "./methods";
+import { cleanBlogDOM, cleanJobDOM } from "./methods";
 import { createPortal } from "react-dom";
 import { PromptPopUp } from "./elements/prompt";
 import { Title } from "./elements/blog/title";
 import { Paragraph } from "./elements/blog/paragraph";
 import { BannerImg, ImgContainer } from "./elements/blog/img";
+import { articleReq } from "../../requests/article";
 
 export function JobTemplate({ job, setJob, setShowModal, handleSubmit }) {
   const [content, setContent] = useState([<Section />]);
@@ -107,6 +108,7 @@ export function JobTemplate({ job, setJob, setShowModal, handleSubmit }) {
  ********************************************/
 
 export const ArticleTemplate = ({ article, setArticle, setShowModal }) => {
+  const [submitPrompt, setSubmitPrompt] = useState(false);
   const [content, setContent] = useState([
     <>
       <Title />
@@ -118,12 +120,37 @@ export const ArticleTemplate = ({ article, setArticle, setShowModal }) => {
     setContent([...content, Item]);
   };
 
-  const publishJob = () => {
-    cleanJobDOM();
-    console.log(document.querySelector(".detailsContainer").outerHTML);
+  const publishJob = async () => {
+    cleanBlogDOM();
+    const blogContent = document.querySelector(".news--text-block")?.outerHTML;
+    const a = document.querySelector(".bannerImg")?.src;
+    const bannerLink = a.split("/")[a.split("/").length - 1];
+    const { data, ok } = await articleReq("POST", "upload", {
+      ...article,
+      details: blogContent,
+      bannerImg: bannerLink,
+    });
+    console.log({
+      ...article,
+      details: blogContent,
+      bannerImg: bannerLink,
+    });
+    if (ok) {
+      setShowModal(false);
+    } else {
+      alert("An error occured!");
+    }
   };
   return (
     <>
+      {submitPrompt &&
+        createPortal(
+          <PromptPopUp
+            setSubmitPrompt={setSubmitPrompt}
+            publishJob={publishJob}
+          />,
+          document.body
+        )}
       <section className="modal-root">
         <div className="modal-closer" onClick={() => setShowModal(false)} />
         <div className="container">
@@ -133,7 +160,10 @@ export const ArticleTemplate = ({ article, setArticle, setShowModal }) => {
           >
             close
           </span>
-          <span className="btn modal-btn btn-submit" onClick={publishJob}>
+          <span
+            className="btn modal-btn btn-submit"
+            onClick={() => setSubmitPrompt(true)}
+          >
             submit
           </span>
           <header className="bg-white">
@@ -164,17 +194,23 @@ export const ArticleTemplate = ({ article, setArticle, setShowModal }) => {
             <div className="editor-pane">
               <div className="paragraph-pane">
                 <div className="section">
-                  <span className="label" onClick={() => addItem(<Title/>)}>
+                  <span className="label" onClick={() => addItem(<Title />)}>
                     Title
                   </span>
                 </div>
                 <div className="section">
-                  <span className="label" onClick={() => addItem(<Paragraph/>)}>
+                  <span
+                    className="label"
+                    onClick={() => addItem(<Paragraph />)}
+                  >
                     Paragraph
                   </span>
                 </div>
                 <div className="section">
-                  <span className="label" onClick={() => addItem(<ImgContainer />)}>
+                  <span
+                    className="label"
+                    onClick={() => addItem(<ImgContainer />)}
+                  >
                     Image
                   </span>
                 </div>

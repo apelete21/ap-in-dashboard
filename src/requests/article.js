@@ -13,14 +13,14 @@ export const pictureReq = async (method, route, body) => {
   return { data, ok: response?.ok };
 };
 
-export const articleReq = async ({ method, route, body }) => {
+export const articleReq = async (method, route, body) => {
   let headersList = {
     Accept: "*/*",
   };
   let response = await fetch(`${baseUrl}/article/${route}`, {
     headers: headersList,
     method,
-    body,
+    body: JSON.stringify(body) || undefined,
   });
   const data = await response.json();
   return { data, ok: response?.ok };

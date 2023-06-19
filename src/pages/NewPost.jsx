@@ -6,6 +6,7 @@ export default function NewPost() {
   const [showModal, setShowModal] = useState(false);
   const [article, setArticle] = useState({
     title: "",
+    bannerImg: "",
     category: "",
     author: "",
     details: "",
@@ -61,7 +62,7 @@ export default function NewPost() {
           <select
             name=""
             id=""
-            onChange={(e) => handleChange({ category: e.target?.value })}
+            onChange={(e) => handleChange({ category: e.target?.value.toLowerCase().replace(" ", "-") })}
           >
             <option value="" defaultChecked>
               Select a category
