@@ -7,7 +7,7 @@ import Nav from "../components/Nav";
 import QuoteRequests from "../pages/QuoteRequests";
 import Jobs from "../pages/Jobs";
 import Newsletters from "../pages/Newsletters";
-import Blog from "../pages/Blog";
+import Posts from "../pages/Posts";
 import AddNewJob from "../pages/AddNewJob";
 import ApplicationList from "../pages/ApplicationList";
 import Login from "../pages/Login";
@@ -49,7 +49,7 @@ function AppRoutes() {
                 <Route path="/jobs/new" element={<AddNewJob />} />
                 <Route path="/jobs/:title" element={<ApplicationList />} />
                 <Route path="/newsletters" element={<Newsletters />} />
-                <Route path="/blog" element={<Blog />} />
+                <Route path="/blog" element={<Posts />} />
                 <Route path="/blog/new_post" element={<NewPost />} />
               </Routes>
             </div>

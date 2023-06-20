@@ -21,7 +21,7 @@ export const articleReq = async (method, route, body) => {
   let response = await fetch(`${baseUrl}/article/${route}`, {
     headers: headersList,
     method: method,
-    body: JSON.stringify(body),
+    body: JSON.stringify(body) || undefined,
   });
   const data = await response.json();
   return { data, ok: response?.ok };

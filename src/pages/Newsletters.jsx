@@ -29,7 +29,7 @@ export default function Newsletters() {
         setreload(false);
         return;
       }
-      setreload(true);
+      setreload(false);
     };
     request();
   }, [emails, reload]);

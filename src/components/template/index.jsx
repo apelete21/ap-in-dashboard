@@ -9,6 +9,7 @@ import { Title } from "./elements/blog/title";
 import { Paragraph } from "./elements/blog/paragraph";
 import { BannerImg, ImgContainer } from "./elements/blog/img";
 import { articleReq } from "../../requests/article";
+import { Router, useNavigate } from "react-router-dom";
 
 export function JobTemplate({ job, setJob, setShowModal, handleSubmit }) {
   const [content, setContent] = useState([<Section />]);
@@ -116,6 +117,8 @@ export const ArticleTemplate = ({ article, setArticle, setShowModal }) => {
     </>,
   ]);
 
+  const navigate = useNavigate();
+
   const addItem = (Item) => {
     setContent([...content, Item]);
   };
@@ -132,6 +135,7 @@ export const ArticleTemplate = ({ article, setArticle, setShowModal }) => {
     });
     if (ok) {
       setShowModal(false);
+      navigate("/blog");
     } else {
       setSubmitPrompt(false);
       alert("An error occured!");
@@ -173,7 +177,7 @@ export const ArticleTemplate = ({ article, setArticle, setShowModal }) => {
                     <div class="author_details">
                       <div class="author_title">Author:</div>
                       <div class="author_name">
-                        {article ? article?.author : "Anonymous"}
+                        {article?.author?.trim() !== "" ? article?.author : "Anonymous"}
                       </div>
                     </div>
                     <div class="date_details">

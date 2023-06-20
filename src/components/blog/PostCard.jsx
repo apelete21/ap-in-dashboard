@@ -2,7 +2,7 @@ import moment from "moment";
 import { icons } from "../../service/icons";
 import { Link } from "react-router-dom";
 
-const PostCard = ({ data }) => {
+const PostCard = ({ item, deletePost }) => {
   return (
     <div>
       <div className="job-item">
@@ -28,29 +28,31 @@ const PostCard = ({ data }) => {
               </svg>
             </div>
             <div className="item-title-details">
-              <div className="enterprise-name">{"data?.enterprise"}</div>
+              <div className="enterprise-name">
+                {item?.enterprise || "AP'IN"}
+              </div>
             </div>
           </div>
 
           <div className="publication-date">
-            <span>{moment().calendar()}</span>
+            <span>{moment(item?.createdAt).calendar()}</span>
             <span>
               <img src={icons.grayCalendar} alt="" />
             </span>
           </div>
         </div>
         <div className="item-title-details">
-          <h1 className="">{"data?.enterprise"}</h1>
+          <h1 className="">{item?.title}</h1>
         </div>
         <br />
-        <div className="job-description">
-          <p>{"data?.lowParagraph"}</p>
-        </div>
+        {/* <div className="job-description">
+          <p>{"item?.lowParagraph"}</p>
+        </div> */}
 
         <div className="job-item-tag">
           <div>
-            <span className="time-tag">{"data?.time"}</span>
-            <span className="type-tag">{"data?.category"}</span>
+            {/* <span className="time-tag">{"item?.time"}</span> */}
+            <span className="type-tag">{item?.category}</span>
           </div>
           <div />
         </div>
@@ -73,14 +75,14 @@ const PostCard = ({ data }) => {
                 </svg>
               </div>
               <div className="views-number">
-                <b>44</b> views
+                <b>{item?.views}</b> views
               </div>
             </div>
           </div>
 
           <div className="actions">
             <div className=" action action-view">
-              <Link to={`/jobs/${"data?.title"}`}>
+              <Link to={`/blog/${item?.title}`}>
                 <svg
                   width="19"
                   height="19"
@@ -95,7 +97,7 @@ const PostCard = ({ data }) => {
                 </svg>
               </Link>
             </div>
-            <div className="action action-edit">
+            {/* <div className="action action-edit">
               <Link to="/jobs/edit">
                 <svg
                   width="19"
@@ -110,9 +112,9 @@ const PostCard = ({ data }) => {
                   />
                 </svg>
               </Link>
-            </div>
+            </div> */}
             <div className="action action-delete">
-              <Link to="#delete" onClick={(e) => e.preventDefault()}>
+              <Link to="#delete" onClick={() => deletePost(item?.title)}>
                 <svg
                   width="19"
                   height="19"
