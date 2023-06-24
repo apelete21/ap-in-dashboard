@@ -52,7 +52,7 @@ const PostCard = ({ item, deletePost }) => {
         <div className="job-item-tag">
           <div>
             {/* <span className="time-tag">{"item?.time"}</span> */}
-            <span className="type-tag">{item?.category}</span>
+            <span className="type-tag">{item?.category?.replace("-", " ")?.toUpperCase()}</span>
           </div>
           <div />
         </div>
@@ -81,7 +81,7 @@ const PostCard = ({ item, deletePost }) => {
           </div>
 
           <div className="actions">
-            <div className=" action action-view">
+            {/* <div className=" action action-view">
               <Link to={`/blog/${item?.title}`}>
                 <svg
                   width="19"
@@ -96,7 +96,7 @@ const PostCard = ({ item, deletePost }) => {
                   />
                 </svg>
               </Link>
-            </div>
+            </div> */}
             {/* <div className="action action-edit">
               <Link to="/jobs/edit">
                 <svg
