@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { ArticleTemplate } from "../components/template";
+import { pictureReq } from "../requests/article";
+import { useNavigate } from "react-router-dom";
 
 export default function NewPost() {
+  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
+  const [optionalField, setOptionalField] = useState(false);
+  const audioFile = useRef(null);
   const [article, setArticle] = useState({
     title: "",
     bannerImg: "",
@@ -13,20 +18,39 @@ export default function NewPost() {
   });
 
   const handleChange = (data) => {
+    if (data?.category === "podcast".toLowerCase().replace(" ", "-")) {
+      setOptionalField(true);
+    } else if (data?.category !== "podcast".toLowerCase().replace(" ", "-")) {
+      setOptionalField(false);
+    }
     setArticle({
       ...article,
       ...data,
     });
   };
 
-  const handleShowModal = () => {
-    const {title, category, author} = article
-    if (title === "" || category === "" || author === "" ) {
-      alert("All fields are required!");
-    } else setShowModal(true);
+  const handleSubmitPodcast = async () => {
+    /**
+     * create a route in the api to handle the audio files in one side and automaticaly
+     * resend the response to handle the post publication
+     */
   };
 
-  return ( 
+  const handleShowModal = () => {
+    const { title, category, author } = article;
+    if (
+      category === "podcast".toLowerCase().replace(" ", "-") &&
+      audioFile?.current?.files.length !== 0
+    ) {
+      handleSubmitPodcast();
+    } else if (category !== "podcast".toLowerCase().replace(" ", "-")) {
+      if (title === "" || category === "" || author === "") {
+        alert("All fields are required!");
+      } else setShowModal(true);
+    }
+  };
+
+  return (
     <>
       {showModal &&
         createPortal(
@@ -58,22 +82,6 @@ export default function NewPost() {
         </div>
         <br />
         <div className="input-job-element">
-          <p className="input-element-title">Select a category</p>
-          <select
-            name=""
-            id=""
-            onChange={(e) => handleChange({ category: e.target?.value.toLowerCase().replace(" ", "-") })}
-          >
-            <option value="" defaultChecked>
-              Select a category
-            </option>
-            <option value="SEO">Podcast</option>
-            <option value="Hosting solution">Blog post</option>
-            <option value="E-commerce">Press release</option>
-          </select>
-        </div>
-        <br />
-        <div className="input-job-element">
           <p className="input-element-title">Author</p>
           <input
             type="text"
@@ -81,6 +89,49 @@ export default function NewPost() {
             placeholder="Author"
           />
         </div>
+        <br />
+        <div className="input-job-element">
+          <p className="input-element-title">Select a category</p>
+          <select
+            name=""
+            id=""
+            onChange={(e) =>
+              handleChange({
+                category: e.target?.value.toLowerCase().replace(" ", "-"),
+              })
+            }
+          >
+            <option value="" defaultChecked>
+              Select a category
+            </option>
+            <option value="Podcast">Podcast</option>
+            <option value="Blog post">Blog post</option>
+            <option value="Press release">Press release</option>
+          </select>
+        </div>
+
+        {optionalField && (
+          <>
+            <br />
+            <div className="input-job-element">
+              <p className="input-element-title">Description</p>
+              <input
+                type="text"
+                onChange={(e) => handleChange({ description: e.target?.value })}
+                placeholder="Description"
+              />
+            </div>
+            <br />
+            <div className="input-job-element">
+              <p className="input-element-title">Upload an audio file</p>
+              <input
+                type="file"
+                ref={audioFile}
+                placeholder="Upload an audio file"
+              />
+            </div>
+          </>
+        )}
       </form>
 
       <div className="add-job-btn">
