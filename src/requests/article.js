@@ -13,6 +13,20 @@ export const pictureReq = async (method, route, body) => {
   return { data, ok: response?.ok };
 };
 
+
+export const audioReq = async (method, route, body) => {
+  let headersList = {
+    Accept: "*/*",
+  };
+  let response = await fetch(`${baseUrl}/audio/${route}`, {
+    headers: headersList,
+    method,
+    body,
+  });
+  const data = await response.json();
+  return { data, ok: response?.ok };
+};
+
 export const articleReq = async (method, route, body) => {
   let headersList = {
     Accept: "*/*",

@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { ArticleTemplate } from "../components/template";
-import { pictureReq } from "../requests/article";
+import { articleReq, audioReq } from "../requests/article";
 import { useNavigate } from "react-router-dom";
 
 export default function NewPost() {
@@ -15,18 +15,21 @@ export default function NewPost() {
     category: "",
     author: "",
     details: "",
+    description: "",
   });
 
   const handleChange = (data) => {
-    if (data?.category === "podcast".toLowerCase().replace(" ", "-")) {
-      setOptionalField(true);
-    } else if (data?.category !== "podcast".toLowerCase().replace(" ", "-")) {
-      setOptionalField(false);
-    }
     setArticle({
       ...article,
       ...data,
     });
+    if (data?.category) {
+      if (data?.category === "podcast") {
+        setOptionalField(true);
+      } else if (data?.category !== "podcast") {
+        setOptionalField(false);
+      }
+    }
   };
 
   const handleSubmitPodcast = async () => {
@@ -34,15 +37,25 @@ export default function NewPost() {
      * create a route in the api to handle the audio files in one side and automaticaly
      * resend the response to handle the post publication
      */
+    const formData = new FormData();
+    formData.append("file", audioFile?.current?.files[0]);
+    const { data, ok } = await audioReq("POST", "upload", formData);
+    if (!ok) return alert(data?.message || "An error occured!");
+    const res = await articleReq("POST", "upload", {
+      ...article,
+      audiofile: data?.srcUrl,
+    });
+    if (!res?.ok) return alert(res?.data?.message || "An error occured!");
+    navigate("/blog");
   };
 
-  const handleShowModal = () => {
-    const { title, category, author } = article;
+  const nextStepOrSubmit = async () => {
+    const { title, category, author } = article; 
     if (
       category === "podcast".toLowerCase().replace(" ", "-") &&
       audioFile?.current?.files.length !== 0
     ) {
-      handleSubmitPodcast();
+      await handleSubmitPodcast();
     } else if (category !== "podcast".toLowerCase().replace(" ", "-")) {
       if (title === "" || category === "" || author === "") {
         alert("All fields are required!");
@@ -135,7 +148,7 @@ export default function NewPost() {
       </form>
 
       <div className="add-job-btn">
-        <span className="btn btn_secondary" onClick={handleShowModal}>
+        <span className="btn btn_secondary" onClick={nextStepOrSubmit}>
           <span>Next</span>
         </span>
       </div>
