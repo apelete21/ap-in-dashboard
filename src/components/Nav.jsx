@@ -66,7 +66,6 @@ function Nav() {
         <div className="profile_box">
           <p>
             {user?.firstName + " " + user?.lastName}
-            {"text".charAt(("text").length - 1)}
           </p>
           <img src={icons.prIcon} alt="profile" />
         </div>

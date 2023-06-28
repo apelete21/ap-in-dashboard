@@ -120,7 +120,7 @@ export default function Newsletters() {
               );
             })
           ) : (
-            <p style={{ textAlign: "center", width: "100%" }}>No data found!</p>
+            <p style={{ width: "100%" }}>No contacts!</p>
           )}
         </div>
       </div>

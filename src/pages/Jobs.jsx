@@ -1,22 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { icons } from "../service/icons";
 import JobCard from "../components/JobCard";
 import { allJobs } from "../requests/jobs";
+import { AppContext } from "../Contexts/AppContext";
 
 export default function Jobs() {
+  const {setStatusMessage} = useContext(AppContext)
   const [jobs, setJobs] = useState([]);
   const [isDataLoading, setIsDataLoading] = useState(true);
-  const [error, setError] = useState("");
+  // const [error, setError] = useState("");
 
   useEffect(() => {
     const getData = async () => {
       if (isDataLoading) {
-        const {data, ok, message} = await allJobs();
+        const { data, ok } = await allJobs();
         if (ok) {
           setJobs(data);
         } else {
-          setError(message || "Something went wrong");
+          setStatusMessage(data?.message || "Something went wrong");
         }
         setIsDataLoading(false);
       }
@@ -43,8 +45,7 @@ export default function Jobs() {
         </div>
 
         <div className="jobs-available-number">
-          {jobs?.length !== 0 && <p>{jobs?.length} Jobs available</p>}
-          {error && <p> {error} </p>}
+          <p>{jobs?.length} Jobs available</p>
         </div>
 
         <div className="jobs-list-container">
@@ -68,7 +69,7 @@ export default function Jobs() {
           </div>
         </div>
 
-        <div className="quote-pagination-controller">
+        {/* <div className="quote-pagination-controller">
           <div className="pagination-back-btn">
             <img src={icons.chevronLeft} alt="" />
           </div>
@@ -82,7 +83,7 @@ export default function Jobs() {
           <div className="pagination-forward-btn">
             <img src={icons.chevronRight} alt="" />
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );
