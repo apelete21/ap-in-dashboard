@@ -4,6 +4,7 @@ import { icons } from "../service/icons";
 import JobCard from "../components/JobCard";
 import { getOneJob } from "../requests/jobs";
 import ApplicationsTable from "../components/ApplicationsTable";
+import { LoadingComp } from "../components/loading";
 
 export default function ApplicationList() {
   const { title } = useParams();
@@ -31,14 +32,23 @@ export default function ApplicationList() {
   return (
     <>
       <div className="list-of-application">
-        {job !== {} ? (
-          <JobCard className="mb-5" data={job} isDataLoading={isDataLoading} />
-        ) : (
-          <div> {error} </div>
-        )}
+        {!isDataLoading ? <>
+          {job !== {} ? (
+            <JobCard
+              className="mb-5"
+              data={job}
+              isDataLoading={isDataLoading}
+            />
+          ) : (
+            <div> {error} </div>
+          )}
 
-        <ApplicationsTable setIsDataLoading={setIsDataLoading} isDataLoading={isDataLoading} jobId={job._id} />
-
+          <ApplicationsTable
+            setIsDataLoading={setIsDataLoading}
+            isDataLoading={isDataLoading}
+            jobId={job._id}
+          />
+        </> : <LoadingComp scale={0.2}/>}
         <div className="add-application-btn">
           <Link className="btn cs_btn btn_secondary" to="/jobs/new">
             <span className="">

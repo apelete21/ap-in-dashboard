@@ -2,6 +2,7 @@ import moment from "moment";
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AppContext } from "../Contexts/AppContext";
+import { LoadingComp } from "../components/loading";
 import { deleteManyEmails, getNewsletters } from "../requests/newsletters";
 
 export default function Newsletters() {
@@ -98,7 +99,7 @@ export default function Newsletters() {
             Delete the selection
           </Link>
         </div>
-        <div className="requests-lists">
+        {!reload ? <div className="requests-lists">
           {emails?.length ? (
             emails?.map((item, index) => {
               return (
@@ -122,7 +123,7 @@ export default function Newsletters() {
           ) : (
             <p style={{ width: "100%" }}>No contacts!</p>
           )}
-        </div>
+        </div> : <LoadingComp scale={0.7} />}
       </div>
     </>
   );

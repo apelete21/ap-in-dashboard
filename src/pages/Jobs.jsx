@@ -4,9 +4,10 @@ import { icons } from "../service/icons";
 import JobCard from "../components/JobCard";
 import { allJobs } from "../requests/jobs";
 import { AppContext } from "../Contexts/AppContext";
+import { LoadingComp } from "../components/loading";
 
 export default function Jobs() {
-  const {setStatusMessage} = useContext(AppContext)
+  const { setStatusMessage } = useContext(AppContext);
   const [jobs, setJobs] = useState([]);
   const [isDataLoading, setIsDataLoading] = useState(true);
   // const [error, setError] = useState("");
@@ -48,28 +49,30 @@ export default function Jobs() {
           <p>{jobs?.length} Jobs available</p>
         </div>
 
-        <div className="jobs-list-container">
-          {jobs?.map((element, index) => {
-            return (
-              <JobCard
-                data={element}
-                key={index}
-                setIsDataLoading={setIsDataLoading}
-              />
-            );
-          })}
+        {!isDataLoading ? (
+          <>
+            <div className="jobs-list-container">
+              {jobs?.map((element, index) => {
+                return (
+                  <JobCard
+                    data={element}
+                    key={index}
+                    setIsDataLoading={setIsDataLoading}
+                  />
+                );
+              })}
 
-          <div className="add-application-btn">
-            <Link className="btn cs_btn btn_secondary" to={"/jobs/new"}>
-              <span className="">
-                <img src={icons.feather} alt="" />
-              </span>
-              <span>Add a new job</span>
-            </Link>
-          </div>
-        </div>
+              <div className="add-application-btn">
+                <Link className="btn cs_btn btn_secondary" to={"/jobs/new"}>
+                  <span className="">
+                    <img src={icons.feather} alt="" />
+                  </span>
+                  <span>Add a new job</span>
+                </Link>
+              </div>
+            </div>
 
-        {/* <div className="quote-pagination-controller">
+            {/* <div className="quote-pagination-controller">
           <div className="pagination-back-btn">
             <img src={icons.chevronLeft} alt="" />
           </div>
@@ -84,6 +87,10 @@ export default function Jobs() {
             <img src={icons.chevronRight} alt="" />
           </div>
         </div> */}
+          </>
+        ) : (
+          <LoadingComp scale={0.3} />
+        )}
       </div>
     </>
   );

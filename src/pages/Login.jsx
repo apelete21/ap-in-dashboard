@@ -3,6 +3,7 @@ import { ErrorParagraph } from "../components/ErrorParagraph";
 import { AppContext } from "../Contexts/AppContext";
 import { icons } from "../service/icons";
 import { Helmet } from "react-helmet";
+import { LoadingComp } from "../components/loading";
 
 export default function Login() {
   const { handleUserLogin, loginError, userLoadingState, isUserLoggedIn } =
@@ -68,28 +69,10 @@ export default function Login() {
             </div>
           </div>
         ) : (
-          <div
-            style={{
-              height: "100%",
-              display: "flex",
-              padding: "1rem",
-              alignContent: "center",
-              alignItems: "center",
-              margin: "0 auto",
-              justifyContent: "center",
-            }}
-          >
-            <img
-              src={icons.loader}
-              alt="Loader"
-              style={{
-                width: "40%",
-                margin: "0 auto",
-              }}
-            />
-          </div>
+          userLoadingState && <LoadingComp />
         )}
       </div>
     </>
   );
 }
+
