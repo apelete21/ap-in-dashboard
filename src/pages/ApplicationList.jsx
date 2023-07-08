@@ -5,6 +5,7 @@ import JobCard from "../components/JobCard";
 import { getOneJob } from "../requests/jobs";
 import ApplicationsTable from "../components/ApplicationsTable";
 import { LoadingComp } from "../components/loading";
+import { Helmet } from "react-helmet";
 
 export default function ApplicationList() {
   const { title } = useParams();
@@ -31,6 +32,9 @@ export default function ApplicationList() {
 
   return (
     <>
+    <Helmet>
+      <title>Applications lists</title>
+    </Helmet>
       <div className="list-of-application">
         {!isDataLoading ? <>
           {job !== {} ? (

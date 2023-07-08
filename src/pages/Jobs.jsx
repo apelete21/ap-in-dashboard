@@ -5,6 +5,7 @@ import JobCard from "../components/JobCard";
 import { allJobs } from "../requests/jobs";
 import { AppContext } from "../Contexts/AppContext";
 import { LoadingComp } from "../components/loading";
+import { Helmet } from "react-helmet";
 
 export default function Jobs() {
   const { setStatusMessage } = useContext(AppContext);
@@ -29,6 +30,9 @@ export default function Jobs() {
 
   return (
     <>
+    <Helmet>
+      <title>List of jobs</title>
+    </Helmet>
       <div className="list-of-jobs">
         <div className="job-list-title">
           <h1>List of jobs</h1>

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { AppContext } from "../Contexts/AppContext";
 import { LoadingComp } from "../components/loading";
 import { deleteManyEmails, getNewsletters } from "../requests/newsletters";
+import { Helmet } from "react-helmet";
 
 export default function Newsletters() {
   const [emails, setEmails] = useState();
@@ -88,6 +89,9 @@ export default function Newsletters() {
 
   return (
     <>
+    <Helmet>
+      <title>Newsletters</title>
+    </Helmet>
       <div className="newsletter-request-list">
         <div className="newsletter-lists-top-bar">
           <h1>Newletters contacts list</h1>

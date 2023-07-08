@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { AppContext } from "../Contexts/AppContext";
 import { articleReq } from "../requests/article";
 import { LoadingComp } from "../components/loading";
+import { Helmet } from "react-helmet";
 
 export default function Posts() {
   const { setStatusMessage } = useContext(AppContext);
@@ -42,6 +43,9 @@ export default function Posts() {
 
   return (
     <>
+    <Helmet>
+      <title>Lists of blog posts</title>
+    </Helmet>
       <br />
       <div className="job-list-title">
         <h1>List of Posts</h1>
