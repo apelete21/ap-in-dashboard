@@ -7,7 +7,7 @@ export default function QuoteRequests() {
     return (
         <>
         <Helmet>
-            <title></title>
+            <title>Quotes requests</title>
         </Helmet>
             <div className="quotes-requests-container">
                 <QuoteLists />
