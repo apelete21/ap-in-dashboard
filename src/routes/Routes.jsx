@@ -17,6 +17,7 @@ import ErrorBoundary from "../components/Error/ErrorBoundary";
 import Message from "../components/Message";
 import ApplicationDetails from "../pages/ApplicationDetails";
 import NewPost from "../pages/NewPost";
+import Profile from "../pages/Profile";
 
 function AppRoutes() {
   const { isUserLoggedIn, statusMessage, JobApp } = useContext(AppContext);
@@ -51,6 +52,7 @@ function AppRoutes() {
                 <Route path="/newsletters" element={<Newsletters />} />
                 <Route path="/blog" element={<Posts />} />
                 <Route path="/blog/new_post" element={<NewPost />} />
+                <Route path="/profile" element={<Profile />} />
               </Routes>
             </div>
           </div>
