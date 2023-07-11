@@ -1,8 +1,24 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import { bgs, teams } from "../service/icons";
+import { Link } from "react-router-dom";
+import ProfileInfo from "../components/profile";
+import AddProfile from "../components/profile/add";
+import ProfileUpdate from "../components/profile/update";
+import ProfileList from "../components/profile/list";
+import { useState } from "react";
+import { useQuery } from "../service/query";
 
 export default function Profile() {
+  const query = useQuery();
+  const [tab, setTab] = useState("");
+
+  const ChangeTab = (e) => {
+    // e.preventDefault();
+    console.log(query.get("tab"));
+    setTab(query.get("tab"));
+  };
+
   return (
     <>
       <Helmet>
@@ -21,7 +37,7 @@ export default function Profile() {
             <p className="info-email">marcdoe@gmail.com</p>
           </div>
         </div>
-        <div className="profile-body">
+        <div className="profile-body dflex">
           <div className="side-pane">
             <div className="user-details">
               <div className="user-details-option">
@@ -38,8 +54,23 @@ export default function Profile() {
               </div>
             </div>
           </div>
-          <div className="user-main">
-            
+          <div className="user-tabs">
+            <nav className="dflex">
+              <Link to={"/profile/?tab=me"} onClick={ChangeTab}>
+                <p>Mon compte</p>
+              </Link>
+              <Link to={"/profile"} onClick={ChangeTab}>
+                <p>Profiles</p>
+              </Link>
+              <Link to={"/profile/?tab=add"} onClick={ChangeTab}>
+                <p>Nouveau profil</p>
+              </Link>
+            </nav>
+            <div className="tab">
+              {tab === "" || (tab === null && <ProfileList />)}
+              {tab === "me" && <ProfileInfo />}
+              {tab === "add" && <AddProfile />}
+            </div>
           </div>
         </div>
       </div>
