@@ -1506,6 +1506,10 @@ div.input-job-element > select {
   -o-border-radius: 100%;
 }
 
+.profile .user-info  {
+    margin-top: 12px;
+}
+
 .profile .user-info .info-name {
     color: black;
 }
