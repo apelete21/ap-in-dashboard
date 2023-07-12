@@ -1,22 +1,19 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import { bgs, teams } from "../service/icons";
-import { Link } from "react-router-dom";
 import ProfileInfo from "../components/profile";
 import AddProfile from "../components/profile/add";
 import ProfileUpdate from "../components/profile/update";
 import ProfileList from "../components/profile/list";
 import { useState } from "react";
-import { useQuery } from "../service/query";
 
 export default function Profile() {
-  const query = useQuery();
   const [tab, setTab] = useState("");
 
-  const ChangeTab = (e) => {
-    // e.preventDefault();
-    console.log(query.get("tab"));
-    setTab(query.get("tab"));
+  const ChangeTab = (e, value) => {
+    e.preventDefault();
+    console.log(value);
+    setTab(value?.toString());
   };
 
   return (
@@ -55,19 +52,28 @@ export default function Profile() {
             </div>
           </div>
           <div className="user-tabs">
-            <nav className="dflex">
-              <Link to={"/profile/?tab=me"} onClick={ChangeTab}>
-                <p>Mon compte</p>
-              </Link>
-              <Link to={"/profile"} onClick={ChangeTab}>
+            <div className="tabs">
+              <span
+                className={tab === (null || "") && "active"}
+                onClick={(e) => ChangeTab(e, "")}
+              >
                 <p>Profiles</p>
-              </Link>
-              <Link to={"/profile/?tab=add"} onClick={ChangeTab}>
+              </span>
+              <span
+                className={tab === "me" && "active"}
+                onClick={(e) => ChangeTab(e, "me")}
+              >
+                <p>Mon compte</p>
+              </span>
+              <span
+                className={tab === "add" && "active"}
+                onClick={(e) => ChangeTab(e, "add")}
+              >
                 <p>Nouveau profil</p>
-              </Link>
-            </nav>
-            <div className="tab">
-              {tab === "" || (tab === null && <ProfileList />)}
+              </span>
+            </div>
+            <div className="tab-content">
+              {tab === (null || "") && <ProfileList />}
               {tab === "me" && <ProfileInfo />}
               {tab === "add" && <AddProfile />}
             </div>
