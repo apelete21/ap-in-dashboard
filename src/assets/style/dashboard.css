@@ -1527,6 +1527,7 @@ Profile styles section
 }
 
 .profile .profile-body {
+  position: sticky;
   margin-top: 4rem;
   gap: 2rem;
 }
@@ -1574,7 +1575,7 @@ Profile styles section
   position: absolute;
   bottom: -1px;
   left: 0;
-  height: 2px;
+  height: 3px;
   width: 100%;
   background-color: orange;
 }
