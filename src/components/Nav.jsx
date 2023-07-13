@@ -76,8 +76,6 @@ function Nav() {
           <img src={icons.prIcon} alt="profile" />
           <div className="user-menu">
             <Link to={"/profile"}>My account</Link>
-            <Link>Update account</Link>
-            <Link>Create a user</Link>
             <Link>Logout</Link>
           </div>
         </div>
