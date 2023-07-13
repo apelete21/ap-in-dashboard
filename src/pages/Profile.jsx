@@ -8,7 +8,7 @@ import ProfileList from "../components/profile/list";
 import { useState } from "react";
 
 export default function Profile() {
-  const [tab, setTab] = useState("");
+  const [tab, setTab] = useState("me");
 
   const ChangeTab = (e, value) => {
     e.preventDefault();

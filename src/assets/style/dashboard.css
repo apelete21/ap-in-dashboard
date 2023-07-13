@@ -1533,6 +1533,7 @@ Profile styles section
 
 .profile .side-pane {
   max-width: 260px;
+  height: fit-content;
   padding: 1rem;
   border: 1px solid #00000020;
 }
@@ -1589,4 +1590,90 @@ Profile styles section
 .profile .profile-body .tab-content {
   padding-block: 1rem;
   width: 100%;
+}
+
+.profile .tab-me {
+  display: grid;
+  width: 100%;
+}
+
+.tab-me .profile-image {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+  margin: 1rem 0 1.8rem;
+}
+
+.tab-me .image-show {
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  overflow: hidden;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
+}
+
+.tab-me .picture-actions {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.tab-me .picture-actions span {
+  padding: 15px 10px;
+  cursor: pointer;
+  transition: all .5s;
+  border-radius: 10px;
+  -webkit-transition: all .5s;
+  -moz-transition: all .5s;
+  -ms-transition: all .5s;
+  -o-transition: all .5s;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+.tab-me .picture-actions span:hover {
+  opacity: .9;
+}
+.tab-me .picture-actions span:first-child {
+  background: #000;
+  color: white;
+}
+.tab-me .picture-actions span:last-child {
+  background: none;
+  color: black;
+  border: 1px solid black;
+}
+
+.user-datas {
+  display: grid;
+  gap: 1rem;
+  padding-block: 2rem;
+}
+
+.user-datas .user-data-item {
+  display: grid;gap: .5rem;
+}
+
+.user-datas .user-data-item input {
+  padding: 15px 10px;
+}
+
+.user-datas .user-data-item input:focus {
+  outline: none;
+}
+
+.tab-me .updater-button span {
+  padding: 15px 20px;
+  background: #000;
+  color: white;
+  display: inline-block;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
 }
