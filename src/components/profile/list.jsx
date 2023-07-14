@@ -1,12 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { teams } from "../../service/icons";
+import { usersReqs } from "../../requests/users";
+import { useState } from "react";
 
 export default function ProfileList() {
-  const data = [1, 2, 3, 4, 5, 6];
+  const [data, setdata] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    (async () => {
+      setIsLoading(true);
+      const { users, message } = await usersReqs({}, "");
+      console.log({ users, message });
+      setIsLoading(false);
+    })();
+  }, [data]);
+
   return (
     <div className="tab-lists">
       <div className="users-number">
-        <span>6 users</span>
+        <span>{data?.length} users</span>
       </div>
       <div className="list-body">
         {data?.map((e, i) => {
