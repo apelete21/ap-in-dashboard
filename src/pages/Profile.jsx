@@ -8,7 +8,7 @@ import ProfileList from "../components/profile/list";
 import { useState } from "react";
 
 export default function Profile() {
-  const [tab, setTab] = useState("");
+  const [tab, setTab] = useState("me");
 
   const ChangeTab = (e, value) => {
     e.preventDefault();
@@ -54,16 +54,16 @@ export default function Profile() {
           <div className="user-tabs">
             <div className="tabs">
               <span
-                className={tab === (null || "") && "active"}
-                onClick={(e) => ChangeTab(e, "")}
-              >
-                <p>Profiles</p>
-              </span>
-              <span
                 className={tab === "me" && "active"}
                 onClick={(e) => ChangeTab(e, "me")}
               >
                 <p>Mon compte</p>
+              </span>
+              <span
+                className={tab === (null || "") && "active"}
+                onClick={(e) => ChangeTab(e, "")}
+              >
+                <p>Profiles</p>
               </span>
               <span
                 className={tab === "add" && "active"}
