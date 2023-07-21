@@ -332,6 +332,7 @@ img {
 .profile_box {
   position: relative;
   display: flex;
+  gap: 1rem;
   align-items: center;
   cursor: pointer;
   padding: 6px 12px;
@@ -1624,12 +1625,12 @@ Profile styles section
 .tab-me .picture-actions span {
   padding: 15px 10px;
   cursor: pointer;
-  transition: all .5s;
+  transition: all 0.5s;
   border-radius: 10px;
-  -webkit-transition: all .5s;
-  -moz-transition: all .5s;
-  -ms-transition: all .5s;
-  -o-transition: all .5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
@@ -1637,7 +1638,7 @@ Profile styles section
 }
 
 .tab-me .picture-actions span:hover {
-  opacity: .9;
+  opacity: 0.9;
 }
 .tab-me .picture-actions span:first-child {
   background: #000;
@@ -1656,7 +1657,8 @@ Profile styles section
 }
 
 .user-datas .user-data-item {
-  display: grid;gap: .5rem;
+  display: grid;
+  gap: 0.5rem;
 }
 
 .user-datas .user-data-item input {
@@ -1667,8 +1669,7 @@ Profile styles section
   outline: none;
 }
 
-.updater-button :first-child
- {
+.updater-button :first-child {
   border: none;
   padding: 15px 20px;
   cursor: pointer;
@@ -1684,27 +1685,25 @@ Profile styles section
 
 .profile .tab-lists {
   display: grid;
-  gap: .7rem;
+  gap: 0.7rem;
   width: 100%;
 }
 
 .tab-lists .users-number {
   width: 100%;
-  padding-block: .8rem;
+  padding-block: 0.8rem;
   text-align: center;
   background: #00000020;
 }
 
-
 .tab-lists .list-body {
   display: grid;
-  gap: .8rem;
+  gap: 0.8rem;
 }
 
 .tab-lists .user-card {
   display: flex;
-  justify-content: 
-  space-between;
+  justify-content: space-between;
   cursor: pointer;
   align-items: center;
   border-bottom: 1px solid #0002;
@@ -1712,9 +1711,9 @@ Profile styles section
 
 .tab-lists .user-card .left-side {
   display: flex;
-  padding-block: .5rem;
+  padding-block: 0.5rem;
   align-items: center;
-  gap: .9rem;
+  gap: 0.9rem;
 }
 
 .tab-lists .user-card .user-profile {
@@ -1741,17 +1740,31 @@ Profile styles section
   margin-left: 10px;
   background: #0002;
   padding: 4px;
-  transition: all .25s;
+  transition: all 0.25s;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
-  -webkit-transition: all .25s;
-  -moz-transition: all .25s;
-  -ms-transition: all .25s;
-  -o-transition: all .25s;
+  -webkit-transition: all 0.25s;
+  -moz-transition: all 0.25s;
+  -ms-transition: all 0.25s;
+  -o-transition: all 0.25s;
 }
 
 .tab-lists .user-card .user-card-actions span:hover {
   opacity: 0.8;
+}
+
+.icon-letter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  background-color: #dc3635;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  flex: 0 1 auto;
 }

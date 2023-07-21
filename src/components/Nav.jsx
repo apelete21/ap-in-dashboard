@@ -71,9 +71,12 @@ function Nav() {
 
         <div className={`profile_box ${userSubmenu && "active"}`} onClick={toggleSubMenu}>
           <p>
-            {user?.fullName}
+            {user?.fullName || "Anonymous"}
           </p>
-          <img src={icons.prIcon} alt="profile" />
+          {/* <img src={icons.prIcon} alt="profile" /> */}
+          <div className="icon-letter">
+            <span >{user?.fullName?.charAt(0)?.toUpperCase() || 'A'}</span>
+          </div>
           <div className="user-menu">
             <Link to={"/profile"}>My account</Link>
             <Link>Logout</Link>

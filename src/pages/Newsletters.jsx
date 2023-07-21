@@ -83,8 +83,8 @@ export default function Newsletters() {
     const response = await deleteManyEmails(todelete);
     setStatusMessage(response.message);
     setreload(true);
-    setTodelete([]);
     // reinitialise la valeur des checkbox à false
+    setTodelete([]);
   }
 
   return (
@@ -109,7 +109,7 @@ export default function Newsletters() {
               return (
                 <div className="request-item" key={index}>
                   <div className="requester-letter-logo">
-                    {item.email.charAt(0).toUpperCase()}
+                    {item?.email.charAt(0).toUpperCase()}
                   </div>
                   <div className="requester-details">
                     <div className="requester-email">{item.email}</div>
@@ -125,7 +125,7 @@ export default function Newsletters() {
               );
             })
           ) : (
-            <p style={{ width: "100%" }}>No contacts!</p>
+            <p style={{ width: "100%" }}>No email found!</p>
           )}
         </div> : <LoadingComp scale={0.7} />}
       </div>

@@ -30,7 +30,7 @@ export default function Profile() {
         setIsLoading(false);
       }, 500);
     })();
-  }, [user]);
+  }, [isLoading]);
 
   const ChangeTab = (e, value) => {
     e.preventDefault();
