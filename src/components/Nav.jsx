@@ -5,13 +5,13 @@ import { AppContext } from "../Contexts/AppContext";
 
 function Nav() {
   const { pathname } = useLocation();
-  const {user} = useContext(AppContext)
+  const { user, UserLogOut } = useContext(AppContext);
 
-  const [userSubmenu, setuserSubmenu] = useState(false)
+  const [userSubmenu, setuserSubmenu] = useState(false);
 
   const toggleSubMenu = () => {
-    setuserSubmenu(!userSubmenu)
-  }
+    setuserSubmenu(!userSubmenu);
+  };
 
   return (
     <>
@@ -69,17 +69,25 @@ function Nav() {
           </li>
         </ul>
 
-        <div className={`profile_box ${userSubmenu && "active"}`} onClick={toggleSubMenu}>
-          <p>
-            {user?.fullName || "Anonymous"}
-          </p>
+        <div
+          className={`profile_box ${userSubmenu && "active"}`}
+          onClick={toggleSubMenu}
+        >
+          <p>{user?.fullName || "Anonymous"}</p>
           {/* <img src={icons.prIcon} alt="profile" /> */}
           <div className="icon-letter">
-            <span >{user?.fullName?.charAt(0)?.toUpperCase() || 'A'}</span>
+            <span>{user?.fullName?.charAt(0)?.toUpperCase() || "A"}</span>
           </div>
           <div className="user-menu">
             <Link to={"/profile"}>My account</Link>
-            <Link>Logout</Link>
+            <Link
+              onClick={(e) => {
+                e.preventDefault();
+                UserLogOut();
+              }}
+            >
+              Logout
+            </Link>
           </div>
         </div>
       </div>

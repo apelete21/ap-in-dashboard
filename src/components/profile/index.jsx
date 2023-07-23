@@ -13,8 +13,7 @@ export default function ProfileInfo() {
     (async () => {
       setIsLoading(true);
       if (userFisrtLoad) {
-        const { user, message, ok } = await usersReqs({}, "auth");
-        console.log({ user, message, ok });
+        const { user, ok } = await usersReqs({}, "auth");
         if (ok) {
           setCurrent(user);
         } else {
@@ -54,7 +53,7 @@ export default function ProfileInfo() {
         body[e] = userInfo[e];
       }
     });
-    const { user, message, ok } = await usersReqs(body, "update");
+    const { ok } = await usersReqs(body, "update");
     if (ok) {
       window.location.reload();
     } else {

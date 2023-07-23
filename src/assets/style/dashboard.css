@@ -1535,6 +1535,7 @@ Profile styles section
 
 .profile .side-pane {
   max-width: 260px;
+  min-width: 200px;
   height: fit-content;
   padding: 1rem;
   border: 1px solid #00000020;
