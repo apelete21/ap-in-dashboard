@@ -28,7 +28,7 @@ export default function Login() {
       </Helmet>
       <div className="body_wrapper login_page">
         <div className="img_container"></div>
-        {!userLoadingState && !isUserLoggedIn ? (
+        {(!userLoadingState && !isUserLoggedIn) ? (
           <div className="main_content">
             <div className="logo_box">
               <img className="logo" src={icons.lgDark} alt="" />
@@ -45,8 +45,8 @@ export default function Login() {
                   <input
                     type="text"
                     ref={email}
-                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                    minLength={"5"}
+                    // pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                    // minLength={"5"}
                     placeholder="Email"
                     required
                   />
@@ -57,8 +57,8 @@ export default function Login() {
                     type="password"
                     ref={password}
                     placeholder="Password"
-                    minLength={"5"}
-                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}"
+                    // minLength={"5"}
+                    // pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}"
                     required
                   />
                 </div>
@@ -68,9 +68,9 @@ export default function Login() {
               <ErrorParagraph error={loginError} />
             </div>
           </div>
-        ) : (
-          userLoadingState && <LoadingComp />
-        )}
+        ) : isUserLoggedIn ? (
+          <LoadingComp /> 
+        ) : userLoadingState && <LoadingComp />}
       </div>
     </>
   );

@@ -36,7 +36,7 @@ export const BarComponent = (props) => {
     <>
       <div className="graph_box current_month">
         <div className="graph_infos">
-          <p className="graph_title">Total visitors</p>
+          <p className="graph_title">{props.title}</p>
           <div className="graph_number_box">
             <h1 className="graph_number" style={{ color: props.color }}>
               {props.yValues[5]}

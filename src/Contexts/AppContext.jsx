@@ -67,13 +67,13 @@ export const AppContextProvider = ({ children }) => {
       localStorage.setItem("user", token);
       setTimeout(() => {
         setisUserLoggedIn(true);
-      }, 500);
+      }, 1000);
     } else {
       setLoginError(message);
     }
     setTimeout(() => {
       setUserLoadingState(false);
-    }, 2000);
+    }, 1000);
   };
 
   /**
