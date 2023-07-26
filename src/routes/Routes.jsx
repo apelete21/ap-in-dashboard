@@ -66,7 +66,7 @@ function AppRoutes() {
             {statusMessage && <Message data={statusMessage} />}
           </>
         )
-          : (!isUserLoggedIn && !userLoadingState ) ? (
+          : (!isUserLoggedIn && !userLoadingState) ? (
             <>
               <LoginHead />
               {!userLoadingState && <Routes>
@@ -76,7 +76,7 @@ function AppRoutes() {
           ) :
             (
               <>
-                <LoadingComp />
+                <LoadingComp scale={.15} />
               </>
             )
         }

@@ -3,18 +3,19 @@ import React, { useContext, useState } from "react";
 import { AppContext } from "../../Contexts/AppContext";
 import { icons } from "../../service/icons";
 
-function QuoteLists({}) {
-  const { quotesRequested, ChangeItem, deleteQuote } = useContext(AppContext);
+function QuoteLists({ }) {
+  const { quotesRequested, ChangeItem, quoteSelected, deleteQuote } = useContext(AppContext);
 
-const [search, setSearch] = useState("")
+  const [search, setSearch] = useState("")
+  const [selected, setSelected] = useState({})
 
   return (
     <>
       <div className="quotes-requests-lists-container">
         <div className="quotes-search-bar-container">
-          <form>
+          <form onSubmit={e => e.preventDefault()}>
             <div className="quotes-search-bar">
-              <input type="text" placeholder="Rechercher" onChange={(e)=>setSearch(e?.target?.value)} />
+              <input type="text" placeholder="Rechercher" onChange={(e) => setSearch(e?.target?.value)} />
               <button>
                 <img src={icons.searchIcon} alt="search icon" />
               </button>
@@ -24,7 +25,7 @@ const [search, setSearch] = useState("")
         <div className="quotes-requests-lists">
           {/* <!-- Item --> */}
           {quotesRequested?.length ? (
-            quotesRequested?.filter((element)=>{
+            quotesRequested?.filter((element) => {
               if (search === "") {
                 return element;
               }
@@ -34,9 +35,12 @@ const [search, setSearch] = useState("")
             })?.map((item, index) => {
               return (
                 <div
-                  className="quote-request-item"
+                  className={`quote-request-item ${item === selected && "selected"}`}
                   key={index}
-                  onClick={() => ChangeItem(item)}
+                  onClick={() => {
+                    ChangeItem(item)
+                    setSelected(item)
+                  }}
                 >
                   <div className="quote-request-picture">
                     <div className="icon-letter">
@@ -61,7 +65,7 @@ const [search, setSearch] = useState("")
               );
             })
           ) : (
-            <p style={{ textAlign: "center" }}>No data found</p>
+            <p style={{ textAlign: "center" }}>0 requests</p>
           )}
         </div>
 
