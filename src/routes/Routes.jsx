@@ -21,7 +21,7 @@ import Profile from "../pages/Profile";
 import { LoadingComp } from "../components/loading";
 
 function AppRoutes() {
-  const { isUserLoggedIn, userLoadingState, statusMessage, JobApp } = useContext(AppContext);
+  const { isUserLoggedIn, statusMessage, userLoadingState, JobApp } = useContext(AppContext);
 
   const { pathname } = useLocation();
 
@@ -32,17 +32,16 @@ function AppRoutes() {
     });
   }, [pathname]);
 
-  if (userLoadingState) {
-    return (
-      <>
-        <LoadingComp scale={.15} />
-      </>
-    )
-  } else {
-    if (isUserLoggedIn) {
-      return (
-        <>
-          <ErrorBoundary>
+  // return app components
+  return (
+    <>
+      {userLoadingState && <>
+        <LoadingComp scale={0.15} top={true} />
+      </>}
+      <ErrorBoundary>
+
+        {(isUserLoggedIn && !userLoadingState) ? (
+          <>
             <Head />
             {JobApp !== null && <ApplicationDetails />}
             <div className="main_wrapper">
@@ -50,6 +49,7 @@ function AppRoutes() {
 
               <div className="main">
                 <Nav />
+
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/quote-requests" element={<QuoteRequests />} />
@@ -64,20 +64,25 @@ function AppRoutes() {
               </div>
             </div>
             {statusMessage && <Message data={statusMessage} />}
-          </ErrorBoundary>
-        </>
-      );
-    } else {
-      return (
-        <>
-          <LoginHead />
-          <Routes>
-            {!isUserLoggedIn && <Route path={"*"} element={<Login />} />}
-          </Routes>
-        </>
-      );
-    }
-  }
+          </>
+        )
+          : (!isUserLoggedIn && !userLoadingState ) ? (
+            <>
+              <LoginHead />
+              {!userLoadingState && <Routes>
+                {!isUserLoggedIn && <Route path={"*"} element={<Login />} />}
+              </Routes>}
+            </>
+          ) :
+            (
+              <>
+                <LoadingComp />
+              </>
+            )
+        }
+      </ErrorBoundary>
+    </>
+  )
 }
 
 export default AppRoutes;

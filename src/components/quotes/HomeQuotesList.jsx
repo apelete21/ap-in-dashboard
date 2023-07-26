@@ -37,7 +37,9 @@ const HomeQuotesList = () => {
                     <tr key={index}>
                       <td className="full_name">
                         <div className="requester-picture">
-                          <img src={icons.prIcon} alt="" />
+                          <div className="icon-letter">
+                            <span> {item?.fullname?.charAt(0)?.toUpperCase()} </span>
+                          </div>
                         </div>
                         <div className="requester_name">{item.fullname}</div>
                       </td>
@@ -50,22 +52,30 @@ const HomeQuotesList = () => {
                         {moment(item.createdAt).calendar()}
                       </td>
                       <td className="actions">
-                        <span
-                          className="view-info"
-                          title="view"
-                          onClick={() => setQuoteSelected(item)}
-                        >
-                          <Link to={"/quote-requests"}>
-                            <img src={icons.eyeIcon} alt="view-info" />
-                          </Link>
-                        </span>
-                        <span
-                          className="delete-item"
-                          title="delete"
-                          onClick={() => deleteQuote(item._id)}
-                        >
-                          <img src={icons.trashIcon} alt="delete-item" />
-                        </span>
+                        <div style={{
+                          display: "flex",
+                          gap: "0.5rem",
+                          justifyItems: "center",
+                          alignItems: "center",
+                          alignContent: "center"
+                        }}>
+                          <span
+                            className="view-info"
+                            title="view"
+                            onClick={() => setQuoteSelected(item)}
+                          >
+                            <Link to={"/quote-requests"}>
+                              <img src={icons.eyeIcon} alt="view-info" />
+                            </Link>
+                          </span>
+                          <span
+                            className="delete-item"
+                            title="delete"
+                            onClick={() => deleteQuote(item._id)}
+                          >
+                            <img src={icons.trashIcon} alt="delete-item" />
+                          </span>
+                        </div>
                       </td>
                     </tr>
                   );

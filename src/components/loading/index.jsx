@@ -1,7 +1,7 @@
 import React from 'react'
 import { icons } from '../../service/icons';
 
-export function LoadingComp({scale}) {
+export function LoadingComp({scale, top}) {
   return (
     <>
       <div
@@ -13,6 +13,9 @@ export function LoadingComp({scale}) {
           alignItems: "center",
           margin: "0 auto",
           justifyContent: "center",
+          position: `${top ? "absolute" : "static"}`,
+          top: "0",
+          zIndex: 100000000000
         }}
       >
         <img

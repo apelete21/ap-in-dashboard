@@ -785,7 +785,12 @@ td.actions span {
   padding: 10px 0;
   border-bottom: 1px solid #dfdfdf;
   position: relative;
+  cursor: pointer;
   width: 100%;
+}
+
+.quote-request-item:hover {
+  background-color: #00000020;
 }
 
 .quotes-button-trash {
