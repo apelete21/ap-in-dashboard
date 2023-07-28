@@ -41,6 +41,7 @@ import Roger from "../assets/media/images/team/roger.jpg";
 import TeamMember6 from "../assets/media/images/team/team-memeber-6.png";
 
 import ProfileIcon from "../assets/media/images/news/author_profile.png";
+import bannerImg from "../assets/media/images/banners/services.png"
 
 export const icons = {
     tgDarkThin: TelegramDarkThin,
@@ -87,3 +88,7 @@ export const teams = {
     Roger,
     TeamMember6,
 };
+
+export const bgs = {
+    bannerImg
+}

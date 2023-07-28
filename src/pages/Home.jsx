@@ -3,11 +3,14 @@ import { icons } from '../service/icons'
 import Visits from "../components/charts/Visits"
 import HomeQuotesList from '../components/quotes/HomeQuotesList'
 import { LineComponent } from '../components/charts/Line'
+import { Helmet } from 'react-helmet'
 
 export default function Home() {
   return (
     <>
-    
+    <Helmet>
+      <title>Bienvenue | Dashboard</title>
+    </Helmet>
       <Visits />
 
       <div className="stats_chart">

@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import { ArticleTemplate } from "../components/template";
 import { articleReq, audioReq } from "../requests/article";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 export default function NewPost() {
   const navigate = useNavigate();
@@ -65,6 +66,9 @@ export default function NewPost() {
 
   return (
     <>
+    <Helmet>
+      <title>Add a new blog post</title>
+    </Helmet>
       {showModal &&
         createPortal(
           <ArticleTemplate

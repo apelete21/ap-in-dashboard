@@ -17,9 +17,11 @@ import ErrorBoundary from "../components/Error/ErrorBoundary";
 import Message from "../components/Message";
 import ApplicationDetails from "../pages/ApplicationDetails";
 import NewPost from "../pages/NewPost";
+import Profile from "../pages/Profile";
+import { LoadingComp } from "../components/loading";
 
 function AppRoutes() {
-  const { isUserLoggedIn, statusMessage, JobApp } = useContext(AppContext);
+  const { isUserLoggedIn, statusMessage, userLoadingState, JobApp } = useContext(AppContext);
 
   const { pathname } = useLocation();
 
@@ -30,44 +32,57 @@ function AppRoutes() {
     });
   }, [pathname]);
 
-  if (isUserLoggedIn) {
-    return (
-      <>
-        <ErrorBoundary>
-          <Head />
-          {JobApp !== null && <ApplicationDetails />}
-          <div className="main_wrapper">
-            <Aside />
+  // return app components
+  return (
+    <>
+      {userLoadingState && <>
+        <LoadingComp scale={0.15} top={true} />
+      </>}
+      <ErrorBoundary>
 
-            <div className="main">
-              <Nav />
+        {(isUserLoggedIn && !userLoadingState) ? (
+          <>
+            <Head />
+            {JobApp !== null && <ApplicationDetails />}
+            <div className="main_wrapper">
+              <Aside />
 
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/quote-requests" element={<QuoteRequests />} />
-                <Route path="/jobs" element={<Jobs />} />
-                <Route path="/jobs/new" element={<AddNewJob />} />
-                <Route path="/jobs/:title" element={<ApplicationList />} />
-                <Route path="/newsletters" element={<Newsletters />} />
-                <Route path="/blog" element={<Posts />} />
-                <Route path="/blog/new_post" element={<NewPost />} />
-              </Routes>
+              <div className="main">
+                <Nav />
+
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/quote-requests" element={<QuoteRequests />} />
+                  <Route path="/jobs" element={<Jobs />} />
+                  <Route path="/jobs/new" element={<AddNewJob />} />
+                  <Route path="/jobs/:title" element={<ApplicationList />} />
+                  <Route path="/newsletters" element={<Newsletters />} />
+                  <Route path="/blog" element={<Posts />} />
+                  <Route path="/blog/new_post" element={<NewPost />} />
+                  <Route path="/profile" element={<Profile />} />
+                </Routes>
+              </div>
             </div>
-          </div>
-          {statusMessage && <Message data={statusMessage} />}
-        </ErrorBoundary>
-      </>
-    );
-  } else {
-    return (
-      <>
-        <LoginHead />
-        <Routes>
-          <Route path={"*"} element={<Login />} />
-        </Routes>
-      </>
-    );
-  }
+            {statusMessage && <Message data={statusMessage} />}
+          </>
+        )
+          : (!isUserLoggedIn && !userLoadingState) ? (
+            <>
+              <LoginHead />
+              {!userLoadingState && <Routes>
+                {!isUserLoggedIn && <Route path={"*"} element={<Login />} />}
+              </Routes>}
+            </>
+          ) :
+            (
+              <>
+                <LoadingComp scale={.15} />
+              </>
+            )
+        }
+      </ErrorBoundary>
+    </>
+  )
 }
 
 export default AppRoutes;

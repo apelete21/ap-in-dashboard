@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import { JobTemplate } from "../components/template";
 import { postJob } from "../requests/jobs";
 import { AppContext } from "../Contexts/AppContext";
+import { Helmet } from "react-helmet";
 
 export default function AddNewJob() {
   const { setStatusMessage } = useContext(AppContext);
@@ -56,6 +57,9 @@ export default function AddNewJob() {
 
   return (
     <>
+    <Helmet>
+      <title>Add a new job post</title>
+    </Helmet>
       <>
         {showModal &&
           createPortal(

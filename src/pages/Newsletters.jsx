@@ -2,7 +2,9 @@ import moment from "moment";
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AppContext } from "../Contexts/AppContext";
+import { LoadingComp } from "../components/loading";
 import { deleteManyEmails, getNewsletters } from "../requests/newsletters";
+import { Helmet } from "react-helmet";
 
 export default function Newsletters() {
   const [emails, setEmails] = useState();
@@ -81,12 +83,15 @@ export default function Newsletters() {
     const response = await deleteManyEmails(todelete);
     setStatusMessage(response.message);
     setreload(true);
-    setTodelete([]);
     // reinitialise la valeur des checkbox à false
+    setTodelete([]);
   }
 
   return (
     <>
+    <Helmet>
+      <title>Newsletters</title>
+    </Helmet>
       <div className="newsletter-request-list">
         <div className="newsletter-lists-top-bar">
           <h1>Newletters contacts list</h1>
@@ -98,13 +103,13 @@ export default function Newsletters() {
             Delete the selection
           </Link>
         </div>
-        <div className="requests-lists">
+        {!reload ? <div className="requests-lists">
           {emails?.length ? (
             emails?.map((item, index) => {
               return (
                 <div className="request-item" key={index}>
                   <div className="requester-letter-logo">
-                    {item.email.charAt(0).toUpperCase()}
+                    {item?.email.charAt(0).toUpperCase()}
                   </div>
                   <div className="requester-details">
                     <div className="requester-email">{item.email}</div>
@@ -120,9 +125,9 @@ export default function Newsletters() {
               );
             })
           ) : (
-            <p style={{ width: "100%" }}>No contacts!</p>
+            <p style={{ width: "100%" }}>No email found!</p>
           )}
-        </div>
+        </div> : <LoadingComp scale={0.7} />}
       </div>
     </>
   );

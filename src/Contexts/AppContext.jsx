@@ -65,11 +65,18 @@ export const AppContextProvider = ({ children }) => {
     if (ok) {
       setUser(user);
       localStorage.setItem("user", token);
+      // setTimeout(() => {
       setisUserLoggedIn(true);
+      // }, 1000);
+      setTimeout(() => {
+        setUserLoadingState(false);
+      }, 3000);
     } else {
       setLoginError(message);
     }
-    setUserLoadingState(false);
+    setTimeout(() => {
+      setUserLoadingState(false);
+    }, 3000);
   };
 
   /**
@@ -79,7 +86,6 @@ export const AppContextProvider = ({ children }) => {
   */
   const UserLogOut = () => {
     localStorage.removeItem("user");
-    window.location = "/";
     setisUserLoggedIn(false);
     setUserLoadingState(false);
   };
