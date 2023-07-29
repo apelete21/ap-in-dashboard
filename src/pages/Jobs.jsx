@@ -10,6 +10,7 @@ import { Helmet } from "react-helmet";
 export default function Jobs() {
   const { setStatusMessage } = useContext(AppContext);
   const [jobs, setJobs] = useState([]);
+  const [search, setSearch] = useState("")
   const [isDataLoading, setIsDataLoading] = useState(true);
   // const [error, setError] = useState("");
 
@@ -20,7 +21,7 @@ export default function Jobs() {
         if (ok) {
           setJobs(data);
         } else {
-          setStatusMessage(data?.message || "Something went wrong");
+          setStatusMessage("No jobs found!");
         }
         setIsDataLoading(false);
       }
@@ -30,18 +31,18 @@ export default function Jobs() {
 
   return (
     <>
-    <Helmet>
-      <title>List of jobs</title>
-    </Helmet>
+      <Helmet>
+        <title>List of jobs</title>
+      </Helmet>
       <div className="list-of-jobs">
         <div className="job-list-title">
           <h1>List of jobs</h1>
         </div>
         <br />
         <div className="quotes-search-bar-container">
-          <form>
+          <form onSubmit={e => e.preventDefault()}>
             <div className="quotes-search-bar">
-              <input type="text" placeholder="Rechercher" />
+              <input type="text" placeholder="Rechercher" onChange={e => setSearch(e?.target?.value)} />
               <button>
                 <img src={icons.searchIcon} alt="search icon" />
               </button>
@@ -56,7 +57,14 @@ export default function Jobs() {
         {!isDataLoading ? (
           <>
             <div className="jobs-list-container">
-              {jobs?.map((element, index) => {
+              {jobs?.filter(element => {
+                if (search === "") {
+                  return element;
+                }
+                if (search !== "" && element.title.search(search) !== -1) {
+                  return element;
+                }
+              })?.map((element, index) => {
                 return (
                   <JobCard
                     data={element}

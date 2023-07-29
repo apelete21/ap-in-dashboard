@@ -37,6 +37,7 @@ export default function AddNewJob() {
     } else {
       alert(data?.message || "Failed!");
     }
+    window.location = "/jobs"
   };
 
   const openTemplate = () => {
