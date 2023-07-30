@@ -73,7 +73,7 @@ export default function JobCard({ data, isDataLoading, setIsDataLoading }) {
             </div>
           </div>
           <div className="publication-date">
-            <span>{moment(data?.createdAt).calendar()}</span>
+            <span>{moment(data?.createdAt).calendar()}</span> 
             <span>
               <img src={icons.grayCalendar} alt="" />
             </span>
@@ -93,7 +93,7 @@ export default function JobCard({ data, isDataLoading, setIsDataLoading }) {
             <span className="location-tag">{data?.worktype}</span>
           </div>
           <div>
-            {data?.activity && <span className="availabity-tag">Active</span>}
+            {/* {data?.activity && <span className="availabity-tag">Active</span>} */}
           </div>
         </div>
 

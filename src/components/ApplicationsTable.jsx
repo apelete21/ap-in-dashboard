@@ -76,7 +76,7 @@ export default function ApplicationsTable({
                   </tr>
                 </thead>
                 <tbody>
-                  {apply &&
+                  {apply?.length &&
                     apply?.map((element, index) => {
                       return (
                         <tr key={index}>

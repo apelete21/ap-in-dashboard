@@ -12,6 +12,7 @@ export default function Posts() {
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [search, setSearch] = useState("")
 
   const deletePost = async (title) => {
     setIsLoading(true);
@@ -20,6 +21,7 @@ export default function Posts() {
       if (ok) {
         setStatusMessage(data?.message);
       }
+      window.location = "/blog"
     } catch (error) {
       setStatusMessage(error?.message);
     }
@@ -43,9 +45,9 @@ export default function Posts() {
 
   return (
     <>
-    <Helmet>
-      <title>Lists of blog posts</title>
-    </Helmet>
+      <Helmet>
+        <title>Lists of blog posts</title>
+      </Helmet>
       <br />
       <div className="job-list-title">
         <h1>List of Posts</h1>
@@ -53,9 +55,9 @@ export default function Posts() {
       <br />
 
       <div className="quotes-search-bar-container">
-        <form>
+        <form onClick={e => e.preventDefault()}>
           <div className="quotes-search-bar">
-            <input type="text" placeholder="Rechercher" />
+            <input type="text" placeholder="Rechercher" onChange={e => setSearch(e?.target?.value)} />
             <button>
               <img src={icons.searchIcon} alt="search icon" />
             </button>
@@ -64,13 +66,20 @@ export default function Posts() {
       </div>
 
       {!isLoading ? (<>
-      <div className="jobs-available-number">
-        <p>{posts?.length || 0} Posts available</p>
-        {error && <p> {error} </p>}
-      </div>
+        <div className="jobs-available-number">
+          <p>{posts?.length || 0} Posts available</p>
+          {error && <p> {error} </p>}
+        </div>
         <div>
           {posts?.length !== 0 &&
-            posts?.map((e, i) => {
+            posts?.filter((element) => {
+              if (search === "") {
+                return element;
+              }
+              if (search !== "" && element.title.search(search) !== -1) {
+                return element;
+              }
+            })?.map((e, i) => {
               return <PostCard key={i} item={e} deletePost={deletePost} />;
             })}
         </div></>
