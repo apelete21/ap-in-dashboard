@@ -782,7 +782,7 @@ td.actions span {
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  padding: 10px 0;
+  padding: 10px ;
   border-bottom: 1px solid #dfdfdf;
   position: relative;
   cursor: pointer;
@@ -805,7 +805,7 @@ td.actions span {
 
 .quotes-button-trash {
   position: absolute;
-  right: 0;
+  right: 10px;
 }
 
 .quote-request-item:first-of-type {

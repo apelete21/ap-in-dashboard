@@ -43,12 +43,15 @@ export default function ProfileList() {
               <>
                 <div className="user-card">
                   <div className="left-side">
-                    <div className="user-profile">
-                      <img src={teams.TeamMember6} alt="profile" />
-                    </div>
+                    {/* <div className="user-profile"> */}
+                      {/* <img src={teams.TeamMember6} alt="profile" /> */}
+                      <div className="icon-letter">
+                        <span>{e?.fullName?.charAt(0)?.toUpperCase()}</span>
+                      </div>
+                    {/* </div> */}
                     <div className="user-name-email">
-                      <b className="user-name">John Doe</b> <br />
-                      <span className="user-email">johndoe@gmail.com</span>
+                      <b className="user-name">{e?.fullName}</b> <br />
+                      <span className="user-email">{e?.email}</span>
                     </div>
                   </div>
                   <div className="right-side">

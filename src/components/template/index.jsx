@@ -9,7 +9,7 @@ import { Title } from "./elements/blog/title";
 import { Paragraph } from "./elements/blog/paragraph";
 import { BannerImg, ImgContainer } from "./elements/blog/img";
 import { articleReq } from "../../requests/article";
-import { Router, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export function JobTemplate({ job, setJob, setShowModal, handleSubmit }) {
   const [content, setContent] = useState([<Section />]);
@@ -44,7 +44,7 @@ export function JobTemplate({ job, setJob, setShowModal, handleSubmit }) {
     <>
       {submitPrompt &&
         createPortal(
-          <PromptPopUp setSubmitPrompt={setSubmitPrompt} Submit={Submit} />,
+          <PromptPopUp setSubmitPrompt={setSubmitPrompt} action={Submit} />,
           document.body
         )}
       <section className="modal-root">
@@ -147,7 +147,7 @@ export const ArticleTemplate = ({ article, setArticle, setShowModal }) => {
         createPortal(
           <PromptPopUp
             setSubmitPrompt={setSubmitPrompt}
-            publishJob={publishJob}
+            action={publishJob}
           />,
           document.body
         )}

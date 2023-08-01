@@ -1,6 +1,7 @@
 import moment from "moment";
 import { icons } from "../../service/icons";
 import { Link } from "react-router-dom";
+import { appUrl } from "../../api/url";
 
 const PostCard = ({ item, deletePost }) => {
   return (
@@ -81,8 +82,8 @@ const PostCard = ({ item, deletePost }) => {
           </div>
 
           <div className="actions">
-            {/* <div className=" action action-view">
-              <Link to={`/blog/${item?.title}`}>
+            <div className=" action action-view">
+              <Link to={`${appUrl}/news/${item?.title}`}>
                 <svg
                   width="19"
                   height="19"
@@ -96,9 +97,9 @@ const PostCard = ({ item, deletePost }) => {
                   />
                 </svg>
               </Link>
-            </div> */}
-            {/* <div className="action action-edit">
-              <Link to="/jobs/edit">
+            </div>
+            <div className="action action-edit">
+              <Link to="/jobs/edit" onClick={e=>e.preventDefault()}>
                 <svg
                   width="19"
                   height="19"
@@ -112,7 +113,7 @@ const PostCard = ({ item, deletePost }) => {
                   />
                 </svg>
               </Link>
-            </div> */}
+            </div>
             <div className="action action-delete">
               <Link to="#delete" onClick={() => deletePost(item?.title)}>
                 <svg

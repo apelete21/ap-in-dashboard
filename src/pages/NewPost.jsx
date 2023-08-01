@@ -131,7 +131,7 @@ export default function NewPost() {
           <>
             <br />
             <div className="input-job-element">
-              <p className="input-element-title">Description</p>
+              <p className="input-element-title">Description preview</p>
               <input
                 type="text"
                 onChange={(e) => handleChange({ description: e.target?.value })}

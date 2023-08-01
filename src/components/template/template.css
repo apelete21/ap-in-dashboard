@@ -202,7 +202,7 @@
 
 .editor {
   position: sticky;
-  top: 1vh;
+  top: 45vh;
   margin-top: 2vh;
   margin-left: 1rem;
   width: fit-content;
@@ -465,8 +465,8 @@
 .illustration-image {
   position: relative;
   width: 100%;
- min-height: 400px;
- background: #0005;
+  min-height: 400px;
+  background: #0005;
 }
 
 .illustration-image:hover .image-btn-remove {
@@ -519,11 +519,17 @@
   opacity: 0;
 }
 
+h1 *, .h1 * {
+  font-size: inherit;
+  font-weight: inherit !important;
+}
+
 .imageUploader:hover {
   background: #ddd8;
 }
 
-.news-banner .role, .illustration-image .role {
+.news-banner .role,
+.illustration-image .role {
   position: absolute;
   text-align: center;
   top: 50%;

@@ -5,19 +5,25 @@ import moment from "moment";
 import { allApplications } from "../requests/applications";
 import { deleteJob } from "../requests/jobs";
 import { AppContext } from "../Contexts/AppContext";
+import { appUrl } from "../api/url";
+import { createPortal } from "react-dom";
+import { PromptPopUp } from "./template/elements/prompt";
 
 export default function JobCard({ data, isDataLoading, setIsDataLoading }) {
   const [isAppLoading, setIsAppLoading] = useState(true);
   const [apply, setApply] = useState([]);
   const [appError, setAppError] = useState("");
+  const [submitPrompt, setSubmitPrompt] = useState(false)
 
   const { setStatusMessage } = useContext(AppContext);
 
-  const deleteJobHandler = async (e, id) => {
-    e.preventDefault();
+  const deleteJobHandler = async () => {
+  
     try {
-      const { data } = await deleteJob(id);
-      setStatusMessage(data?.message || "Success!");
+      const res = await deleteJob(data?._id);
+      setStatusMessage(res?.data?.message || "Success!");
+      // setIsAppLoading(false);
+      window.location = "/jobs"
     } catch (error) {
       alert(error?.message || "Error!");
     }
@@ -38,8 +44,18 @@ export default function JobCard({ data, isDataLoading, setIsDataLoading }) {
     };
     getData();
   }, [isAppLoading, data, isDataLoading]);
+
+  const deletePrompt = (e) => {
+    e.preventDefault()
+    setSubmitPrompt(true)
+  }
+
+
   return (
     <>
+      {submitPrompt && createPortal(<>
+        <PromptPopUp setSubmitPrompt={setSubmitPrompt} action={deleteJobHandler} />
+      </>, document.body)}
       <div className="job-item">
         <div className="job-item-top-bar">
           <div className="item-head-description">
@@ -57,7 +73,7 @@ export default function JobCard({ data, isDataLoading, setIsDataLoading }) {
             </div>
           </div>
           <div className="publication-date">
-            <span>{moment(data?.createdAt).calendar()}</span>
+            <span>{moment(data?.createdAt).calendar()}</span> 
             <span>
               <img src={icons.grayCalendar} alt="" />
             </span>
@@ -77,7 +93,7 @@ export default function JobCard({ data, isDataLoading, setIsDataLoading }) {
             <span className="location-tag">{data?.worktype}</span>
           </div>
           <div>
-            {data?.activity && <span className="availabity-tag">Active</span>}
+            {/* {data?.activity && <span className="availabity-tag">Active</span>} */}
           </div>
         </div>
 
@@ -125,7 +141,7 @@ export default function JobCard({ data, isDataLoading, setIsDataLoading }) {
 
           <div className="actions">
             <div className=" action action-view">
-              <Link to={`/jobs/${data?.title}`}>
+              <Link to={`${appUrl}/careers/${data?.title}`} target="_blank" rel="noreferrer">
                 <svg
                   width="19"
                   height="19"
@@ -141,7 +157,7 @@ export default function JobCard({ data, isDataLoading, setIsDataLoading }) {
               </Link>
             </div>
             <div className="action action-edit">
-              <Link to="/jobs/edit">
+              <Link to="/jobs/edit" onClick={e => e.preventDefault()}>
                 <svg
                   width="19"
                   height="19"
@@ -159,7 +175,7 @@ export default function JobCard({ data, isDataLoading, setIsDataLoading }) {
             <div className="action action-delete">
               <Link
                 to="#delete"
-                onClick={(e) => deleteJobHandler(e, data?._id)}
+                onClick={deletePrompt}
               >
                 <svg
                   width="19"
