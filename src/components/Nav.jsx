@@ -49,9 +49,8 @@ function Nav() {
           </li>
           <li>
             <Link
-              className={`nav_link ${
-                pathname.startsWith("/newsletters") && "selected_link"
-              }`}
+              className={`nav_link ${pathname.startsWith("/newsletters") && "selected_link"
+                }`}
               to="/newsletters"
             >
               Newletters
@@ -69,27 +68,18 @@ function Nav() {
           </li>
         </ul>
 
-        <div
-          className={`profile_box ${userSubmenu && "active"}`}
-          onClick={toggleSubMenu}
-        >
-          <p>{user?.fullName || "Anonymous"}</p>
-          {/* <img src={icons.prIcon} alt="profile" /> */}
-          <div className="icon-letter">
-            <span>{user?.fullName?.charAt(0)?.toUpperCase() || "A"}</span>
+        <Link to={"/profile"}>
+          <div
+            className={`profile_box`}
+            onClick={toggleSubMenu}
+          >
+            <p>{user?.fullName || "Anonymous"}</p>
+            {/* <img src={icons.prIcon} alt="profile" /> */}
+            <div className="icon-letter">
+              <span>{user?.fullName?.charAt(0)?.toUpperCase() || "A"}</span>
+            </div>
           </div>
-          <div className="user-menu">
-            <Link to={"/profile"}>My account</Link>
-            <Link
-              onClick={(e) => {
-                e.preventDefault();
-                UserLogOut();
-              }}
-            >
-              Logout
-            </Link>
-          </div>
-        </div>
+        </Link>
       </div>
     </>
   );
