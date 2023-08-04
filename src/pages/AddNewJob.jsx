@@ -109,13 +109,61 @@ export default function AddNewJob() {
                 }}
               >
                 <option defaultChecked>Select a category</option>
-                <option value="Process improvment">Process improvement</option>
-                <option value="SEO">SEO</option>
-                <option value="Hosting solution">Hosting solution</option>
-                <option value="E-commerce">E-commerce</option>
-                <option value="Graphic design">Graphic design</option>
-                <option value="Branding and packaging">
-                  Branding and packaging
+                <option value="Accountancy, Banking & Finance">Accountancy, Banking & Finance</option>
+                <option value="Business, consultin & management">Business, consultin & management</option>
+                <option value="Charity and volontary work">Charity and volontary work</option>
+                <option value="Energy and utilities">Energy and utilities</option>
+                <option value="Engeneering and manufacturing">Engeneering and manufacturing</option>
+                <option value="Environment and agriculture">
+                  Environment and agriculture
+                </option>
+                <option value="Healthcare">
+                  Healthcare
+                </option>
+                <option value="Hospitality and events management">
+                  Hospitality and events management
+                </option>
+                <option value="Information Technology">
+                  Information Technology
+                </option>
+                <option value="Law">
+                  Law
+                </option>
+                <option value="Leisure, sport and tourism">
+                  Leisure, sport and tourism
+                </option>
+                <option value="Marketting, advertising a,d PR">
+                  Marketting, advertising a,d PR
+                </option>
+                <option value="Media and internet">
+                  Media and internet
+                </option>
+                <option value="Property and contruction">
+                  Property and contruction
+                </option>
+                <option value="Public services and administration">
+                  Public services and administration
+                </option>
+                <option value="Recruiment and HR">
+                  Recruiment and HR
+                </option>
+                <option value="Retail">
+                  Retail
+                </option>
+                <option value="Sales">
+                  Sales
+                </option>
+                <option value="Science and Pharmaceuticals">
+                  Science and Pharmaceuticals
+                </option>
+                <option value="Social care">
+                  Social care
+                </option>
+                <option value="Teacher training and education">
+                  Teacher training and education
+                </option>
+                <option value="Transport and Logistics">
+                  Transport and Logistics
                 </option>
               </select>
             </div>

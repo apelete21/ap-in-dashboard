@@ -2,6 +2,8 @@ import moment from "moment";
 import React, { useContext, useState } from "react";
 import { AppContext } from "../../Contexts/AppContext";
 import { icons } from "../../service/icons";
+import { PromptPopUp } from "../template/elements/prompt";
+import { createPortal } from "react-dom";
 
 function QuoteLists({ }) {
   const { quotesRequested, ChangeItem, quoteSelected, deleteQuote } = useContext(AppContext);
@@ -9,8 +11,21 @@ function QuoteLists({ }) {
   const [search, setSearch] = useState("")
   const [selected, setSelected] = useState({})
 
+  const [deleting, setDeleting] = useState(false)
+  const [delId, setDelId] = useState("")
+  const [commitApp, setCommitApp] = useState(false)
+  const [submitPrompt, setSubmitPrompt] = useState(false)
+
+  const deleteOneApp = () => {
+    deleteQuote(delId)
+    setSubmitPrompt(false)
+  }
+
   return (
     <>
+      {submitPrompt && createPortal(<>
+        <PromptPopUp setSubmitPrompt={setSubmitPrompt} action={deleteOneApp} />
+      </>, document.body)}
       <div className="quotes-requests-lists-container">
         <div className="quotes-search-bar-container">
           <form onSubmit={e => e.preventDefault()}>
@@ -55,7 +70,10 @@ function QuoteLists({ }) {
                   </div>
                   <div
                     className="quotes-button-trash"
-                    onClick={() => deleteQuote(item._id)}
+                    onClick={() => {
+                      setDelId(item?._id)
+                      setSubmitPrompt(true)
+                    }}
                   >
                     <div className="button-trash-quote">
                       <img src={icons.trashIcon} alt="" />

@@ -51,7 +51,7 @@ export default function ApplicationsTable({
   }
   !isAppLoading ? (
     () => {
-      if (appError == "") {
+      if (appError === "") {
         return (
           <>
             <div className="quote_request_list_header">
@@ -76,8 +76,7 @@ export default function ApplicationsTable({
                   </tr>
                 </thead>
                 <tbody>
-                  {apply?.length &&
-                    apply?.map((element, index) => {
+                  {apply?.map((element, index) => {
                       return (
                         <tr key={index}>
                           <td className="full_name">

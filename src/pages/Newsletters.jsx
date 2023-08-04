@@ -98,6 +98,13 @@ export default function Newsletters() {
           <Link
             className="btn btn_primary"
             to={"/newsletters"}
+            onClick={() => { }}
+          >
+            Export emails
+          </Link>
+          <Link
+            className="btn btn_primary"
+            to={"/newsletters"}
             onClick={getDelete}
           >
             Delete the selection
