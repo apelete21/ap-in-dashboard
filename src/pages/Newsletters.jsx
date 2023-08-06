@@ -5,6 +5,8 @@ import { AppContext } from "../Contexts/AppContext";
 import { LoadingComp } from "../components/loading";
 import { deleteManyEmails, getNewsletters } from "../requests/newsletters";
 import { Helmet } from "react-helmet";
+import jsPDF from "jspdf";
+import HTMLReactParser from "html-react-parser";
 
 export default function Newsletters() {
   const [emails, setEmails] = useState();
@@ -87,18 +89,36 @@ export default function Newsletters() {
     setTodelete([]);
   }
 
+
+  /**
+   * export datas to pdf file
+   */
+  const generatePDF = (e) => {
+    e.preventDefault()
+    const el = (<div>
+      {emails?.map((e, i) => {
+        <p>{`${e.email}`}</p>
+      })}
+    </div>)
+      console.log(HTMLReactParser(el))
+    const report = new jsPDF("portrait", "pt", "a4")
+    report.html(HTMLReactParser(el)).then(() => {
+      report.save("emails.pdf")
+    })
+  }
+
   return (
     <>
-    <Helmet>
-      <title>Newsletters</title>
-    </Helmet>
+      <Helmet>
+        <title>Newsletters</title>
+      </Helmet>
       <div className="newsletter-request-list">
         <div className="newsletter-lists-top-bar">
           <h1>Newletters contacts list</h1>
           <Link
             className="btn btn_primary"
             to={"/newsletters"}
-            onClick={() => { }}
+            onClick={generatePDF}
           >
             Export emails
           </Link>

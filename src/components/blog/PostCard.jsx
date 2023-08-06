@@ -8,9 +8,7 @@ import { useState } from "react";
 
 const PostCard = ({ item, deletePost }) => {
 
-  const [deleting, setDeleting] = useState(false)
   const [delId, setDelId] = useState("")
-  const [commitApp, setCommitApp] = useState(false)
   const [submitPrompt, setSubmitPrompt] = useState(false)
 
   const deleteOneApp = () => {

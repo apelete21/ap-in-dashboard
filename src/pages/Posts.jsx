@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { icons } from "../service/icons";
 import PostCard from "../components/blog/PostCard";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AppContext } from "../Contexts/AppContext";
 import { articleReq } from "../requests/article";
 import { LoadingComp } from "../components/loading";
@@ -14,14 +14,16 @@ export default function Posts() {
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState("")
 
+  const navigate = useNavigate()
+
   const deletePost = async (title) => {
     setIsLoading(true);
     try {
       const { data, ok } = await articleReq("POST", `delete/${title}`);
       if (ok) {
         setStatusMessage(data?.message);
+        navigate("/blog")
       }
-      window.location = "/blog"
     } catch (error) {
       setStatusMessage(error?.message);
     }
