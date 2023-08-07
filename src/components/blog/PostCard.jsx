@@ -99,7 +99,7 @@ const PostCard = ({ item, deletePost }) => {
 
             <div className="actions">
               <div className=" action action-view">
-                <Link to={`${appUrl}/news/${item?.title}`}>
+                <Link to={`${appUrl}/stories/${item?.title}?c=${item?.category}`} target="_blank" rel="noreferrer">
                   <svg
                     width="19"
                     height="19"

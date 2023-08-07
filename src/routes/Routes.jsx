@@ -35,9 +35,9 @@ function AppRoutes() {
   // return app components
   return (
     <>
-      {userLoadingState && <>
+      {userLoadingState ? <>
         <LoadingComp scale={0.15} top={true} />
-      </>}
+      </>: <></>}
       <ErrorBoundary>
 
         {(isUserLoggedIn && !userLoadingState) ? (

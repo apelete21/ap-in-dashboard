@@ -156,6 +156,7 @@ export const AppContextProvider = ({ children }) => {
   return (
     <AppContext.Provider
       value={{
+        userLoadingState,
         user,
         handleUserLogin,
         isUserLoggedIn,
@@ -169,7 +170,6 @@ export const AppContextProvider = ({ children }) => {
         deleteQuote,
         statusMessage,
         setStatusMessage,
-        userLoadingState,
         JobApp,
         setJobApp,
       }}
