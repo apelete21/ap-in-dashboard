@@ -5,7 +5,7 @@ import { usersReqs } from "../../requests/users";
 import { useContext } from "react";
 import { AppContext } from "../../Contexts/AppContext";
 
-export default function AddProfile({ setTab }) {
+export default function AddProfile({ setTab, loading, setloading }) {
   const { setStatusMessage } = useContext(AppContext);
   const [isLoading, setIsLoading] = useState(false);
   const [userData, setUserData] = useState({

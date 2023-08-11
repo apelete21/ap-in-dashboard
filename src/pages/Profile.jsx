@@ -58,8 +58,8 @@ export default function Profile() {
             <div className="profile-picture wpad">
               <img
                 src={
-                  user?.profile?.imgUrl
-                    ? `${baseUrl}/picture/${user.profile?.imgUrl}`
+                  user?.profile
+                    ? `${baseUrl}/picture/${user.profile}`
                     : teams.Roger
                 }
                 alt="profile-picture"
@@ -115,11 +115,11 @@ export default function Profile() {
                 )}
               </div>
               <div className="tab-content">
-                {tab === "me" && <ProfileInfo user={user} />}
+                {tab === "me" && <ProfileInfo loading={isLoading} setloading={setIsLoading} user={user} />}
                 {user?.role !== "USER" && (
                   <>
-                    {tab === (null || "") && <ProfileList />}
-                    {tab === "add" && <AddProfile setTab={setTab} />}
+                    {tab === (null || "") && <ProfileList loading={isLoading} setloading={setIsLoading} />}
+                    {tab === "add" && <AddProfile loading={isLoading} setloading={setIsLoading} setTab={setTab} />}
                   </>
                 )}
               </div>

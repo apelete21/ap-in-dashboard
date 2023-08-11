@@ -1633,6 +1633,13 @@ Profile styles section
   -o-border-radius: 100%;
 }
 
+.tab-me .image-show img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
 .tab-me .picture-actions {
   display: flex;
   gap: 1.5rem;

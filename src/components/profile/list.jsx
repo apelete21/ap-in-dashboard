@@ -6,7 +6,7 @@ import { LoadingComp } from "../loading";
 import { useContext } from "react";
 import { AppContext } from "../../Contexts/AppContext";
 
-export default function ProfileList() {
+export default function ProfileList({ loading, setloading }) {
   const { setStatusMessage } = useContext(AppContext);
   const [data, setdata] = useState([]);
   const [isLoading, setIsLoading] = useState(true);

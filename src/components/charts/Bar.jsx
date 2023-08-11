@@ -11,6 +11,7 @@ import {
 Chart.register(BarElement, CategoryScale, LinearScale, Tooltip);
 
 export const BarComponent = (props) => {
+  // console.log({ props: props })
   const barColors = [
     "#e3e3e3",
     "#e3e3e3",
