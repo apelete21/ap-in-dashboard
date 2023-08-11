@@ -3,13 +3,31 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AppContext } from "../../Contexts/AppContext";
 import { icons } from "../../service/icons";
+import { useState } from "react";
+import { LoadingComp } from "../loading";
+import { createElement } from "react";
+import { PromptPopUp } from "../template/elements/prompt";
+import { createPortal } from "react-dom";
 
 const HomeQuotesList = () => {
   const { setQuoteSelected, quotesRequested, deleteQuote } =
     useContext(AppContext);
 
+  const [deleting, setDeleting] = useState(false)
+  const [delId, setDelId] = useState("")
+  const [commitApp, setCommitApp] = useState(false)
+  const [submitPrompt, setSubmitPrompt] = useState(false)
+
+  const deleteOneApp = () => {
+    deleteQuote(delId)
+    setSubmitPrompt(false)
+  }
+
   return (
     <>
+      {submitPrompt && createPortal(<>
+        <PromptPopUp setSubmitPrompt={setSubmitPrompt} action={deleteOneApp} />
+      </>, document.body)}
       <div className="quote_request_list">
         <div className="quote_request_list_header">
           <h1>Latest quote requests</h1>
@@ -71,7 +89,10 @@ const HomeQuotesList = () => {
                           <span
                             className="delete-item"
                             title="delete"
-                            onClick={() => deleteQuote(item._id)}
+                            onClick={() => {
+                              setDelId(item?._id)
+                              setSubmitPrompt(true)
+                            }}
                           >
                             <img src={icons.trashIcon} alt="delete-item" />
                           </span>
@@ -84,7 +105,7 @@ const HomeQuotesList = () => {
             </table>
           </div>
         ) : (
-          <p style={{ textAlign: "center" }}>No data found</p>
+          <p style={{ textAlign: "center" }}>No requests found!</p>
         )}
       </div>
     </>

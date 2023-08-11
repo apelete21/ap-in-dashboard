@@ -5,9 +5,13 @@ import { AppContext } from "../Contexts/AppContext";
 import { LoadingComp } from "../components/loading";
 import { deleteManyEmails, getNewsletters } from "../requests/newsletters";
 import { Helmet } from "react-helmet";
+import jsPDF from "jspdf";
+import HTMLReactParser from "html-react-parser";
+import { createPortal } from "react-dom";
 
 export default function Newsletters() {
   const [emails, setEmails] = useState();
+  const [isExporting, setIsExporting] = useState(false)
   const [reload, setreload] = useState(true);
   const [error, setError] = useState(false);
   const [todelete, setTodelete] = useState([]);
@@ -87,14 +91,58 @@ export default function Newsletters() {
     setTodelete([]);
   }
 
+
+  /**
+   * export datas to pdf file
+   */
+  const generatePDF = (e) => {
+    e.preventDefault()
+    setIsExporting(true)
+    // const el = (<div>
+    //   {emails?.map((e, i) => {
+    //     <p>{`${e.email}`}</p>
+    //   })}
+    // </div>)
+    // console.log(HTMLReactParser(el))
+    document.querySelectorAll(".requester-checkbox, .requester-letter-logo").forEach((e, i)=> {
+      e.remove()
+    })
+    const report = new jsPDF("portrait", "pt", "a4")
+    report.html(document.querySelector(".requests-lists")).then(() => {
+      report.save("emails.pdf")
+      setreload(true)
+      // window.reload()
+    })
+    setIsExporting(false)
+  }
+
   return (
     <>
-    <Helmet>
-      <title>Newsletters</title>
-    </Helmet>
+      {isExporting ? (
+        <div style={{
+          position: "fixed",
+          width: "100%",
+          height: "100vh",
+          top: 0,
+          zIndex: 100000,
+          background: "#fff"
+        }}>
+          <LoadingComp scale={0.5} top={true} />
+        </div>
+      ) : ""}
+      <Helmet>
+        <title>Newsletters</title>
+      </Helmet>
       <div className="newsletter-request-list">
         <div className="newsletter-lists-top-bar">
           <h1>Newletters contacts list</h1>
+          <Link
+            className="btn btn_primary"
+            to={"/newsletters"}
+            onClick={generatePDF}
+          >
+            Export emails
+          </Link>
           <Link
             className="btn btn_primary"
             to={"/newsletters"}
@@ -117,7 +165,9 @@ export default function Newsletters() {
                       {moment(item?.createdAt).calendar()}
                     </div>
                   </div>
+                  <br />
                   <input
+                    className="requester-checkbox"
                     type="checkbox"
                     onClick={() => addOrRemoveValue(item._id)}
                   />
