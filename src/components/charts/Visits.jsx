@@ -4,7 +4,7 @@ import { visits } from "../../requests/visits";
 import { useEffect } from "react";
 import { LoadingComp } from "../loading";
 
-const months = [
+export const months = [
   "January",
   "February",
   "March",
@@ -41,35 +41,21 @@ export default function Visits() {
   const [yValuesb, setYValuesb] = useState([])
   const [yValuesc, setYValuesc] = useState([])
   const [xValues, setXValues] = useState([])
-  // const { values: yValuesd} = await dataExtraction("news")
-  // (async () => {
+  
   useEffect(() => {
     (() => {
       const nowMonth = (new Date()).getMonth()
       setXValues(months.slice(nowMonth - 5, nowMonth + 1))
-      console.log(months.slice(nowMonth - 5, nowMonth + 1))
     })()
   }, [])
   useEffect(() => {
     (async () => {
       setYValuesa(await dataExtraction("app"))
       setYValuesb(await dataExtraction("job"))
-      setYValuesc(await dataExtraction("blog"))
+      setYValuesc(await dataExtraction("quote"))
     })()
     setLoading(false)
   }, [loading])
-  // })()
-
-
-
-  // var xValues = [
-  //   "March",
-  //   "April",
-  //   "May",
-  //   "June",
-  //   "July",
-  //   "August",
-  // ];
 
   if (!loading) {
     return (

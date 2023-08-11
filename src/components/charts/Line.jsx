@@ -8,6 +8,9 @@ import {
   PointElement,
   Filler,
 } from "chart.js";
+import { dataExtraction } from "./Visits";
+import { useEffect, useState } from "react";
+import { months } from "./Visits";
 
 Chart.register(
   LineElement,
@@ -18,27 +21,58 @@ Chart.register(
   Filler
 );
 
+// const months = [
+//   "January",
+//   "February",
+//   "March",
+//   "April",
+//   "May",
+//   "June",
+//   "July",
+//   "August",
+//   "September",
+//   "October",
+//   "November",
+//   "December",
+// ];
+
 export function LineComponent() {
-  var labels = ["Italy", "France", "Spain", "USA", "Togo", "Lybia"];
-  var yValues = [50, 94, 50, 41, 50, 36];
-  var yValuesb = [70, 70, 19, 50, 85, 23];
-  var yValuesc = [20, 52, 90, 10, 52, 63];
+  const [loading, setLoading] = useState(true)
+  const [yValuesa, setYValuesa] = useState([])
+  const [yValuesb, setYValuesb] = useState([])
+  const [yValuesc, setYValuesc] = useState([])
+  const [labels, setXValues] = useState([])
+
+  useEffect(() => {
+    (() => {
+      const nowMonth = (new Date()).getMonth()
+      setXValues(months?.slice(nowMonth - 5, nowMonth + 1))
+    })()
+  }, [])
+  useEffect(() => {
+    (async () => {
+      setYValuesa(await dataExtraction("app"))
+      setYValuesb(await dataExtraction("job"))
+      setYValuesc(await dataExtraction("quote"))
+    })()
+    setLoading(false)
+  }, [loading])
   const data = {
     labels: labels,
     datasets: [
       {
-        label: "One",
-        data: yValues,
+        label: "Totals visitors",
+        data: yValuesa,
         fill: true,
         borderColor: "rgb(75, 192, 192)",
         tension: 0.25,
-      },{
-        label: "Two",
+      }, {
+        label: "Total job applications",
         data: yValuesb,
         fill: true,
         borderColor: "rgb(75, 192, 192)",
         tension: 0.25,
-      },{
+      }, {
         label: "Three",
         data: yValuesc,
         fill: true,

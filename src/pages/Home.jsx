@@ -4,6 +4,8 @@ import Visits from "../components/charts/Visits"
 import HomeQuotesList from '../components/quotes/HomeQuotesList'
 import { LineComponent } from '../components/charts/Line'
 import { Helmet } from 'react-helmet'
+import moment from 'moment'
+import { months } from "../components/charts/Visits"
 
 export default function Home() {
   return (
@@ -17,7 +19,7 @@ export default function Home() {
         <div className="blog_stats">
           <div className="title">
             <h2>
-              Blog activity
+              <b>Blog activity</b>
             </h2>
           </div>
           <div className="circular_chart">
@@ -78,17 +80,16 @@ export default function Home() {
             <h2>Monthly activity board</h2>
             <div className="right_conent">
               <span className="dash"></span>
-              <div className="prev_month">
+              {/* <div className="prev_month">
                 <p>Previous motnth</p>
-              </div>
+              </div> */}
               <div className="current_month">
-                <p>March 2023
-                </p>
+                <p> {`${months.at(moment().month())} ${moment().year()}`} </p>
                 <span>
                   <img src={icons.grayCalendar} alt="calendar" />
                 </span>
               </div>
-              <div className="options">
+              <div className="options" style={{opacity: 0}}>
                 <img src={icons.dotIcon} alt="" />
               </div>
             </div>

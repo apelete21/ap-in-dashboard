@@ -48,13 +48,14 @@ export const BarComponent = (props) => {
                 color: props.color,
               }}
             >
-              23
+              {props?.yValues[5] - props.yValues[4]}
               <svg
                 width="9"
                 height="9"
                 viewBox="0 0 11 11"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
+                style={{ transform: props?.yValues[5] < props.yValues[4] ?"rotate(90deg)" : ""}}
               >
                 <path
                   d="M1.8 10.5L0.75 9.45L7.95 2.25H1.5V0.75H10.5V9.75H9V3.3L1.8 10.5Z"
