@@ -21,21 +21,6 @@ Chart.register(
   Filler
 );
 
-// const months = [
-//   "January",
-//   "February",
-//   "March",
-//   "April",
-//   "May",
-//   "June",
-//   "July",
-//   "August",
-//   "September",
-//   "October",
-//   "November",
-//   "December",
-// ];
-
 export function LineComponent() {
   const [loading, setLoading] = useState(true)
   const [yValuesa, setYValuesa] = useState([])
@@ -73,7 +58,7 @@ export function LineComponent() {
         borderColor: "rgb(75, 192, 192)",
         tension: 0.25,
       }, {
-        label: "Three",
+        label: "Total Quotes Requests",
         data: yValuesc,
         fill: true,
         borderColor: "rgb(75, 192, 192)",
@@ -92,12 +77,12 @@ export function LineComponent() {
         options={{
           responsive: true,
           scales: {
-            // x: { display: false },
-            // y: { display: false },
+            x: { beginAtZero: true },
+            y: { beginAtZero: true },
           },
           plugins: {
             legend: true,
-          },
+          }
         }}
       />
     </>

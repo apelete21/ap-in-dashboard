@@ -2,13 +2,13 @@ import { Bar } from "react-chartjs-2";
 import { higher } from "../../service/higherNumberGetter";
 import {
   Chart,
-  BarElement,
   CategoryScale,
   LinearScale,
   Tooltip,
+  ArcElement,
 } from "chart.js";
 
-Chart.register(BarElement, CategoryScale, LinearScale, Tooltip);
+Chart.register(ArcElement, CategoryScale, LinearScale, Tooltip);
 
 export const BarComponent = (props) => {
   // console.log({ props: props })

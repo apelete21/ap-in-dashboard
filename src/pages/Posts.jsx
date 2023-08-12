@@ -6,6 +6,7 @@ import { AppContext } from "../Contexts/AppContext";
 import { articleReq } from "../requests/article";
 import { LoadingComp } from "../components/loading";
 import { Helmet } from "react-helmet";
+import { months } from "../components/charts/Visits";
 
 export default function Posts() {
   const { setStatusMessage } = useContext(AppContext);

@@ -75,7 +75,7 @@ export default function Visits() {
             fillColor={"#50449E"}
             yValues={yValuesb}
             constType={""}
-            title={"Total Job applications"}
+            title={"Total Job views"}
           />
           <BarComponent
             xValues={xValues}

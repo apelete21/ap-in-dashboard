@@ -4,21 +4,42 @@ import { AppContext } from "../Contexts/AppContext";
 import { icons } from "../service/icons";
 import { Helmet } from "react-helmet";
 import { LoadingComp } from "../components/loading";
+import { loginMethod } from "../requests/login";
 
 export default function Login() {
-  const { handleUserLogin, loginError, userLoadingState, isUserLoggedIn } =
+  const { loginError, userLoadingState, setisUserLoggedIn, setUserLoadingState, isUserLoggedIn, setLoginError, setUser } =
     useContext(AppContext);
   const email = useRef("");
   const password = useRef("");
 
-  const HandleLogin = (e) => {
+  const handleUserLogin = async (loginData) => {
+    setUserLoadingState(true);
+    const { user, token, ok, message } = await loginMethod(loginData);
+    if (ok) {
+      setUser(user);
+      localStorage.setItem("user", token);
+      // setTimeout(() => {
+      setisUserLoggedIn(true);
+      // }, 1000);
+      // setTimeout(() => {
+      //   setUserLoadingState(false);
+      // }, 3000);
+    } else {
+      setLoginError(message);
+    }
+    // setTimeout(() => {
+    //   setUserLoadingState(false);
+    // }, 3000);
+  };
+
+  const HandleLogin = async (e) => {
     e.preventDefault();
 
     const loginData = {
       email: email.current?.value,
       password: password.current?.value,
     };
-    handleUserLogin(loginData);
+    await handleUserLogin(loginData);
   };
 
   return (
