@@ -73,13 +73,13 @@
 }
 
 .prompt-popup .prompt-answers :first-child {
-  background: #ff9494;
-  color: #f71d1d;
+  background: #f71d1d;
+  color: #fff;
 }
 
 .prompt-popup .prompt-answers :last-child {
-  background: #a3ff9f;
-  color: #00e400;
+  background: #000;
+  color: #fff;
 }
 
 .modal-root::-webkit-scrollbar {

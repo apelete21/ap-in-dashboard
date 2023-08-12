@@ -7,7 +7,6 @@ import { imgUrl, pictureReq } from "../../requests/article";
 export default function ProfileInfo({ loading, setloading }) {
   const [userFisrtLoad, setUserFisrtLoad] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
-  const [pfChgLoading, setPfChgLoading] = useState(false)
   const [current, setCurrent] = useState({});
   const pfImg = useRef(null)
   const [currentError, setCurrentError] = useState(false);
@@ -70,7 +69,7 @@ export default function ProfileInfo({ loading, setloading }) {
   }
 
   const handlePfChange = async () => {
-    setPfChgLoading(true)
+    // setPfChgLoading(true)
     if (pfImg.current?.files[0]) {
       const body = new FormData();
       body.append("file", pfImg?.current?.files[0]);
@@ -86,7 +85,7 @@ export default function ProfileInfo({ loading, setloading }) {
         setIsLoading(true)
       }
     }
-    setPfChgLoading(false)
+    // setPfChgLoading(false)
     setUserFisrtLoad(true)
     setloading(true)
   }
