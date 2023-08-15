@@ -19,7 +19,7 @@ export async function getOneJob(title) {
     Accept: "*/*",
     "Content-Type": "application/json",
   };
-  const response = await fetch(`${baseUrl}/jobs/find/${title}`, {
+  const response = await fetch(`${baseUrl}/jobs/findone/${title}`, {
     method: "GET",
     headers: headersList,
   });

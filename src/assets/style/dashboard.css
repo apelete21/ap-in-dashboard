@@ -1390,10 +1390,10 @@ div.input-job-element > select {
   position: relative;
 }
 
-.newsletter-request-list .requests-lists .request-item .requester-letter-logo {
+.requester-letter-logo {
   width: 50px;
   height: 50px;
-  border-radius: 20px;
+  border-radius: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1401,6 +1401,10 @@ div.input-job-element > select {
   font-weight: bold;
   font-size: 2vw;
   color: var(--ful-white);
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  -ms-border-radius: 100px;
+  -o-border-radius: 100px;
 }
 
 .newsletter-request-list

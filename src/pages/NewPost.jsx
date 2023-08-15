@@ -14,7 +14,6 @@ export default function NewPost() {
     title: "",
     bannerImg: "",
     category: "",
-    author: "",
     details: "",
     description: "",
   });
@@ -81,9 +80,8 @@ export default function NewPost() {
       <div className="add-new-job-title">
         <h1>Add a new article</h1>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-          vulputate libero et velit interdum, ac aliquet odio mattis. ipsum
-          dolor.
+          Please fill these fields before continue the process. 
+          This post can not be editable again. <br /> Accept the last prompt after checking the content of your post is correctly filled!
         </p>
       </div>
       <br />
@@ -98,14 +96,6 @@ export default function NewPost() {
           />
         </div>
         <br />
-        <div className="input-job-element">
-          <p className="input-element-title">Author</p>
-          <input
-            type="text"
-            onChange={(e) => handleChange({ author: e.target?.value })}
-            placeholder="Author"
-          />
-        </div>
         <br />
         <div className="input-job-element">
           <p className="input-element-title">Select a category</p>

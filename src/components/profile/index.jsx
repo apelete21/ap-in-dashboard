@@ -3,8 +3,11 @@ import { teams } from "../../service/icons";
 import { usersReqs } from "../../requests/users";
 import { LoadingComp } from "../loading";
 import { imgUrl, pictureReq } from "../../requests/article";
+import { useContext } from "react";
+import { AppContext } from "../../Contexts/AppContext"
 
 export default function ProfileInfo({ loading, setloading }) {
+  const { setStatusMessage } = useContext(AppContext)
   const [userFisrtLoad, setUserFisrtLoad] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [current, setCurrent] = useState({});
@@ -33,6 +36,8 @@ export default function ProfileInfo({ loading, setloading }) {
     email: "",
     country: "",
     address: "",
+    old_pass: "",
+    new_pass: ""
   });
 
   const handleUserChange = (data) => {
@@ -57,7 +62,8 @@ export default function ProfileInfo({ loading, setloading }) {
     });
     const { ok } = await usersReqs(body, "update");
     if (ok) {
-      window.location.reload();
+      setIsLoading(true)
+      setUserFisrtLoad(true)
     } else {
       alert("An error occured!");
     }
@@ -91,7 +97,21 @@ export default function ProfileInfo({ loading, setloading }) {
   }
 
   const handlePfRemove = async () => {
-
+    const { ok } = await pictureReq("POST", `delete/${current?.profile}`);
+    if (ok) {
+      const newBody = {
+        profile: "default"
+      }
+      const { ok } = await usersReqs(newBody, "update");
+      if (!ok) {
+        alert("An error occured!");
+      } else {
+        setStatusMessage("update success!")
+      }
+      setIsLoading(true)
+    }
+    setUserFisrtLoad(true)
+    setloading(true)
   }
 
   if (isLoading) {
@@ -103,7 +123,7 @@ export default function ProfileInfo({ loading, setloading }) {
           <div className="tab-me">
             <div className="profile-image">
               <div className="image-show">
-                <img src={current?.profile ? imgUrl+"/"+current?.profile : teams.feikandine} alt="profile" />
+                <img src={current?.profile ? imgUrl + "/" + current?.profile : teams.feikandine} alt="profile" />
                 <input type="file" ref={pfImg} onChange={handlePfChange} accept="jpg/jpeg/png/svg" style={{ position: "absolute", opacity: 0, zIndex: -100 }} />
               </div>
               <div className="picture-actions">
@@ -162,6 +182,26 @@ export default function ProfileInfo({ loading, setloading }) {
                     handleUserChange({ address: e?.target?.value });
                   }}
                   placeholder="address"
+                />
+              </div>
+              <div className="user-data-item">
+                <h3>Old Password</h3>
+                <input
+                  type="password"
+                  placeholder={"*****************"}
+                  onChange={(e) => {
+                    handleUserChange({ old_pass: e?.target?.value });
+                  }}
+                />
+              </div>
+              <div className="user-data-item">
+                <h3>New Password</h3>
+                <input
+                  type="password"
+                  placeholder={"*****************"}
+                  onChange={(e) => {
+                    handleUserChange({ new_pass: e?.target?.value });
+                  }}
                 />
               </div>
             </div>
