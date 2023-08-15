@@ -55,6 +55,7 @@ export default function ApplicationsTable({
       <>
       {deletePrompt ? createPortal(<PromptPopUp action={()=> {
         handleDeleteJobApp(selected)
+        setDeletePrompt(false)
       }} setSubmitPrompt={setDeletePrompt} />, document.body) : <></>}
         <div className="quote_request_list_header">
           <h1>Applications list</h1>

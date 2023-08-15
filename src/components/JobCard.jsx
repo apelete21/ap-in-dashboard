@@ -33,16 +33,16 @@ const navigate = useNavigate()
 
   useEffect(() => {
     const getData = async () => {
-      if (isAppLoading) {
+      
         const response = await allApplications(`numbers/${data._id}`, true);
         if (response?.ok) {
-          setApply(response);
+          setApply(response?.data);
         } else {
           setAppError("error");
         }
         setIsAppLoading(false);
       };
-    };
+    // };
     getData();
   }, [isAppLoading, data]);
 
