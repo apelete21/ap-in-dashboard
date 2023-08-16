@@ -1,12 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { teams } from "../../service/icons";
 import { usersReqs } from "../../requests/users";
 import { LoadingComp } from "../loading";
+import { imgUrl, pictureReq } from "../../requests/article";
+import { useContext } from "react";
+import { AppContext } from "../../Contexts/AppContext"
 
-export default function ProfileInfo() {
+export default function ProfileInfo({ loading, setloading }) {
+  const { setStatusMessage } = useContext(AppContext)
   const [userFisrtLoad, setUserFisrtLoad] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [current, setCurrent] = useState({});
+  const pfImg = useRef(null)
   const [currentError, setCurrentError] = useState(false);
 
   useEffect(() => {
@@ -31,6 +36,7 @@ export default function ProfileInfo() {
     email: "",
     country: "",
     address: "",
+    profile: "",
   });
 
   const handleUserChange = (data) => {
@@ -55,12 +61,58 @@ export default function ProfileInfo() {
     });
     const { ok } = await usersReqs(body, "update");
     if (ok) {
-      window.location.reload();
+      setIsLoading(true)
+      setUserFisrtLoad(true)
     } else {
       alert("An error occured!");
     }
     setIsLoading(false);
   };
+
+  const handleClickFileInput = async () => {
+    await pfImg.current.click()
+  }
+
+  const handlePfChange = async () => {
+    // setPfChgLoading(true)
+    if (pfImg.current?.files[0]) {
+      const body = new FormData();
+      body.append("file", pfImg?.current?.files[0]);
+      const { data, ok } = await pictureReq("POST", "upload", body);
+      if (ok) {
+        const newBody = {
+          profile: data?.srcUrl
+        }
+        const { ok } = await usersReqs(newBody, "update");
+        if (!ok) {
+          alert("An error occured!");
+        }
+        setIsLoading(true)
+      }
+    }
+    // setPfChgLoading(false)
+    setUserFisrtLoad(true)
+    setloading(true)
+  }
+
+  const handlePfRemove = async () => {
+    const { ok } = await pictureReq("POST", `delete/${current?.profile}`);
+    if (ok) {
+      const newBody = {
+        profile: "default"
+      }
+      const { ok } = await usersReqs(newBody, "update");
+      if (!ok) {
+        alert("An error occured!");
+      } else {
+        setStatusMessage("update success!")
+      }
+      setIsLoading(true)
+    }
+    setUserFisrtLoad(true)
+    setloading(true)
+  }
+
   if (isLoading) {
     return <LoadingComp scale={0.3} />;
   } else {
@@ -70,11 +122,12 @@ export default function ProfileInfo() {
           <div className="tab-me">
             <div className="profile-image">
               <div className="image-show">
-                <img src={teams.feikandine} alt="profile" />
+                <img src={current?.profile ? imgUrl + "/" + current?.profile : teams.feikandine} alt="profile" />
+                <input type="file" ref={pfImg} onChange={handlePfChange} accept="jpg/jpeg/png/svg" style={{ position: "absolute", opacity: 0, zIndex: -100 }} />
               </div>
               <div className="picture-actions">
-                <span>Charger une photo</span>
-                <span>Retirer la photo</span>
+                <span onClick={handleClickFileInput}>Charger une photo</span>
+                <span onClick={handlePfRemove}>Retirer la photo</span>
               </div>
             </div>
             <div className="user-datas">

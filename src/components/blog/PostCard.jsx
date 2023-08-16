@@ -114,7 +114,7 @@ const PostCard = ({ item, deletePost }) => {
                   </svg>
                 </Link>
               </div>
-              <div className="action action-edit">
+              {/* <div className="action action-edit">
                 <Link to="/jobs/edit" onClick={e => e.preventDefault()}>
                   <svg
                     width="19"
@@ -129,7 +129,7 @@ const PostCard = ({ item, deletePost }) => {
                     />
                   </svg>
                 </Link>
-              </div>
+              </div> */}
               <div className="action action-delete">
                 <Link to="#delete" onClick={() => {
                   setDelId(item?.title)

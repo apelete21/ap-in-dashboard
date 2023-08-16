@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { teams } from "../../service/icons";
 import { LoadingComp } from "../loading";
 import { usersReqs } from "../../requests/users";
 import { useContext } from "react";
 import { AppContext } from "../../Contexts/AppContext";
+import { imgUrl, pictureReq } from "../../requests/article";
 
-export default function AddProfile({ setTab }) {
+export default function AddProfile({ setTab, loading, setloading }) {
   const { setStatusMessage } = useContext(AppContext);
+  const pfImg = useRef(null)
+  const [pfChange, setpfChange] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [userData, setUserData] = useState({
     fullName: "",
@@ -47,10 +50,43 @@ export default function AddProfile({ setTab }) {
     }, 500);
   };
 
+  const handlePfChange = async () => {
+    // setPfChgLoading(true)
+    setpfChange(true)
+    if (pfImg.current?.files[0]) {
+      const body = new FormData();
+      body.append("file", pfImg?.current?.files[0]);
+      const { data, ok } = await pictureReq("POST", "upload", body);
+      if (ok) {
+        setUserData({
+          ...userData,
+          profile: data?.srcUrl
+        })
+      }
+      setpfChange(false)
+    }
+  }
+
+  const handlePfRemove = async () => {
+    setpfChange(true)
+    const { ok } = await pictureReq("POST", `delete/${userData?.profile}`);
+    if (ok) {
+      setUserData({
+        userData,
+        profile: ""
+      })
+    } 
+    setpfChange(false)
+  }
+
+  const handleClickFileInput = async () => {
+    await pfImg.current.click()
+  }
+
   if (isLoading) {
     return (
       <>
-        <LoadingComp />
+        <LoadingComp scale={0.8} />
       </>
     );
   } else
@@ -59,11 +95,17 @@ export default function AddProfile({ setTab }) {
         <div className="tab-me">
           <div className="profile-image">
             <div className="image-show">
-              <img src={teams.Roger} alt="profile" />
+             {
+              pfChange ? <LoadingComp scale={0.2} /> : 
+              <>
+                    <img src={userData?.profile !== "" ? imgUrl + "/" + userData?.profile : teams.feikandine} alt="profile" />
+                    <input type="file" ref={pfImg} onChange={handlePfChange} accept="jpg/jpeg/png/svg" style={{ position: "absolute", opacity: 0, zIndex: -100 }} />
+              </>
+             }
             </div>
             <div className="picture-actions">
-              <span>Charger une photo</span>
-              <span>Retirer la photo</span>
+              <span onClick={handleClickFileInput}>Charger une photo</span>
+              <span onClick={handlePfRemove}>Retirer la photo</span>
             </div>
           </div>
           <form className="user-datas" onSubmit={handleSubmit}>

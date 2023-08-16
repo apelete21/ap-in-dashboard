@@ -6,6 +6,7 @@ import { AppContext } from "../Contexts/AppContext";
 import { articleReq } from "../requests/article";
 import { LoadingComp } from "../components/loading";
 import { Helmet } from "react-helmet";
+import { months } from "../components/charts/Visits";
 
 export default function Posts() {
   const { setStatusMessage } = useContext(AppContext);
@@ -78,7 +79,7 @@ export default function Posts() {
               if (search === "") {
                 return element;
               }
-              if (search !== "" && element.title.search(search) !== -1) {
+              if (search?.toLowerCase() !== "" && element.title?.toLowerCase().search(search?.toLowerCase()) !== -1) {
                 return element;
               }
             })?.map((e, i) => {

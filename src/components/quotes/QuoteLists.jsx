@@ -11,9 +11,7 @@ function QuoteLists({ }) {
   const [search, setSearch] = useState("")
   const [selected, setSelected] = useState({})
 
-  const [deleting, setDeleting] = useState(false)
   const [delId, setDelId] = useState("")
-  const [commitApp, setCommitApp] = useState(false)
   const [submitPrompt, setSubmitPrompt] = useState(false)
 
   const deleteOneApp = () => {
@@ -44,7 +42,7 @@ function QuoteLists({ }) {
               if (search === "") {
                 return element;
               }
-              if (search !== "" && element.fullname.search(search) !== -1) {
+              if (search?.toLowerCase() !== "" && element.fullname?.toLowerCase().search(search?.toLowerCase()) !== -1) {
                 return element;
               }
             })?.map((item, index) => {

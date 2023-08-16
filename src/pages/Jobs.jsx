@@ -61,7 +61,7 @@ export default function Jobs() {
                 if (search === "") {
                   return element;
                 }
-                if (search !== "" && element.title.search(search) !== -1) {
+                if (search?.toLowerCase() !== "" && element.title?.toLowerCase()?.search(search?.toLowerCase()) !== -1) {
                   return element;
                 }
               })?.map((element, index) => {

@@ -13,7 +13,6 @@ export const pictureReq = async (method, route, body) => {
   return { data, ok: response?.ok };
 };
 
-
 export const audioReq = async (method, route, body) => {
   let headersList = {
     Accept: "*/*",
@@ -28,9 +27,11 @@ export const audioReq = async (method, route, body) => {
 };
 
 export const articleReq = async (method, route, body) => {
+  const token = localStorage.getItem("user")
   let headersList = {
     Accept: "*/*",
     "Content-Type": "application/json",
+    authorization: `Bearer ${token??token}`
   };
   let response = await fetch(`${baseUrl}/article/${route}`, {
     headers: headersList,

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { icons } from "../service/icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import moment from "moment";
 import { allApplications } from "../requests/applications";
 import { deleteJob } from "../requests/jobs";
@@ -10,20 +10,21 @@ import { createPortal } from "react-dom";
 import { PromptPopUp } from "./template/elements/prompt";
 
 export default function JobCard({ data, isDataLoading, setIsDataLoading }) {
+const navigate = useNavigate()
+
   const [isAppLoading, setIsAppLoading] = useState(true);
-  const [apply, setApply] = useState([]);
+  const [apply, setApply] = useState({});
   const [appError, setAppError] = useState("");
   const [submitPrompt, setSubmitPrompt] = useState(false)
 
   const { setStatusMessage } = useContext(AppContext);
 
   const deleteJobHandler = async () => {
-  
     try {
       const res = await deleteJob(data?._id);
       setStatusMessage(res?.data?.message || "Success!");
       // setIsAppLoading(false);
-      window.location = "/jobs"
+      navigate("/jobs")
     } catch (error) {
       alert(error?.message || "Error!");
     }
@@ -32,18 +33,18 @@ export default function JobCard({ data, isDataLoading, setIsDataLoading }) {
 
   useEffect(() => {
     const getData = async () => {
-      if (isAppLoading && !isDataLoading) {
-        const response = await allApplications(data._id, true);
+      
+        const response = await allApplications(`numbers/${data._id}`, true);
         if (response?.ok) {
           setApply(response?.data);
         } else {
           setAppError("error");
         }
         setIsAppLoading(false);
-      } else return;
-    };
+      };
+    // };
     getData();
-  }, [isAppLoading, data, isDataLoading]);
+  }, [isAppLoading, data]);
 
   const deletePrompt = (e) => {
     e.preventDefault()
@@ -134,7 +135,7 @@ export default function JobCard({ data, isDataLoading, setIsDataLoading }) {
                 </svg>
               </div>
               <div className="applications-number">
-                <b> {apply?.amount || 0} </b> applications
+                <b> {apply?.numbers} </b> applications
               </div>
             </Link>
           </div>
@@ -156,7 +157,7 @@ export default function JobCard({ data, isDataLoading, setIsDataLoading }) {
                 </svg>
               </Link>
             </div>
-            <div className="action action-edit">
+            {/* <div className="action action-edit">
               <Link to="/jobs/edit" onClick={e => e.preventDefault()}>
                 <svg
                   width="19"
@@ -171,7 +172,7 @@ export default function JobCard({ data, isDataLoading, setIsDataLoading }) {
                   />
                 </svg>
               </Link>
-            </div>
+            </div> */}
             <div className="action action-delete">
               <Link
                 to="#delete"

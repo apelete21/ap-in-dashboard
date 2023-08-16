@@ -1,27 +1,61 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { icons } from '../service/icons'
-import Visits from "../components/charts/Visits"
+import Visits, { dataExtraction } from "../components/charts/Visits"
 import HomeQuotesList from '../components/quotes/HomeQuotesList'
 import { LineComponent } from '../components/charts/Line'
 import { Helmet } from 'react-helmet'
+import moment from 'moment'
+import { months } from "../components/charts/Visits"
+import Gauge from '../components/charts/Gauge'
+import { articleReq } from '../requests/article'
+import { AppContext } from '../Contexts/AppContext'
+import { LoadingComp } from '../components/loading'
 
 export default function Home() {
+  const { setStatusMessage } = useContext(AppContext)
+  const [isLoading, setIsLoading] = useState(true)
+  const [posts, setPosts] = useState([])
+  const [yValues, setYValues] = useState([])
+  const [loading, setLoading] = useState(true)
+  useEffect(() => {
+    (async () => {
+      setYValues(await dataExtraction("news"))
+    })()
+    setLoading(false)
+  }, [loading])
+  
+  useEffect(() => {
+    (async () => {
+      if (isLoading) {
+        try {
+          const { data, ok } = await articleReq("GET", "");
+          if (ok) {
+            setPosts(data);
+          }
+        } catch (error) {
+          setStatusMessage("An error occured!");
+        }
+      }
+      setIsLoading(false);
+    })();
+  })
+
   return (
     <>
-    <Helmet>
-      <title>Bienvenue | Dashboard</title>
-    </Helmet>
+      <Helmet>
+        <title>Bienvenue | Dashboard</title>
+      </Helmet>
       <Visits />
 
       <div className="stats_chart">
         <div className="blog_stats">
           <div className="title">
             <h2>
-              Blog activity
+              <b>Blog activity</b>
             </h2>
           </div>
           <div className="circular_chart">
-            <svg width="189" height="152" viewBox="0 0 189 152" fill="none"
+            {/* <svg width="189" height="152" viewBox="0 0 189 152" fill="none"
               xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M9.22119 109.575C9.12454 109.171 8.9488 108.868 8.69398 108.666C8.43916 108.464 8.08329 108.362 7.62637 108.362C6.93221 108.362 6.41378 108.63 6.0711 109.166C5.72841 109.694 5.54828 110.572 5.5307 111.803C5.75916 111.416 6.09306 111.117 6.53241 110.906C6.97175 110.695 7.44624 110.59 7.95588 110.59C8.53582 110.59 9.04546 110.717 9.4848 110.972C9.93293 111.218 10.28 111.578 10.526 112.053C10.7809 112.527 10.9083 113.094 10.9083 113.753C10.9083 114.368 10.7853 114.917 10.5392 115.401C10.302 115.884 9.94611 116.266 9.47162 116.547C8.99713 116.82 8.42598 116.956 7.75818 116.956C6.85313 116.956 6.14139 116.758 5.62296 116.363C5.11332 115.959 4.75306 115.392 4.54218 114.663C4.34008 113.933 4.23903 113.024 4.23903 111.934C4.23903 108.718 5.37254 107.11 7.63955 107.11C8.51824 107.11 9.20801 107.348 9.70887 107.822C10.2185 108.297 10.5173 108.881 10.6051 109.575H9.22119ZM7.62637 111.855C7.09037 111.855 6.63346 112.018 6.25562 112.343C5.88657 112.659 5.70205 113.121 5.70205 113.727C5.70205 114.333 5.87339 114.816 6.21608 115.177C6.56755 115.528 7.05523 115.704 7.6791 115.704C8.23267 115.704 8.66762 115.533 8.98395 115.19C9.30906 114.847 9.47162 114.39 9.47162 113.819C9.47162 113.222 9.31346 112.747 8.99713 112.396C8.68959 112.035 8.23267 111.855 7.62637 111.855ZM12.511 112.027C12.511 110.506 12.7658 109.32 13.2755 108.468C13.7939 107.607 14.6814 107.176 15.9379 107.176C17.1944 107.176 18.0775 107.607 18.5872 108.468C19.1056 109.32 19.3648 110.506 19.3648 112.027C19.3648 113.564 19.1056 114.768 18.5872 115.638C18.0775 116.499 17.1944 116.93 15.9379 116.93C14.6814 116.93 13.7939 116.499 13.2755 115.638C12.7658 114.768 12.511 113.564 12.511 112.027ZM17.8886 112.027C17.8886 111.315 17.8403 110.713 17.7436 110.221C17.6557 109.729 17.4712 109.329 17.19 109.021C16.9089 108.705 16.4915 108.547 15.9379 108.547C15.3843 108.547 14.967 108.705 14.6858 109.021C14.4046 109.329 14.2157 109.729 14.119 110.221C14.0312 110.713 13.9872 111.315 13.9872 112.027C13.9872 112.765 14.0312 113.384 14.119 113.885C14.2069 114.386 14.3914 114.79 14.6726 115.098C14.9626 115.405 15.3843 115.559 15.9379 115.559C16.4915 115.559 16.9089 115.405 17.19 115.098C17.48 114.79 17.6689 114.386 17.7568 113.885C17.8447 113.384 17.8886 112.765 17.8886 112.027ZM20.7174 109.667C20.7174 109.026 20.9019 108.525 21.271 108.165C21.6488 107.796 22.1321 107.611 22.7208 107.611C23.3096 107.611 23.7884 107.796 24.1575 108.165C24.5353 108.525 24.7242 109.026 24.7242 109.667C24.7242 110.309 24.5353 110.814 24.1575 111.183C23.7884 111.552 23.3096 111.737 22.7208 111.737C22.1321 111.737 21.6488 111.552 21.271 111.183C20.9019 110.814 20.7174 110.309 20.7174 109.667ZM28.7574 107.783L23.4985 116.956H22.0223L27.2812 107.783H28.7574ZM22.7208 108.521C22.1673 108.521 21.8905 108.903 21.8905 109.667C21.8905 110.441 22.1673 110.827 22.7208 110.827C22.9844 110.827 23.1865 110.735 23.3271 110.55C23.4765 110.357 23.5512 110.063 23.5512 109.667C23.5512 108.903 23.2744 108.521 22.7208 108.521ZM26.0818 115.058C26.0818 114.417 26.2663 113.916 26.6354 113.556C27.0132 113.186 27.4965 113.002 28.0852 113.002C28.6652 113.002 29.1397 113.186 29.5087 113.556C29.8865 113.916 30.0755 114.417 30.0755 115.058C30.0755 115.7 29.8865 116.205 29.5087 116.574C29.1397 116.943 28.6652 117.127 28.0852 117.127C27.4965 117.127 27.0132 116.943 26.6354 116.574C26.2663 116.205 26.0818 115.7 26.0818 115.058ZM28.072 113.911C27.5185 113.911 27.2417 114.294 27.2417 115.058C27.2417 115.823 27.5185 116.205 28.072 116.205C28.6256 116.205 28.9024 115.823 28.9024 115.058C28.9024 114.294 28.6256 113.911 28.072 113.911Z"
@@ -57,17 +91,20 @@ export default function Home() {
                     result="shape" />
                 </filter>
               </defs>
-            </svg>
+            </svg> */}
+             <Gauge />
           </div>
 
           <div className="chart_numbers">
             <div className="blog_stat">
               <p>Blog posts </p>
-              <div className="stat_value">22</div>
+              <div className="stat_value">{posts?.length}</div>
             </div>
             <div className="blog_stat">
               <p>Mothly traffic</p>
-              <div className="stat_value">322 <span> 12%</span></div>
+              <div className="stat_value">{yValues[5]}
+                {/* <span> 12%</span> */}
+              </div>
             </div>
           </div>
 
@@ -78,17 +115,16 @@ export default function Home() {
             <h2>Monthly activity board</h2>
             <div className="right_conent">
               <span className="dash"></span>
-              <div className="prev_month">
+              {/* <div className="prev_month">
                 <p>Previous motnth</p>
-              </div>
+              </div> */}
               <div className="current_month">
-                <p>March 2023
-                </p>
+                <p> {`${months.at(moment().month())} ${moment().year()}`} </p>
                 <span>
                   <img src={icons.grayCalendar} alt="calendar" />
                 </span>
               </div>
-              <div className="options">
+              <div className="options" style={{ opacity: 0 }}>
                 <img src={icons.dotIcon} alt="" />
               </div>
             </div>

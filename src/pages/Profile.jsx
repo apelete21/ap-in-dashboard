@@ -11,12 +11,15 @@ import { useContext } from "react";
 import { AppContext } from "../Contexts/AppContext";
 import { baseUrl } from "../api/url";
 import { LoadingComp } from "../components/loading";
+import { createPortal } from "react-dom";
+import UpdatePwd from "../components/profile/password";
 
 export default function Profile() {
   const { setStatusMessage } = useContext(AppContext);
   const [isLoading, setIsLoading] = useState(true);
   const [tab, setTab] = useState("me");
   const [user, setUser] = useState({});
+  const [popUp, setPopUp] = useState(false)
 
   useEffect(() => {
     (async () => {
@@ -38,6 +41,10 @@ export default function Profile() {
     setTab(value?.toString());
   };
 
+  const handleShow = () => {
+    setPopUp(true)
+  }
+
   if (isLoading)
     return (
       <>
@@ -47,6 +54,9 @@ export default function Profile() {
   else
     return (
       <>
+        {popUp ? createPortal(<UpdatePwd cancel={() => {
+          setPopUp(false)
+        }} />, document.body) : <></>}
         <Helmet>
           <title>Profile | AP'IN</title>
         </Helmet>
@@ -58,8 +68,8 @@ export default function Profile() {
             <div className="profile-picture wpad">
               <img
                 src={
-                  user?.profile?.imgUrl
-                    ? `${baseUrl}/picture/${user.profile?.imgUrl}`
+                  user?.profile
+                    ? `${baseUrl}/picture/${user.profile}`
                     : teams.Roger
                 }
                 alt="profile-picture"
@@ -84,6 +94,12 @@ export default function Profile() {
                 <div className="user-details-option">
                   <p>Téléphone:</p>
                   <p>{user?.phone_number}</p>
+                </div>
+                <div className="user-details-option">
+                  <div className="updater-button" onClick={handleShow} style={{ cursor: "pointer" }}>
+                    Change Password
+                    {/* <span onClick={() => { }} style={{ color: "white" }}></span> */}
+                  </div>
                 </div>
               </div>
             </div>
@@ -115,11 +131,11 @@ export default function Profile() {
                 )}
               </div>
               <div className="tab-content">
-                {tab === "me" && <ProfileInfo user={user} />}
+                {tab === "me" && <ProfileInfo loading={isLoading} setloading={setIsLoading} user={user} />}
                 {user?.role !== "USER" && (
                   <>
-                    {tab === (null || "") && <ProfileList />}
-                    {tab === "add" && <AddProfile setTab={setTab} />}
+                    {tab === (null || "") && <ProfileList loading={isLoading} setloading={setIsLoading} />}
+                    {tab === "add" && <AddProfile loading={isLoading} setloading={setIsLoading} setTab={setTab} />}
                   </>
                 )}
               </div>
