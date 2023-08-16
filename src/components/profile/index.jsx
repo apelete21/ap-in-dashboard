@@ -12,6 +12,7 @@ export default function ProfileInfo({ loading, setloading }) {
   const [isLoading, setIsLoading] = useState(true);
   const [current, setCurrent] = useState({});
   const pfImg = useRef(null)
+  const [pfChange, setPfChange] = useState(false)
   const [currentError, setCurrentError] = useState(false);
 
   useEffect(() => {
@@ -74,7 +75,7 @@ export default function ProfileInfo({ loading, setloading }) {
   }
 
   const handlePfChange = async () => {
-    // setPfChgLoading(true)
+    setPfChange(true)
     if (pfImg.current?.files[0]) {
       const body = new FormData();
       body.append("file", pfImg?.current?.files[0]);
@@ -90,12 +91,13 @@ export default function ProfileInfo({ loading, setloading }) {
         setIsLoading(true)
       }
     }
-    // setPfChgLoading(false)
     setUserFisrtLoad(true)
     setloading(true)
+    setPfChange(false)
   }
 
   const handlePfRemove = async () => {
+    setPfChange(true)
     const { ok } = await pictureReq("POST", `delete/${current?.profile}`);
     if (ok) {
       const newBody = {
@@ -111,6 +113,7 @@ export default function ProfileInfo({ loading, setloading }) {
     }
     setUserFisrtLoad(true)
     setloading(true)
+    setPfChange(false)
   }
 
   if (isLoading) {
@@ -122,7 +125,7 @@ export default function ProfileInfo({ loading, setloading }) {
           <div className="tab-me">
             <div className="profile-image">
               <div className="image-show">
-                <img src={current?.profile ? imgUrl + "/" + current?.profile : teams.feikandine} alt="profile" />
+                {pfChange ? <LoadingComp scale={0.2} /> : <img src={current?.profile ? imgUrl + "/" + current?.profile : teams.feikandine} alt="profile" />}
                 <input type="file" ref={pfImg} onChange={handlePfChange} accept="jpg/jpeg/png/svg" style={{ position: "absolute", opacity: 0, zIndex: -100 }} />
               </div>
               <div className="picture-actions">
