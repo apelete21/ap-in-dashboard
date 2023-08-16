@@ -36,8 +36,6 @@ export default function ProfileInfo({ loading, setloading }) {
     email: "",
     country: "",
     address: "",
-    old_pass: "",
-    new_pass: ""
   });
 
   const handleUserChange = (data) => {
@@ -182,26 +180,6 @@ export default function ProfileInfo({ loading, setloading }) {
                     handleUserChange({ address: e?.target?.value });
                   }}
                   placeholder="address"
-                />
-              </div>
-              <div className="user-data-item">
-                <h3>Old Password</h3>
-                <input
-                  type="password"
-                  placeholder={"*****************"}
-                  onChange={(e) => {
-                    handleUserChange({ old_pass: e?.target?.value });
-                  }}
-                />
-              </div>
-              <div className="user-data-item">
-                <h3>New Password</h3>
-                <input
-                  type="password"
-                  placeholder={"*****************"}
-                  onChange={(e) => {
-                    handleUserChange({ new_pass: e?.target?.value });
-                  }}
                 />
               </div>
             </div>
