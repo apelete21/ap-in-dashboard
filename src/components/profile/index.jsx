@@ -36,6 +36,7 @@ export default function ProfileInfo({ loading, setloading }) {
     email: "",
     country: "",
     address: "",
+    profile: "",
   });
 
   const handleUserChange = (data) => {
