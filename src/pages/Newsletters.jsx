@@ -3,11 +3,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AppContext } from "../Contexts/AppContext";
 import { LoadingComp } from "../components/loading";
-import { deleteManyEmails, getNewsletters } from "../requests/newsletters";
+import { deleteManyEmails, exportEmails, getNewsletters } from "../requests/newsletters";
 import { Helmet } from "react-helmet";
-import jsPDF from "jspdf";
-import HTMLReactParser from "html-react-parser";
-import { createPortal } from "react-dom";
 
 export default function Newsletters() {
   const [emails, setEmails] = useState();
@@ -91,31 +88,6 @@ export default function Newsletters() {
     setTodelete([]);
   }
 
-
-  /**
-   * export datas to pdf file
-   */
-  const generatePDF = (e) => {
-    e.preventDefault()
-    setIsExporting(true)
-    // const el = (<div>
-    //   {emails?.map((e, i) => {
-    //     <p>{`${e.email}`}</p>
-    //   })}
-    // </div>)
-    // console.log(HTMLReactParser(el))
-    document.querySelectorAll(".requester-checkbox, .requester-letter-logo").forEach((e, i)=> {
-      e.remove()
-    })
-    const report = new jsPDF("portrait", "pt", "a4")
-    report.html(document.querySelector(".requests-lists")).then(() => {
-      report.save("emails.pdf")
-      setreload(true)
-      // window.reload()
-    })
-    setIsExporting(false)
-  }
-
   return (
     <>
       {isExporting ? (
@@ -138,8 +110,7 @@ export default function Newsletters() {
           <h1>Newletters contacts list</h1>
           <Link
             className="btn btn_primary"
-            to={"/newsletters"}
-            onClick={generatePDF}
+            to={exportEmails}
           >
             Export emails
           </Link>
