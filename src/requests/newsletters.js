@@ -1,5 +1,7 @@
 import { baseUrl } from "../api/url";
 
+export const exportEmails = baseUrl + "/newsletters/export"
+
 export const getNewsletters = async () => {
     const headersList = {
         Accept: "*/*",
