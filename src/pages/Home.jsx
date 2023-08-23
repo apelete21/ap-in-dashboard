@@ -9,7 +9,7 @@ import { months } from "../components/charts/Visits"
 import Gauge from '../components/charts/Gauge'
 import { articleReq } from '../requests/article'
 import { AppContext } from '../Contexts/AppContext'
-import { LoadingComp } from '../components/loading'
+import { LoadingComp } from '../components/loading' 
 
 export default function Home() {
   const { setStatusMessage } = useContext(AppContext)

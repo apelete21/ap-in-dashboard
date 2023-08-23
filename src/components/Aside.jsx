@@ -15,7 +15,7 @@ export default function Aside() {
         </div>
         <div className="onborard_card">
           <h3>Welcome to your administration board</h3>
-          <p>Visualize an manage your website here</p>
+          <p>Visualize and manage your website here</p>
           <img src={welIllust} alt="" />
         </div>
 
