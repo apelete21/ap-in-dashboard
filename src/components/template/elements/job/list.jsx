@@ -3,6 +3,7 @@ import random from "../../../../service/random";
 import { EditBtn } from "../button";
 import HoverEdit from "../hoverWrapper";
 import { modifyElement, removeElement } from "../../methods";
+import { PasteContent } from "../clipboard/clipBoard";
 
 export default function List() {
   let listId = "li-" + random();
@@ -40,6 +41,7 @@ export function ListElement() {
       <EditBtn
         editFunc={() => modifyElement(listElIdChild)}
         deleteFunc={() => removeElement(listElId)}
+        PasteFunc={() => { PasteContent(listElIdChild) }}
       />
     </HoverEdit>
   );

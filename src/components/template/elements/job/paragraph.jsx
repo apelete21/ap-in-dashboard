@@ -3,6 +3,7 @@ import { EditBtn } from "../button";
 import random from "../../../../service/random";
 import HoverEdit from "../hoverWrapper";
 import { modifyElement, removeElement } from "../../methods";
+import { PasteContent } from "../clipboard/clipBoard";
 
 export default function Paragraph() {
   let parId = "p-" + random();
@@ -13,6 +14,7 @@ export default function Paragraph() {
       <EditBtn
         editFunc={() => modifyElement(parId)}
         deleteFunc={() => removeElement(parId)}
+        PasteFunc={() => { PasteContent(parId) }}
       />
     </HoverEdit>
   );
