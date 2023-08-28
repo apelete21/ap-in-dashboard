@@ -39,6 +39,17 @@ export const AppContextProvider = ({ children }) => {
   // state to control the application details data
   const [JobApp, setJobApp] = useState(null);
 
+  // context menu
+  const [contextMenu, setContextMenu] = useState(false)
+
+  /**
+   * see or hide the context menu
+   * 
+   */ 
+  const toggleCtxMenu = ()=>{
+    setContextMenu(!contextMenu)
+  }
+
   /**
   |--------------------------------------------------
   | Function to set view & automatic hiding operations status message
@@ -175,6 +186,9 @@ export const AppContextProvider = ({ children }) => {
         setStatusMessage,
         JobApp,
         setJobApp,
+        contextMenu,
+        setContextMenu,
+        toggleCtxMenu
       }}
     >
       {children}

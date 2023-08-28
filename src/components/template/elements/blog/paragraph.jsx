@@ -1,12 +1,15 @@
 import random from "../../../../service/random";
 import { modifyElement, removeElement } from "../../methods";
 import { EditBtn } from "../button";
+import { PasteContent } from "../clipboard/clipBoard";
 import HoverEdit from "../hoverWrapper";
 
 export function Paragraph() {
 
   const parId = "par-" + random()
   const parContId = "parCont-" + random();
+
+
 
   return (
     <HoverEdit className={parContId}>
@@ -16,6 +19,7 @@ export function Paragraph() {
       <EditBtn
         editFunc={() => modifyElement(parId)}
         deleteFunc={() => removeElement(parContId)}
+        PasteFunc={()=>{PasteContent(parId)}}
       />
     </HoverEdit>
   );

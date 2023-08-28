@@ -21,17 +21,21 @@ export const months = [
 
 export const dataExtraction = async (page) => {
   const { data, ok } = await visits(page)
-  if (ok) {
-    // console.log(data.visits)
-  } else { }
-  let values = []
-  for (let i = 5; i >= 0; i--) {
-    const e = data?.visits[i];
-    // if (e.?month){
-    values.push(e?.number || 1)
-    // }
+  if (!ok) {
+    alert("Something went wrong! Please verify your connection or ask developper team if this error still happening!")
   }
-  // console.log(values)
+  let values = []
+  let reversed = []
+
+  for (let i = data?.visits.length - 1; i >= 0; i--) {
+    const element = data?.visits[i];
+    reversed.push(element)
+  }
+
+  for (let i = 0; i <= 5; i++) {
+    const e = reversed[i];
+    values = [e?.number || 1, ...values]
+  }
   return [...values]
 }
 
@@ -41,7 +45,7 @@ export default function Visits() {
   const [yValuesb, setYValuesb] = useState([])
   const [yValuesc, setYValuesc] = useState([])
   const [xValues, setXValues] = useState([])
-  
+
   useEffect(() => {
     (() => {
       const nowMonth = (new Date()).getMonth()

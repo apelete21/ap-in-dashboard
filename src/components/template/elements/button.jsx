@@ -3,6 +3,7 @@ import { icons } from "../../../service/icons";
 export function EditBtn({
   deleteFunc,
   editFunc,
+  PasteFunc,
   children1,
   children2,
   className,
@@ -15,6 +16,11 @@ export function EditBtn({
         ) : (
           children1
         )}
+      </button>
+      <button className="" style={{
+        width: "fit-content", color: "white"
+      }} onClick={PasteFunc}>
+        Paste
       </button>
       <button className="" onClick={deleteFunc}>
         {children2 === undefined ? (

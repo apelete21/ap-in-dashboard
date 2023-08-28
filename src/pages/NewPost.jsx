@@ -4,11 +4,13 @@ import { ArticleTemplate } from "../components/template";
 import { articleReq, audioReq } from "../requests/article";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import { LoadingComp } from "../components/loading";
 
 export default function NewPost() {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [optionalField, setOptionalField] = useState(false);
+  const [podcatLoading, setPodcatLoading] = useState(false)
   const audioFile = useRef(null);
   const [article, setArticle] = useState({
     title: "",
@@ -33,6 +35,7 @@ export default function NewPost() {
   };
 
   const handleSubmitPodcast = async () => {
+    setPodcatLoading(true)
     /**
      * create a route in the api to handle the audio files in one side and automaticaly
      * resend the response to handle the post publication
@@ -47,10 +50,11 @@ export default function NewPost() {
     });
     if (!res?.ok) return alert(res?.data?.message || "An error occured!");
     navigate("/blog");
+    setPodcatLoading(false)
   };
 
   const nextStepOrSubmit = async () => {
-    const { title, category, author } = article; 
+    const { title, category, author } = article;
     if (
       category === "podcast".toLowerCase().replace(" ", "-") &&
       audioFile?.current?.files.length !== 0
@@ -65,9 +69,9 @@ export default function NewPost() {
 
   return (
     <>
-    <Helmet>
-      <title>Add a new blog post</title>
-    </Helmet>
+      <Helmet>
+        <title>Add a new blog post</title>
+      </Helmet>
       {showModal &&
         createPortal(
           <ArticleTemplate
@@ -80,13 +84,17 @@ export default function NewPost() {
       <div className="add-new-job-title">
         <h1>Add a new article</h1>
         <p>
-          Please fill these fields before continue the process. 
+          Please fill these fields before continue the process.
           This post can not be editable again. <br /> Accept the last prompt after checking the content of your post is correctly filled!
         </p>
       </div>
       <br />
       <br />
-      <form action="">
+      {podcatLoading ? () => {
+        return (<>
+          <LoadingComp scale={0.4} />
+        </>)
+      } : <form action="">
         <div className="input-job-element">
           <p className="input-element-title">Article title</p>
           <input
@@ -139,7 +147,7 @@ export default function NewPost() {
             </div>
           </>
         )}
-      </form>
+      </form>}
 
       <div className="add-job-btn">
         <span className="btn btn_secondary" onClick={nextStepOrSubmit}>

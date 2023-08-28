@@ -1,6 +1,7 @@
 import random from "../../../../service/random";
 import { modifyElement, removeElement } from "../../methods";
 import { EditBtn } from "../button";
+import { PasteContent } from "../clipboard/clipBoard";
 import HoverEdit from "../hoverWrapper";
 
 export function Title() {
@@ -14,6 +15,7 @@ export function Title() {
       <EditBtn
         editFunc={() => modifyElement(tId)}
         deleteFunc={() => removeElement(tContId)}
+        PasteFunc={() => { PasteContent(tId) }}
       />
     </HoverEdit>
   );

@@ -2,16 +2,11 @@ import React, { useContext, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { icons } from "../service/icons";
 import { AppContext } from "../Contexts/AppContext";
+import { imgUrl } from "../requests/article";
 
 function Nav() {
   const { pathname } = useLocation();
-  const { user, UserLogOut } = useContext(AppContext);
-
-  const [userSubmenu, setuserSubmenu] = useState(false);
-
-  const toggleSubMenu = () => {
-    setuserSubmenu(!userSubmenu);
-  };
+  const { user } = useContext(AppContext);
 
   return (
     <>
@@ -71,13 +66,12 @@ function Nav() {
         <Link to={"/profile"}>
           <div
             className={`profile_box`}
-            onClick={toggleSubMenu}
           >
             <p>{user?.fullName || "Anonymous"}</p>
             {/* <img src={icons.prIcon} alt="profile" /> */}
-            <div className="icon-letter">
-              <span>{user?.fullName?.charAt(0)?.toUpperCase() || "A"}</span>
-            </div>
+            {/* <div className="icon-letter"> */}
+              <img src={`${imgUrl}/${user?.profile}`} alt="" />
+            {/* </div> */}
           </div>
         </Link>
       </div>

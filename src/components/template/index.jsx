@@ -1,5 +1,5 @@
 import "./template.css";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Section from "./elements/job/section";
 import moment from "moment";
 import { cleanBlogDOM, cleanJobDOM } from "./methods";
@@ -10,6 +10,9 @@ import { Paragraph } from "./elements/blog/paragraph";
 import { BannerImg, ImgContainer } from "./elements/blog/img";
 import { articleReq } from "../../requests/article";
 import { useNavigate } from "react-router-dom";
+import { AppContext } from "../../Contexts/AppContext";
+import { useRef } from "react";
+import { preventCtxMenu } from "./elements/clipboard/clipBoard";
 
 export function JobTemplate({ job, setJob, setShowModal, handleSubmit }) {
   const [content, setContent] = useState([<Section />]);
@@ -109,6 +112,12 @@ export function JobTemplate({ job, setJob, setShowModal, handleSubmit }) {
  ********************************************/
 
 export const ArticleTemplate = ({ article, setArticle, setShowModal }) => {
+  const { user, setContextMenu, contextMenu, toggleCtxMenu } = useContext(AppContext)
+  const [menuStyle, setMenuStyle] = useState({
+    top: "",
+    left: ""
+  })
+  const container = useRef(null)
   const [submitPrompt, setSubmitPrompt] = useState(false);
   const [content, setContent] = useState([
     <>
@@ -141,6 +150,15 @@ export const ArticleTemplate = ({ article, setArticle, setShowModal }) => {
       alert("An error occured!");
     }
   };
+
+  // const oncontextmenu = (e) => {
+  //   e.preventDefault()
+  //   setMenuStyle({
+  //     top: `${e.clientY - 20}px`,
+  //     left: `${e.clientX - 20}px`
+  //   })
+  // }
+
   return (
     <>
       {submitPrompt &&
@@ -177,7 +195,7 @@ export const ArticleTemplate = ({ article, setArticle, setShowModal }) => {
                     <div class="author_details">
                       <div class="author_title">Author:</div>
                       <div class="author_name">
-                        {article?.author?.trim() !== "" ? article?.author : "Anonymous"}
+                        {user?.fullName?.trim() !== "" ? user?.fullName : "Anonymous"}
                       </div>
                     </div>
                     <div class="date_details">
@@ -217,7 +235,7 @@ export const ArticleTemplate = ({ article, setArticle, setShowModal }) => {
               </div>
             </div>
           </div>
-          <section className="offset-canva detailsContainer">
+          <section className="offset-canva detailsContainer" ref={container} onContextMenu={preventCtxMenu}>
             <div className="news--text-block">{content}</div>
           </section>
         </div>
