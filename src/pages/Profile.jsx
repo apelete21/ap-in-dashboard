@@ -3,7 +3,6 @@ import { Helmet } from "react-helmet";
 import { bgs, teams } from "../service/icons";
 import ProfileInfo from "../components/profile";
 import AddProfile from "../components/profile/add";
-import ProfileUpdate from "../components/profile/update";
 import ProfileList from "../components/profile/list";
 import { useState } from "react";
 import { usersReqs } from "../requests/users";
@@ -70,7 +69,7 @@ export default function Profile() {
                 src={
                   user?.profile
                     ? `${baseUrl}/picture/${user.profile}`
-                    : teams.Roger
+                    : teams.feikandine
                 }
                 alt="profile-picture"
               />
