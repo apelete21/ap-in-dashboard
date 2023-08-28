@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { icons } from "../service/icons";
+import { icons, teams } from "../service/icons";
 import { AppContext } from "../Contexts/AppContext";
 import { imgUrl } from "../requests/article";
 
@@ -65,13 +65,10 @@ function Nav() {
 
         <Link to={"/profile"}>
           <div
-            className={`profile_box`}
+            className={`profile_box ${pathname?.startsWith("/profile") ? "active" : ""}`}
           >
             <p>{user?.fullName || "Anonymous"}</p>
-            {/* <img src={icons.prIcon} alt="profile" /> */}
-            {/* <div className="icon-letter"> */}
-              <img src={`${imgUrl}/${user?.profile}`} alt="" />
-            {/* </div> */}
+              <img src={user?.profile ? `${imgUrl}/${user?.profile}` : teams.feikandine} alt="" />
           </div>
         </Link>
       </div>

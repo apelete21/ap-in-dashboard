@@ -350,42 +350,7 @@ img {
 
 .profile_box:hover,
 .profile_box.active {
-  background: #0002;
-}
-
-.profile_box .user-menu {
-  display: none;
-  flex-direction: column;
-  position: absolute;
-  top: 120%;
-  right: 0%;
-  padding: 5px;
-  background: white;
-  width: 130%;
-  border: #00000020 solid 1px;
-  border-radius: 7px;
-  -webkit-border-radius: 7px;
-  -moz-border-radius: 7px;
-  -ms-border-radius: 7px;
-  -o-border-radius: 7px;
-}
-
-.profile_box.active .user-menu {
-  display: flex;
-}
-
-.profile_box .user-menu a {
-  padding: 6px;
-  transition-duration: 0.4s;
-  border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -o-border-radius: 3px;
-}
-
-.profile_box .user-menu a:hover {
-  background: #0001;
+  background: #00000011;
 }
 
 .profile_box p {
@@ -393,8 +358,10 @@ img {
 }
 
 .profile_box img {
-  height: 42px;
+   height: 42px;
   width: 42px;
+  object-fit: cover;
+  object-position: center;
   border-radius: 12px;
   margin-left: 15px;
 }
