@@ -1,3 +1,4 @@
+import { lazy } from "react";
 import YoutubeLight from "../assets/media/images/icons/youtube-light.svg";
 import InstagramLight from "../assets/media/images/icons/instagram-light.svg";
 import LinkedinLight from "../assets/media/images/icons/linkedin-light.svg";
@@ -30,7 +31,7 @@ import chevronLeft from "../assets/media/images/icons/chevron_left.svg";
 import chevronRight from "../assets/media/images/icons/chevron_right.svg";
 import chairIcon from "../assets/media/images/icons/chair-icon.svg";
 import feather from "../assets/media/images/icons/feather.svg";
-import loader from "../assets/media/gif/loading.gif"
+// import loader from "../assets/media/gif/loading.gif"
 
 // Team imgs importation
 import feikandine from "../assets/media/images/team/feikandine.jpg";
@@ -42,6 +43,8 @@ import TeamMember6 from "../assets/media/images/team/team-memeber-6.png";
 
 import ProfileIcon from "../assets/media/images/news/author_profile.png";
 import bannerImg from "../assets/media/images/banners/services.png"
+
+const loader = lazy(() => import("../assets/media/gif/loading.gif"));
 
 export const icons = {
     tgDarkThin: TelegramDarkThin,

@@ -6,6 +6,7 @@ import Subtitle from "./subtitle";
 import List from "./list";
 import HoverEdit from "../hoverWrapper";
 import { modifyElement, removeElement } from "../../methods";
+import { PasteContent } from "../clipboard/clipBoard";
 
 export default function Section() {
   let sectId = "s-" + random();
@@ -56,6 +57,7 @@ export default function Section() {
           <EditBtn
             editFunc={() => modifyElement(titleId)}
             deleteFunc={() => removeElement(titleId)}
+            PasteFunc={() => { PasteContent(titleId) }}
           />
         </HoverEdit>
         <div className="role_description">{sectionContent}</div>
