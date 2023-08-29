@@ -101,7 +101,7 @@ export default function ProfileInfo({ loading, setloading }) {
     const { ok } = await pictureReq("POST", `delete/${current?.profile}`);
     if (ok) {
       const newBody = {
-        profile: "default"
+        profile: null
       }
       const { ok } = await usersReqs(newBody, "update");
       if (!ok) {
@@ -156,14 +156,6 @@ export default function ProfileInfo({ loading, setloading }) {
                   placeholder="Téléphone"
                 />
               </div>
-              {/* <div className="user-data-item">
-          <h3>Email</h3>
-          <input
-            type="email"
-            value={"admin@gmail.com"}
-            placeholder="Noms et Prénoms"
-          />
-        </div> */}
               <div className="user-data-item">
                 <h3>Pays</h3>
                 <input
