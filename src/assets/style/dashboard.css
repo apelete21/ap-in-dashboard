@@ -358,7 +358,7 @@ img {
 }
 
 .profile_box img {
-   height: 42px;
+  height: 42px;
   width: 42px;
   object-fit: cover;
   object-position: center;
@@ -1661,9 +1661,14 @@ Profile styles section
   justify-content: center;
   background: #0006;
 }
-.user-datas.pwd-update>div {
+.user-datas.pwd-update > div {
+  gap: 20px;
   padding: 1rem;
   width: fit-content;
+  display: flex;
+  /* align-items: center;
+  justify-content: center; */
+  flex-direction: column;
   min-width: 40vw;
   height: fit-content;
   background: #fff;
@@ -1682,7 +1687,7 @@ Profile styles section
   background-color: #fff;
 }
 
-.user-datas.pwd-update .h-section{
+.user-datas.pwd-update .h-section {
   display: flex;
   align-items: center;
   gap: 3rem;
@@ -1711,6 +1716,10 @@ Profile styles section
   object-position: center;
 }
 
+.user-datas .user-data-item {
+  width: 100%;
+}
+
 .user-datas .user-data-item input {
   padding: 15px 10px;
 }
@@ -1719,19 +1728,24 @@ Profile styles section
   outline: none;
 }
 
-.updater-button :first-child,
-.updater-button :last-child {
+.updater-button span {
   border: none;
-  padding: 15px 20px;
+  text-align: center;
+  width: 100%;
+  padding: 15px;
   cursor: pointer;
   background: #000;
   color: white;
   display: inline-block;
-  border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
+  transition: 0.2s;
+  -webkit-transition: 0.2s;
+  -moz-transition: 0.2s;
+  -ms-transition: 0.2s;
+  -o-transition: 0.2s;
+}
+
+.updater-button span:hover{
+  opacity: 0.8;
 }
 
 .profile .tab-lists {

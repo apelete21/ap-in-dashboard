@@ -6,7 +6,6 @@ import { AppContext } from "../Contexts/AppContext";
 import { articleReq } from "../requests/article";
 import { LoadingComp } from "../components/loading";
 import { Helmet } from "react-helmet";
-import { months } from "../components/charts/Visits";
 
 export default function Posts() {
   const { setStatusMessage } = useContext(AppContext);
@@ -15,7 +14,7 @@ export default function Posts() {
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState("")
 
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
   const deletePost = async (title) => {
     setIsLoading(true);
@@ -23,7 +22,8 @@ export default function Posts() {
       const { data, ok } = await articleReq("POST", `delete/${title}`);
       if (ok) {
         setStatusMessage(data?.message);
-        navigate("/blog")
+        // navigate("/blog")
+        setIsLoading(true)
       }
     } catch (error) {
       setStatusMessage(error?.message);
@@ -32,7 +32,7 @@ export default function Posts() {
 
   useEffect(() => {
     (async () => {
-      if (isLoading) {
+      // if (isLoading) {
         try {
           const { data, ok } = await articleReq("GET", "");
           if (ok) {
@@ -41,7 +41,7 @@ export default function Posts() {
         } catch (error) {
           setError(true);
         }
-      }
+      // }
       setIsLoading(false);
     })();
   }, [posts, isLoading, setStatusMessage]);
