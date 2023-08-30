@@ -85,9 +85,9 @@ export const AppContextProvider = ({ children }) => {
     } else {
       setLoginError(message);
     }
-    setTimeout(() => {
+    // setTimeout(() => {
       setUserLoadingState(false);
-    }, 3000);
+    // }, 3000);
   };
 
   /**

@@ -34,7 +34,6 @@ export default function Login() {
 
   const HandleLogin = async (e) => {
     e.preventDefault();
-
     const loginData = {
       email: email.current?.value,
       password: password.current?.value,
