@@ -33,9 +33,12 @@ export default function AddProfile({ setTab, loading, setloading }) {
     const { password, password_again, email } = userData;
 
     if (password !== password_again) {
-      return alert("passwords do not match!");
+      alert("passwords do not match!");
+      setIsLoading(false);
+      return
     } else if (email === "") {
-      return alert("please fill the email field!");
+       alert("please fill the email field!");
+      return setIsLoading(false);
     }
 
     const { ok, message } = await usersReqs(userData, "register");
@@ -108,7 +111,7 @@ export default function AddProfile({ setTab, loading, setloading }) {
               <span onClick={handlePfRemove}>Retirer la photo</span>
             </div>
           </div>
-          <form className="user-datas" onSubmit={handleSubmit}>
+          <form className="user-datas" onSubmit={e => e.preventDefault()}>
             <div className="user-data-item">
               <h3>Noms et Prénoms</h3>
               <input
@@ -174,7 +177,7 @@ export default function AddProfile({ setTab, loading, setloading }) {
               />
             </div>
             <div className="updater-button">
-              <button type="submit">Enrégistrer</button>
+              <span onClick={handleSubmit} type="submit">Enrégistrer</span>
             </div>
           </form>
         </div>
