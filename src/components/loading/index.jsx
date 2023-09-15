@@ -7,12 +7,12 @@ export function LoadingComp({scale, top}) {
       <div
         style={{
           height: "100%",
-          display: "flex",
+          display: "grid",
           padding: "1rem",
           alignContent: "center",
           alignItems: "center",
-          margin: "0 auto",
           justifyContent: "center",
+          margin: "0 auto",
           position: `${top ? "absolute" : "static"}`,
           top: "0",
           zIndex: 100000000000
@@ -22,9 +22,10 @@ export function LoadingComp({scale, top}) {
           src={icons.loader}
           alt="Loader"
           style={{
+            display: "flex",
             width: "40%",
-            margin: "0 auto",
-            scale: `${scale}`
+            margin: "auto",
+            scale: `${scale || 0.5}`
           }}
         />
       </div>

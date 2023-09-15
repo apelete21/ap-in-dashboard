@@ -42,56 +42,55 @@ import Roger from "../assets/media/images/team/roger.jpg";
 import TeamMember6 from "../assets/media/images/team/team-memeber-6.png";
 
 import ProfileIcon from "../assets/media/images/news/author_profile.png";
-import bannerImg from "../assets/media/images/banners/services.png"
-
-const loader = lazy(() => import("../assets/media/gif/loading.gif"));
+import bannerImg from "../assets/media/images/banners/services.png";
+import loader from "../assets/media/gif/loading.gif";
 
 export const icons = {
-    tgDarkThin: TelegramDarkThin,
-    whDarkThin: WhatsappDarkThin,
-    fbDarkThin: FacebookDarkThin,
-    ytLight: YoutubeLight,
-    itLight: InstagramLight,
-    inLight: LinkedinLight,
-    fbLight: FacebookLight,
-    ytDark: YoutubeDark,
-    itDark: InstagramDark,
-    inDark: LinkedinDark,
-    fbDark: FacebookDark,
-    lgLight: LogoLight,
-    lgDark: LogoDark,
-    lgIcon: LogoIcon,
-    playDark: PlayDark,
-    arLight: ArrowRightLight,
-    mailAr: MailArrow,
-    bnTime: BusinessTime,
-    glocation: GlobeLocation,
-    arOblik: ArrowOblic,
-    arGray: GrayArrowLeft,
-    alGray: GrayArrowRight,
-    prIcon: ProfileIcon,
-    grayCalendar,
-    dotIcon,
-    eyeIcon,
-    trashIcon,
-    searchIcon,
-    searchDark,
-    chevronLeft,
-    chevronRight,
-    chairIcon,
-    feather,
-    loader
+  tgDarkThin: TelegramDarkThin,
+  whDarkThin: WhatsappDarkThin,
+  fbDarkThin: FacebookDarkThin,
+  ytLight: YoutubeLight,
+  itLight: InstagramLight,
+  inLight: LinkedinLight,
+  fbLight: FacebookLight,
+  ytDark: YoutubeDark,
+  itDark: InstagramDark,
+  inDark: LinkedinDark,
+  fbDark: FacebookDark,
+  lgLight: LogoLight,
+  lgDark: LogoDark,
+  lgIcon: LogoIcon,
+  playDark: PlayDark,
+  arLight: ArrowRightLight,
+  mailAr: MailArrow,
+  bnTime: BusinessTime,
+  glocation: GlobeLocation,
+  arOblik: ArrowOblic,
+  arGray: GrayArrowLeft,
+  alGray: GrayArrowRight,
+  prIcon: ProfileIcon,
+  grayCalendar,
+  dotIcon,
+  eyeIcon,
+  trashIcon,
+  searchIcon,
+  searchDark,
+  chevronLeft,
+  chevronRight,
+  chairIcon,
+  feather,
+  loader,
 };
 
 export const teams = {
-    feikandine,
-    JeanPhillipe,
-    Gladys,
-    Arnaud,
-    Roger,
-    TeamMember6,
+  feikandine,
+  JeanPhillipe,
+  Gladys,
+  Arnaud,
+  Roger,
+  TeamMember6,
 };
 
 export const bgs = {
-    bannerImg
-}
+  bannerImg,
+};

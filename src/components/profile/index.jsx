@@ -64,6 +64,7 @@ export default function ProfileInfo({ loading, setloading }) {
     if (ok) {
       setIsLoading(true)
       setUserFisrtLoad(true)
+      setStatusMessage("Update Successfull!");
     } else {
       alert("An error occured!");
     }
