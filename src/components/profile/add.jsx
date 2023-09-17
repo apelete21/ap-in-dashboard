@@ -41,17 +41,19 @@ export default function AddProfile({ setTab, loading, setloading }) {
       return setIsLoading(false);
     }
 
-    const { ok, message } = await usersReqs(userData, "register");
-    if (ok) {
-      setStatusMessage(message ?? message);
-      setTab("");
-    } else {
+    try {
+      const { ok, message } = await usersReqs(userData, "register");
+      if (ok) {
+        setStatusMessage(message ?? message);
+        setTab("");
+      }
+    } catch (error) {
       setIsLoading(false);
-      setStatusMessage(message ?? message);
+      setStatusMessage(error?.message);
     }
-    setTimeout(() => {
+    // setTimeout(() => {
       setIsLoading(false);
-    }, 500);
+    // }, 500);
   };
 
   const handlePfChange = async () => {
@@ -128,8 +130,9 @@ export default function AddProfile({ setTab, loading, setloading }) {
                 required
                 autoComplete={false}
                 placeholder="Email"
+                defaultValue={""}
                 onChange={(e) => handleChange({ email: e?.target?.value })}
-              />
+                />
             </div>
             <div className="user-data-item">
               <h3>Password</h3>
@@ -137,6 +140,7 @@ export default function AddProfile({ setTab, loading, setloading }) {
                 type="password"
                 autoComplete={false}
                 placeholder="password"
+                defaultValuevalue={""}
                 onChange={(e) => handleChange({ password: e?.target?.value })}
               />
             </div>
