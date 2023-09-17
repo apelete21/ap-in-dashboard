@@ -32,7 +32,7 @@ export default function Posts() {
 
   useEffect(() => {
     (async () => {
-      // if (isLoading) {
+      if (isLoading) {
         try {
           const { data, ok } = await articleReq("GET", "");
           if (ok) {
@@ -41,10 +41,10 @@ export default function Posts() {
         } catch (error) {
           setError(true);
         }
-      // }
+      }
       setIsLoading(false);
     })();
-  }, [posts, isLoading, setStatusMessage]);
+  }, [isLoading]);
 
   return (
     <>

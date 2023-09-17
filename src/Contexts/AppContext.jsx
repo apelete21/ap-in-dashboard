@@ -79,9 +79,9 @@ export const AppContextProvider = ({ children }) => {
       // setTimeout(() => {
       setisUserLoggedIn(true);
       // }, 1000);
-      setTimeout(() => {
+      // setTimeout(() => {
         setUserLoadingState(false);
-      }, 3000);
+      // }, 1000);
     } else {
       setLoginError(message);
     }

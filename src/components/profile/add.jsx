@@ -43,7 +43,8 @@ export default function AddProfile({ setTab, loading, setloading }) {
 
     const { ok, message } = await usersReqs(userData, "register");
     if (ok) {
-      setTab(null);
+      setStatusMessage(message ?? message);
+      setTab("");
     } else {
       setIsLoading(false);
       setStatusMessage(message ?? message);
@@ -89,7 +90,7 @@ export default function AddProfile({ setTab, loading, setloading }) {
   if (isLoading) {
     return (
       <>
-        <LoadingComp scale={0.8} />
+        <LoadingComp scale={0.5} />
       </>
     );
   } else

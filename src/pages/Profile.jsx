@@ -36,7 +36,6 @@ export default function Profile() {
 
   const ChangeTab = (e, value) => {
     e.preventDefault();
-    console.log(value);
     setTab(value?.toString());
   };
 
@@ -47,7 +46,7 @@ export default function Profile() {
   if (isLoading)
     return (
       <>
-        <LoadingComp scale={0.2} />
+        <LoadingComp scale={0.3} />
       </>
     );
   else
